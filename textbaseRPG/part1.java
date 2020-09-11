@@ -1,6 +1,8 @@
 public class part1 {
     static questGenerator quest1 = new questGenerator();
     public static void questFGame(){
+        character.currentPart = 1;
+        character.currentState = "idle";
         System.out.println();
         System.out.println("Part 1: All the Heroes do not go to Battle in the Beginning");
         System.out.println("-----------------------------------------------------------");
@@ -14,28 +16,20 @@ public class part1 {
         char ans = read.scanChar();
         while (ans == 'n'){
             System.out.println();
-            System.out.println("Hey! You need to earn money");
+            System.out.println("Hey! You need to earn money!");
             System.out.println();
             program.waitingTime(2000);
             System.out.println("| Do you want to see the quest? (y/n)");
             ans = read.scanChar();
         }
         System.out.println();
-        quest1.questGen('F', "Get woods", 0, 50, "Get stones" , 0, 30, 100);
+        quest1.questGen('F', "Get woods", 00, 50, "Get stones" , 00, 30, 100,2);
         System.out.println();
         program.waitingTime(4000);
         System.out.println("- (Shouting) Hey, " + character.name + "! Going gathering? I will teach you how to do it.");
         System.out.println();
         program.waitingTime(2000);
-        System.out.println("| You can gather woods and stones if you type 'gather'.");
-        System.out.println();
-        program.waitingTime(2000);
-        System.out.println("| You also can sell stone and wood in the shop. Type 'shop' to go the the shop.");
-        System.out.println();
-        program.waitingTime(2000);
-        System.out.println("| If you want to check your progress, type 'quest'.");
-        System.out.println();
-        program.waitingTime(2000);
+        action.help();
         action.charAction();
     }
 }
