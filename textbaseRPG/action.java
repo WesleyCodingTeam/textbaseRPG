@@ -2,44 +2,71 @@ public class action {
     static boolean found = false;
     public static void charAction() {
         System.out.println("| What are you going to do right now?");
+        //initializing
         program read = new program();
         String action = read.scanString();
-        
-        if (action.equals("gather") && character.currentPart == 1){
-            gatheringAction();
+
+        //trigers gathering action and this only applies to part 1
+        if (action.equals("gather")){
+            if (character.currentPart == 1){
+                gatheringAction();
+            }
+            else {
+                System.out.println("- You are not weak!! You can earn money by fighting!");
+                System.out.println();
+                program.waitingTime(2000);
+            }
             charAction();
         }
+        //going to shop
         else if (action.equals("shop")){
-            charAction();    
+            shop.shopPage();   
         }
+        //checking quest
         else if (action.equals("quest")){
-            switch (character.currentPart){
+            questCheck();
+            charAction();
+        }
+        //returning to guild
+        else if (action.equals("guild")){
+            switch (character.currentPart) {
                 case 1:
-                    part1.quest1.questCheck();
+                    if (part1.quest1.questState == false){
+                        System.out.println("- Keep working, " + character.name + ". You didn't finish your quest!");
+                        System.out.println();
+                        program.waitingTime(2000);
+                        charAction();
+                }
                     break;
             
                 default:
                     break;
             }
-            charAction();
+            //some code needed to program going back to the story
         }
-        else if (action.equals("guild")){
-            if (part1.quest1.questState == false){
-                System.out.println("- Keep working, " + character.name + ". You didn't finish your quest!");
-                System.out.println();
-                program.waitingTime(2000);
-                charAction();
-            }
-        }
+        //opens help message
         else if (action.equals("help")){
             help();
             charAction();    
         }
+        //returns to the command action again in case the command is wrong
         else {
             System.out.println("| Wrong command. Try again.");
-            System.out.println(); 
+            System.out.println();
+            charAction(); 
         }
         System.out.println();
+    }
+
+    public static void questCheck(){
+        switch (character.currentPart){
+            case 1:
+                part1.quest1.questCheck();
+                break;
+        
+            default:
+                break;
+        }
     }
 
 
@@ -91,6 +118,7 @@ public class action {
         part1.quest1.questCheckCompletion();
     }
 
+    //help message
     public static void help(){
         System.out.println("| You can gather woods and stones if you type 'gather'.");
         System.out.println();
