@@ -1,5 +1,5 @@
 # Text-based RPG
-Text-based RPG on Java
+Text-based RPG on Java(Can be developed into picture-based too)
 
 First created by Jaeyoung
 
