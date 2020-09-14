@@ -1,6 +1,8 @@
 public class part1 {
+    //intialize questGenerator
     static questGenerator quest1 = new questGenerator();
     public static void questFGame(){
+        //random messages
         character.currentPart = 1;
         character.currentState = "idle";
         System.out.println();
@@ -16,20 +18,20 @@ public class part1 {
         char ans = read.scanChar();
         while (ans == 'n'){
             System.out.println();
-            System.out.println("Hey! You need to earn money!");
+            System.out.println("Hey! You need to earn money!"); //revision required on the word
             System.out.println();
             program.waitingTime(2000);
             System.out.println("| Do you want to see the quest? (y/n)");
             ans = read.scanChar();
         }
         System.out.println();
-        quest1.questGen('F', "Get woods", 00, 50, "Get stones" , 00, 30, 100,2);
-        System.out.println();
-        program.waitingTime(4000);
+        guild.guildPage();
         System.out.println("- (Shouting) Hey, " + character.name + "! Going gathering? I will teach you how to do it.");
         System.out.println();
         program.waitingTime(2000);
+        //first help message
         action.help();
+        //action command activated
         action.charAction();
     }
 }
