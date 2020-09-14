@@ -17,3 +17,6 @@ Creative Director(CD) by Hyeongjun Song
 3. Download the liveshare extension pack in extension pack in VScode.
 
 4. Create new branch and open respositroy and get to work!
+
+## Setting
+See [settingFile.md](settingFile.md)
