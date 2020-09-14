@@ -1,7 +1,9 @@
 # Text-based RPG
 Text-based RPG on Java
 
-Created by Jaeyoung
+First created by Jaeyoung
+
+By: Jaeyoung, Jun, Jonathan
 
 Download vscode java installation and java extension pack from https://code.visualstudio.com/docs/languages/java
 
