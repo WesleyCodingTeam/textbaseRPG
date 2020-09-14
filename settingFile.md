@@ -1,4 +1,4 @@
-# Setting(설정) file
+# Setting file
 
 This file is to right down all the setting/detail of the game.
 
