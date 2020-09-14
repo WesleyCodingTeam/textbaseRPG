@@ -1,13 +1,19 @@
 # Text-based RPG
 
-Text-based RPG on Java(Can be developed into picture-based too)
+Text-based RPG on Java (will be developed into picture-based with interactive UI)
 
-First created by Jaeyoung
+## Contributors
+Project Manager(PM) by Jaeyoung Shin
 
-By: Jaeyoung, Jun, Jonathan
+Software Deveoper(SD) by Jonathan Lee
 
-Download vscode java installation and java extension pack from <https://code.visualstudio.com/docs/languages/java>
+Creative Director(CD) by Hyeongjun Song
 
-Then download git from <https://git-scm.com/downloads>
+## Installation guide for starters
+1. Download vscode java installation and java extension pack from <https://code.visualstudio.com/docs/languages/java>
 
-Also download the liveshare extension pack in extension pack in VScode.
+2. Download git from <https://git-scm.com/downloads>
+
+3. Download the liveshare extension pack in extension pack in VScode.
+
+4. Create new branch and open respositroy and get to work!
