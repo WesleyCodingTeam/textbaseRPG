@@ -15,6 +15,6 @@ public class Guild {
                 break;
         }
         System.out.println();
-        program.waitingTime(4000);
+        Program.waitingTime(4000);
     }
 }

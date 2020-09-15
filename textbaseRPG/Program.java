@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
-public class program {
-    //makes the program stops for a while for amount t. 1 second is t = 1000
+public class Program {
+    //makes the Program stops for a while for amount t. 1 second is t = 1000
     public static void waitingTime(int t) {
         try {
             Thread.sleep(t);
@@ -57,7 +57,7 @@ public class program {
         sc.nextLine();
         return num;  
     }
-    //just program needed for scanner. NOT ACTUALLY USED
+    //just Program needed for scanner. NOT ACTUALLY USED
     public void stop(){
         sc.close();
     }

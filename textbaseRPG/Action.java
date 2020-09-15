@@ -3,7 +3,7 @@ public class Action {
     public static void charAction() {
         System.out.println("| What are you going to do right now?");
         //initializing
-        program read = new program();
+        Program read = new Program();
         String action = read.scanString();
         switch (action) {
             //trigers gathering action and this only applies to part 1
@@ -14,7 +14,7 @@ public class Action {
                 else {
                     System.out.println("- You are not weak!! You can earn money by fighting!");
                     System.out.println();
-                    program.waitingTime(2000);
+                    Program.waitingTime(2000);
                 }
                 charAction();
                 break;
@@ -34,7 +34,7 @@ public class Action {
                         if (Part1.quest1.questState == false){
                             System.out.println("- Keep working, " + Character.name + ". You didn't finish your quest!");
                             System.out.println();
-                            program.waitingTime(2000);
+                            Program.waitingTime(2000);
                             charAction();
                     }
                         break;
@@ -82,13 +82,13 @@ public class Action {
         System.out.print("| Gathering ");
         for (int i = 0; i <5; i++){
             System.out.print(".");
-            program.waitingTime(300);
+            Program.waitingTime(300);
         }
         System.out.println();
         System.out.println();
         //probablity of gathering wood and stone
-        boolean wood = program.percentProb(65);
-        boolean stone = program.percentProb(40);
+        boolean wood = Program.percentProb(65);
+        boolean stone = Program.percentProb(40);
         //special action trigger
         if (Part1.quest1.currentNumDetail1 > 40 && Part1.quest1.currentNumDetail2 > 20 && found == false){
             gettingPower();
@@ -96,21 +96,21 @@ public class Action {
         }
         //only getting wood
         if (wood == true && stone == false){
-            int i = program.randomNum(5, 9);
+            int i = Program.randomNum(5, 9);
             System.out.println("| You got " + i + " wood!");
             Part1.quest1.currentNumDetail1 += i;
             
         }
         //only getting stone
         else if (wood == false && stone == true){
-            int j = program.randomNum(5, 9);
+            int j = Program.randomNum(5, 9);
             System.out.println("| You got " + j + " stone!");
             Part1.quest1.currentNumDetail2 += j;
         }
         //getting both wood and stone
         else if (wood == true && stone == true){
-            int i = program.randomNum(3, 6);
-            int j = program.randomNum(3, 6);
+            int i = Program.randomNum(3, 6);
+            int j = Program.randomNum(3, 6);
             Part1.quest1.currentNumDetail1 += i;
             Part1.quest1.currentNumDetail2 += j;
             System.out.println("| You got " + i + " wood and " + j + " stone!"); 
@@ -120,7 +120,7 @@ public class Action {
             System.out.println("| You didn't get anything!");
         }
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
         //check if quest was completed
         Part1.quest1.questCheckCompletion();
     }
@@ -140,21 +140,21 @@ public class Action {
     public static void help(){
         System.out.println("| You can gather woods and stones if you type 'gather'.");
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
         System.out.println("| You also can sell item you obtained in the shop. Type 'shop' to go the the shop.");
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
         System.out.println("| If you want to check your progress, type 'quest'.");
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
         System.out.println("| If you completed the quest, type 'guild' to get back to guild.");
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
         System.out.println("| If you want to see your stats, type 'stat' to see your stat.");
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
         System.out.println("| If you need help for commands, type 'help' to see this message again.");
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
     }
 }

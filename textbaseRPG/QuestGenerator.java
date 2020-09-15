@@ -92,10 +92,10 @@ public class QuestGenerator {
                 completed = true;
                 System.out.println("| YOU COMPLETED THE QUEST!");
                 System.out.println();
-                program.waitingTime(2000);
+                Program.waitingTime(2000);
                 System.out.println("| Get back to the guild to receive reward!");
                 System.out.println();
-                program.waitingTime(2000);
+                Program.waitingTime(2000);
             }    
                 break;
             
@@ -105,10 +105,10 @@ public class QuestGenerator {
                 completed = true;
                 System.out.println("| YOU COMPLETED THE QUEST!");
                 System.out.println();
-                program.waitingTime(2000);
+                Program.waitingTime(2000);
                 System.out.println("| Get back to the guild to receive reward!");
                 System.out.println();
-                program.waitingTime(2000);
+                Program.waitingTime(2000);
                 
             }
                 break;

@@ -9,18 +9,18 @@ public class Part1 {
         System.out.println("Part 1: All the Heroes do not go to Battle in the Beginning");
         System.out.println("-----------------------------------------------------------");
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
         System.out.println("| You are now at the staircase of the guild building where the quest board stands.");
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
         System.out.println("| Do you want to see the quest? (y/n)");
-        program read = new program();
+        Program read = new Program();
         char ans = read.scanChar();
         while (ans == 'n'){
             System.out.println();
             System.out.println("Hey! You need to earn money!"); //revision required on the word
             System.out.println();
-            program.waitingTime(2000);
+            Program.waitingTime(2000);
             System.out.println("| Do you want to see the quest? (y/n)");
             ans = read.scanChar();
         }
@@ -28,7 +28,7 @@ public class Part1 {
         Guild.guildPage();
         System.out.println("- (Shouting) Hey, " + Character.name + "! Going gathering? I will teach you how to do it.");
         System.out.println();
-        program.waitingTime(2000);
+        Program.waitingTime(2000);
         //first help message
         Action.help();
         //charAction method in action.java
