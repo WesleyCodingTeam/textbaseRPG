@@ -1,10 +1,10 @@
-public class part1 {
-    //intialize questGenerator
-    static questGenerator quest1 = new questGenerator();
+public class Part1 {
+    //intialize QuestGenerator
+    static QuestGenerator quest1 = new QuestGenerator();
     public static void questFGame(){
         //dialogue part 1
-        character.currentPart = 1;
-        character.currentState = "idle";
+        Character.currentPart = 1;
+        Character.currentState = "idle";
         System.out.println();
         System.out.println("Part 1: All the Heroes do not go to Battle in the Beginning");
         System.out.println("-----------------------------------------------------------");
@@ -25,13 +25,13 @@ public class part1 {
             ans = read.scanChar();
         }
         System.out.println();
-        guild.guildPage();
-        System.out.println("- (Shouting) Hey, " + character.name + "! Going gathering? I will teach you how to do it.");
+        Guild.guildPage();
+        System.out.println("- (Shouting) Hey, " + Character.name + "! Going gathering? I will teach you how to do it.");
         System.out.println();
         program.waitingTime(2000);
         //first help message
-        action.help();
+        Action.help();
         //charAction method in action.java
-        action.charAction();
+        Action.charAction();
     }
 }

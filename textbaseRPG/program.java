@@ -39,7 +39,7 @@ public class program {
     }
 
     Scanner sc = new Scanner(System.in);
-    //scanning a character
+    //scanning a Character
     public char scanChar() {
         char next = sc.next().charAt(0);
         sc.nextLine();

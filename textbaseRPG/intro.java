@@ -1,4 +1,4 @@
-public  class intro {
+public class Intro {
     public static void introduction(){
         //intro statements
         System.out.println("| The game is starting");
@@ -14,13 +14,13 @@ public  class intro {
         program sc = new program();
         String ans = sc.scanString();
         System.out.println();
-        //assign value to name field in character.java
-        character.name = ans;
+        //assign value to name field in Character.java
+        Character.name = ans;
         System.out.println("| What is your age?");
         int answ = sc.scanInt();
         System.out.println();
         //same method as above comment
-        character.age = answ;
+        Character.age = answ;
         System.out.println("| You can roll the dice to set your stat. You can roll up to 10 times.");
         System.out.println();
         System.out.println("| The stat is random from 5 ~ 15.");
@@ -35,13 +35,13 @@ public  class intro {
             program.waitingTime(1500);
             roll++;
             //assigning stat from randumNum method in program.java. Look more at program.java
-            character.str = program.randomNum(5, 15);
-            character.wis = program.randomNum(5, 15);
-            character.agi = program.randomNum(5, 15);
-            //creating stat/character initialization
-            character.makeStats(character.name, "None", 1, character.age, character.str, character.wis, character.agi, 100, 100, 100, 100, 10, 10);
+            Character.str = program.randomNum(5, 15);
+            Character.wis = program.randomNum(5, 15);
+            Character.agi = program.randomNum(5, 15);
+            //creating stat/Character initialization
+            Character.makeStats(Character.name, "None", 1, Character.age, Character.str, Character.wis, Character.agi, 100, 100, 100, 100, 10, 10);
             //use statPage method to print out stats
-            character.statPage();
+            Character.statPage();
             System.out.println();
             program.waitingTime(500);
             System.out.println("| Roll again? y/n");
@@ -84,20 +84,20 @@ public  class intro {
         }
         System.out.println();
         System.out.println();
-        //calling variable from character.java to include name in the dialogue
-        System.out.println("- Ok! Now you woke up. " + character.name + ", aren't you going gathering again?");
+        //calling variable from Character.java to include name in the dialogue
+        System.out.println("- Ok! Now you woke up. " + Character.name + ", aren't you going gathering again?");
         System.out.println();
         program.waitingTime(4000);
         System.out.println("(Looking at the clock) Wait, what? Noooooo. I will be late again. (Runs out of the house)");
         System.out.println();
         program.waitingTime(4000);
-        System.out.println("- (Looking at running " + character.name +") Haaah. How old is he? He is " + character.age + " and I have to wake him up every day.");
+        System.out.println("- (Looking at running " + Character.name +") Haaah. How old is he? He is " + Character.age + " and I have to wake him up every day.");
         System.out.println();
         program.waitingTime(4000);
         System.out.println("- I hope that he would bring enough money to last a week...");
         System.out.println();
         program.waitingTime(4000);
         //runs part1.java with questFGame method
-        part1.questFGame();
+        Part1.questFGame();
     }
 }

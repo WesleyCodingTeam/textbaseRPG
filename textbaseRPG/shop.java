@@ -1,4 +1,4 @@
-public class shop {
+public class Shop {
     public static void shopPage(){
         //some code needed for shop
     }    

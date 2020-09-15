@@ -1,6 +1,6 @@
 # Setting file
 
-This file is to right down all the setting/detail of the game.
+This file is to write down all the setting/detail of the game.
 
 Include link/file that will be used for setting.
 
