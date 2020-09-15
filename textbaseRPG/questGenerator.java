@@ -1,4 +1,4 @@
-public class questGenerator {
+public class QuestGenerator {
     //field
     char qRank; //F,D,C,B,A,S
     String questDetail1; //some words explaining the quest

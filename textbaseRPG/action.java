@@ -1,4 +1,4 @@
-public class action {
+public class Action {
     static boolean found = false;
     public static void charAction() {
         System.out.println("| What are you going to do right now?");
@@ -8,7 +8,7 @@ public class action {
         switch (action) {
             //trigers gathering action and this only applies to part 1
             case "gather":
-                if (character.currentPart == 1){
+                if (Character.currentPart == 1){
                     gatheringAction();
                 }
                 else {
@@ -20,7 +20,7 @@ public class action {
                 break;
             //going shopping
             case "shop":
-                shop.shopPage(); 
+                Shop.shopPage(); 
                 break;
             //check current status
             case "quest":
@@ -29,10 +29,10 @@ public class action {
                 break;
             //check for new quest    
             case "guild":
-                switch (character.currentPart) {
+                switch (Character.currentPart) {
                     case 1:
-                        if (part1.quest1.questState == false){
-                            System.out.println("- Keep working, " + character.name + ". You didn't finish your quest!");
+                        if (Part1.quest1.questState == false){
+                            System.out.println("- Keep working, " + Character.name + ". You didn't finish your quest!");
                             System.out.println();
                             program.waitingTime(2000);
                             charAction();
@@ -46,7 +46,7 @@ public class action {
                 break;
             //stat page
             case "stat":
-                character.statPage();
+                Character.statPage();
                 break;
             //help message
             case "help":
@@ -64,9 +64,9 @@ public class action {
     }
     //checking guest based on parts
     public static void questCheck(){
-        switch (character.currentPart){
+        switch (Character.currentPart){
             case 1:
-                part1.quest1.questCheck();
+                Part1.quest1.questCheck();
                 break;
         
             default:
@@ -90,7 +90,7 @@ public class action {
         boolean wood = program.percentProb(65);
         boolean stone = program.percentProb(40);
         //special action trigger
-        if (part1.quest1.currentNumDetail1 > 40 && part1.quest1.currentNumDetail2 > 20 && found == false){
+        if (Part1.quest1.currentNumDetail1 > 40 && Part1.quest1.currentNumDetail2 > 20 && found == false){
             gettingPower();
             found = true;
         }
@@ -98,21 +98,21 @@ public class action {
         if (wood == true && stone == false){
             int i = program.randomNum(5, 9);
             System.out.println("| You got " + i + " wood!");
-            part1.quest1.currentNumDetail1 += i;
+            Part1.quest1.currentNumDetail1 += i;
             
         }
         //only getting stone
         else if (wood == false && stone == true){
             int j = program.randomNum(5, 9);
             System.out.println("| You got " + j + " stone!");
-            part1.quest1.currentNumDetail2 += j;
+            Part1.quest1.currentNumDetail2 += j;
         }
         //getting both wood and stone
         else if (wood == true && stone == true){
             int i = program.randomNum(3, 6);
             int j = program.randomNum(3, 6);
-            part1.quest1.currentNumDetail1 += i;
-            part1.quest1.currentNumDetail2 += j;
+            Part1.quest1.currentNumDetail1 += i;
+            Part1.quest1.currentNumDetail2 += j;
             System.out.println("| You got " + i + " wood and " + j + " stone!"); 
         }
         //not getting anything
@@ -122,7 +122,7 @@ public class action {
         System.out.println();
         program.waitingTime(2000);
         //check if quest was completed
-        part1.quest1.questCheckCompletion();
+        Part1.quest1.questCheckCompletion();
     }
     
     //dialogue when he is about to die and god comes
