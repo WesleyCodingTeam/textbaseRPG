@@ -2,7 +2,7 @@ public class part1 {
     //intialize questGenerator
     static questGenerator quest1 = new questGenerator();
     public static void questFGame(){
-        //random messages
+        //dialogue part 1
         character.currentPart = 1;
         character.currentState = "idle";
         System.out.println();
@@ -31,7 +31,7 @@ public class part1 {
         program.waitingTime(2000);
         //first help message
         action.help();
-        //action command activated
+        //charAction method in action.java
         action.charAction();
     }
 }
