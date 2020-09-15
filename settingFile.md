@@ -6,6 +6,13 @@ Include link/file that will be used for setting.
 
 ## Basic storyline
 
+## Stats
+| Stat          	| Characteristic                       	|
+|---------------	|--------------------------------------	|
+| Strength(Str) 	| For base attack damage.              	|
+| Wisdok(Wis)   	| For base mana attack damage          	|
+| Agility(Agi)  	| For critical hit rate & dodge chance 	|
+
 ## Items
 
 ### In Shop
@@ -13,6 +20,12 @@ Include link/file that will be used for setting.
 ### In Field
 
 ## Class
+| Class     	| Strength 	| Wisdom    	| Agility 	|
+|-----------	|----------	|-----------	|---------	|
+| Knight    	| High     	| Average   	| Low     	|
+| Wizard    	| Low      	| Very High 	| Low     	|
+| Rogue     	| Average  	| Low       	| High    	|
+| Swordsman 	| Average  	| Average   	| Average 	|
 
 ## Skills
 
