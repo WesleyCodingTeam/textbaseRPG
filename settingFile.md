@@ -15,9 +15,7 @@ Include link/file that will be used for setting.
 
 ## Items
 
-### In Shop
-
-### In Field
+See [itemList](itemList.md)
 
 ## Class
 | Class     	| Strength 	| Wisdom    	| Agility 	|
