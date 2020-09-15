@@ -3,7 +3,7 @@ public class guild {
         //some code for receiving quest based on the part that the charater is in
         switch (character.currentPart){
             case 1:
-                part1.quest1.questGen('F', "Get woods", 0, 50, "Get stones" , 0, 30, 100, 2);
+                part1.quest1.questGen('F', "Get woods", 0, 50, "Get stones" , 0, 30, 100, 5, 2);
                 break;
             case 2:
                 

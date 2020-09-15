@@ -1,5 +1,5 @@
 public class shop {
     public static void shopPage(){
-        //some code for shop
+        //some code needed for shop
     }    
 }

@@ -5,59 +5,64 @@ public class action {
         //initializing
         program read = new program();
         String action = read.scanString();
-
-        //trigers gathering action and this only applies to part 1
-        if (action.equals("gather")){
-            if (character.currentPart == 1){
-                gatheringAction();
-            }
-            else {
-                System.out.println("- You are not weak!! You can earn money by fighting!");
-                System.out.println();
-                program.waitingTime(2000);
-            }
-            charAction();
-        }
-        //going to shop
-        else if (action.equals("shop")){
-            shop.shopPage();   
-        }
-        //checking quest
-        else if (action.equals("quest")){
-            questCheck();
-            charAction();
-        }
-        //returning to guild
-        else if (action.equals("guild")){
-            switch (character.currentPart) {
-                case 1:
-                    if (part1.quest1.questState == false){
-                        System.out.println("- Keep working, " + character.name + ". You didn't finish your quest!");
-                        System.out.println();
-                        program.waitingTime(2000);
-                        charAction();
+        switch (action) {
+            //trigers gathering action and this only applies to part 1
+            case "gather":
+                if (character.currentPart == 1){
+                    gatheringAction();
                 }
-                    break;
-            
-                default:
-                    break;
-            }
-            //some code needed to program going back to the story
+                else {
+                    System.out.println("- You are not weak!! You can earn money by fighting!");
+                    System.out.println();
+                    program.waitingTime(2000);
+                }
+                charAction();
+                break;
+            //going shopping
+            case "shop":
+                shop.shopPage(); 
+                break;
+            //check current status
+            case "quest":
+                questCheck();
+                charAction();
+                break;
+            //check for new quest    
+            case "guild":
+                switch (character.currentPart) {
+                    case 1:
+                        if (part1.quest1.questState == false){
+                            System.out.println("- Keep working, " + character.name + ". You didn't finish your quest!");
+                            System.out.println();
+                            program.waitingTime(2000);
+                            charAction();
+                    }
+                        break;
+                
+                    default:
+                        System.out.println("Code error guild action default");
+                        break;
+                }
+                break;
+            //stat page
+            case "stat":
+                character.statPage();
+                break;
+            //help message
+            case "help":
+                help();
+                charAction(); 
+                break;
+            //when the user typed in wrong command
+            default:
+                System.out.println("| Wrong command. Try again. 'help' command suggested to look for the right command");
+                System.out.println();
+                charAction(); 
+                break;
         }
-        //opens help message
-        else if (action.equals("help")){
-            help();
-            charAction();    
-        }
-        //returns to the command action again in case the command is wrong
-        else {
-            System.out.println("| Wrong command. Try again.");
-            System.out.println();
-            charAction(); 
-        }
-        System.out.println();
+        System.out.println();        
     }
-
+    //checking guest based on parts
     public static void questCheck(){
         switch (character.currentPart){
             case 1:
@@ -65,6 +70,7 @@ public class action {
                 break;
         
             default:
+                System.out.println("Code error questCheck default");
                 break;
         }
     }
@@ -80,42 +86,54 @@ public class action {
         }
         System.out.println();
         System.out.println();
+        //probablity of gathering wood and stone
         boolean wood = program.percentProb(65);
         boolean stone = program.percentProb(40);
+        //special action trigger
         if (part1.quest1.currentNumDetail1 > 40 && part1.quest1.currentNumDetail2 > 20 && found == false){
-            System.out.println("Some sound of hitting a chest."); //edit reqired 
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
+            gettingPower();
             found = true;
         }
+        //only getting wood
         if (wood == true && stone == false){
-            int i = program.randomNum(1, 7);
+            int i = program.randomNum(5, 9);
             System.out.println("| You got " + i + " wood!");
             part1.quest1.currentNumDetail1 += i;
             
         }
+        //only getting stone
         else if (wood == false && stone == true){
-            int j = program.randomNum(1, 7);
+            int j = program.randomNum(5, 9);
             System.out.println("| You got " + j + " stone!");
             part1.quest1.currentNumDetail2 += j;
         }
+        //getting both wood and stone
         else if (wood == true && stone == true){
-            int i = program.randomNum(1, 7);
-            int j = program.randomNum(1, 7);
+            int i = program.randomNum(3, 6);
+            int j = program.randomNum(3, 6);
             part1.quest1.currentNumDetail1 += i;
             part1.quest1.currentNumDetail2 += j;
             System.out.println("| You got " + i + " wood and " + j + " stone!"); 
         }
+        //not getting anything
         else{
             System.out.println("| You didn't get anything!");
         }
         System.out.println();
         program.waitingTime(2000);
+        //check if quest was completed
         part1.quest1.questCheckCompletion();
+    }
+    
+    //dialogue when he is about to die and god comes
+    public static void gettingPower(){
+        System.out.println("Some sound of hitting a chest."); //edit reqired on dialogue
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
     }
 
     //help message
@@ -130,6 +148,9 @@ public class action {
         System.out.println();
         program.waitingTime(2000);
         System.out.println("| If you completed the quest, type 'guild' to get back to guild.");
+        System.out.println();
+        program.waitingTime(2000);
+        System.out.println("| If you want to see your stats, type 'stat' to see your stat.");
         System.out.println();
         program.waitingTime(2000);
         System.out.println("| If you need help for commands, type 'help' to see this message again.");
