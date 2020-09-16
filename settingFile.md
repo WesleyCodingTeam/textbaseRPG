@@ -5,7 +5,7 @@ This file is to write down all the setting/detail of the game.
 Include link/file that will be used for setting.
 
 ## Basic storyline
-
+Jaeyoung is pp
 ## Stats
 | Stat          	| Characteristic                       	|
 |---------------	|--------------------------------------	|
