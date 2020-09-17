@@ -59,44 +59,52 @@ public class Intro {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println("Part 0: The Beginning of The Legend");
+        System.out.println("Part 0: The Beginning");
         System.out.println("-----------------------------------");
         System.out.println();
         Program.waitingTime(2000);
-        System.out.println("- Hey!!!");
+        System.out.println("- " + Character.name + "?");
         System.out.println();
         //repeating
-        for (int i = 0; i <4; i++){
-            System.out.print("Zz... ");
+        for (int i = 0; i <2; i++){
+            System.out.print("Zzz... ");
             Program.waitingTime(700);
         }
+        System.out.print("Mmmph..");
+        Program.waitingTime(2500);
         System.out.println();
-        Program.waitingTime(1000);
         System.out.println();
-        System.out.println("- (Screams) Ahhhhhhhhh!!!");
+        System.out.println("-- You feel a soft hand touch your face --");
+        Program.waitingTime(2500);
+        System.out.println();
+        System.out.println("- (Screams) OIIIIII!!!  " + Character.name + "!!");
+        Program.waitingTime(2500);
+        System.out.println();
+        System.out.println("-- You get thrown out of bed from a slap to the face --");
+        Program.waitingTime(3000);
+        System.out.println();
+        System.out.println(" Wh- Wha!?!");
         Program.waitingTime(2000);
         System.out.println();
-        System.out.print("(Waking up) ");
-        //repeating
-        for (int i = 0; i <3; i++){
-            System.out.print("! ");
-            Program.waitingTime(200);
-        }
-        System.out.println();
+        System.out.println("-- You see your gorilla of an older sister, towering over you --");
+        Program.waitingTime(3000);
         System.out.println();
         //calling variable from Character.java to include name in the dialogue
-        System.out.println("- Ok! Now you woke up. " + Character.name + ", aren't you going gathering again?");
+        System.out.println("- Ha... Why are you sleeping in again?. " + Character.name + ", aren't you going to the guild today?");
+        Program.waitingTime(3000);
         System.out.println();
-        Program.waitingTime(4000);
-        System.out.println("(Looking at the clock) Wait, what? Noooooo. I will be late again. (Runs out of the house)");
+        System.out.println(" Eh!? You're right!");
+        Program.waitingTime(2000);
         System.out.println();
-        Program.waitingTime(4000);
-        System.out.println("- (Looking at running " + Character.name +") Haaah. How old is he? He is " + Character.age + " and I have to wake him up every day.");
+        System.out.println("-- You quickly gather your lousy gear and run out of the house --");
+        Program.waitingTime(3000);
         System.out.println();
-        Program.waitingTime(4000);
-        System.out.println("- I hope that he would bring enough money to last a week...");
+        System.out.println("- Haaah. " + Character.name +" is almost " + Character.age + " and I still have to wake him up everyday.");
+        Program.waitingTime(3000);
         System.out.println();
+        System.out.println("- I hope he brings back a few gold at least...");
         Program.waitingTime(4000);
+        System.out.println();
         //runs part1.java with questFGame method
         Part1.questFGame();
     }
