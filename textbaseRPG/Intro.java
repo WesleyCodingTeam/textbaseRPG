@@ -66,7 +66,7 @@ public class Intro {
         System.out.println("- " + Character.name + "?");
         System.out.println();
         //repeating
-        for (int i = 0; i <2; i++){
+        for (int i = 0; i < 2; i++){
             System.out.print("Zzz... ");
             Program.waitingTime(700);
         }
