@@ -25,7 +25,7 @@ public class ItemPrint{
     }
 
     public static void printItems(){
-        for (int i = 0; i < 3000; i++) {
+        for (int i = 0; i < 5000; i++) {
             if(ItemGen.itemList.containsKey(i)){
                 ArrayList<String> infoReceived = ItemGen.itemList.get(i);
                 System.out.println(infoReceived);

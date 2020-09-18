@@ -6,11 +6,13 @@ public class MainRunFile{
         //Part1 disabled for the test of item. Just activate it by removing //
         //Part1.questFGame();
         ItemGen.itemGeneration();
-        ItemPrint.printItems();
-        Inventory.setInventory(1001, 1);
-        Inventory.setInventory(1003, 2);
-        Inventory.setInventory(1002, 1);
-        Inventory.getInventory();
-        Inventory.printInventoryItem(0);
+        Inventory.setInventory(1003, 1);
+        Inventory.setInventory(3001, 1);
+        Inventory.setInventory(3002, 2);
+        Inventory.setInventory(3001, 3);
+        Inventory.setInventory(1001, 3);
+        Inventory.setInventory(3002, 5);
+        Inventory.getweapon();
+        Inventory.getpotion();
     } 
 }

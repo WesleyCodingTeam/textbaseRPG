@@ -8,14 +8,21 @@ public class ItemGen{
     public static void itemGeneration() {
     //starting to set weapons  
     ArrayList<String> ID1001 = new ArrayList<String>();
-    ID1001.addAll(Arrays.asList("Basic Sword", "Normal", "10", "100","1","Just a normal sword"));
+    ID1001.addAll(Arrays.asList("ID1001", "Basic Sword", "Normal", "10", "100","1","Just a normal sword"));
     ArrayList<String> ID1002 = new ArrayList<String>();
-    ID1002.addAll(Arrays.asList("Basic Wand", "Normal", "10", "100","1","Just a normal wand"));
+    ID1002.addAll(Arrays.asList("ID1002","Basic Wand", "Normal", "10", "100","1","Just a normal wand"));
     ArrayList<String> ID1003 = new ArrayList<String>();
-    ID1003.addAll(Arrays.asList("Basic Knife", "Normal", "10", "100","1","Just a normal knife"));
+    ID1003.addAll(Arrays.asList("ID1003","Basic Knife", "Normal", "10", "100","1","Just a normal knife"));
     itemList.put(1001, ID1001);
     itemList.put(1002, ID1002);
     itemList.put(1003, ID1003);
+    //setting potions
+    ArrayList<String> ID3001 = new ArrayList<String>();
+    ID3001.addAll(Arrays.asList("ID3001","Cookie", "Normal", "10", "10", "Nice chocolate cookie. Increases your hp and mp 10.", "1"));
+    ArrayList<String> ID3002 = new ArrayList<String>();
+    ID3002.addAll(Arrays.asList("ID3002","Mysterious cake", "Unknown", "-10", "-10","Looks nice(?)...", "1"));
+    itemList.put(3001, ID3001);
+    itemList.put(3002, ID3002);
     }
 
 }
