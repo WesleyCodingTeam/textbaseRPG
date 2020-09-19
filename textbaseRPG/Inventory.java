@@ -61,11 +61,52 @@ public class Inventory {
         
     }
 
+
+    public static void showInventory(){
+        System.out.println("______________INVENTORY______________");
+        System.out.println("");
+        System.out.println("1. Weapons");
+        System.out.println("");
+        System.out.println("2. Armours");
+        System.out.println("");
+        System.out.println("3. Potions");
+        System.out.println("");
+        System.out.println("Type the number of category you want.");
+        System.out.println("_____________________________________");
+        Program read = new Program();
+        int ans = read.scanInt();
+        System.out.println("");
+        switch (ans) {
+            case 1:
+                getweapon();
+                break;    
+            case 2:
+                
+                break;
+            case 3:
+                getpotion();
+                break;
+        
+            default:
+                break;
+        }
+        
+    }
     public static void getweapon(){
         for (int i = 0; i < weapon.size(); i++){
         ArrayList<String> infoReceived = weapon.get(i);
         System.out.println(i + ". [" + infoReceived.get(1) + "]");
-        
+        }
+        System.out.println("");
+        if (weapon.isEmpty()){
+            System.out.println("You do not have any item in this category.");
+        }
+        else if (!(weapon.isEmpty())){
+            System.out.println("Choose the number of the weapon you want to select.");
+            Program read = new Program();
+            int ans = read.scanInt();
+            System.out.println("");
+            printWeapon(ans);
         }
     }
 
@@ -73,7 +114,17 @@ public class Inventory {
         for (int i = 0; i < potion.size(); i++){
         ArrayList<String> infoReceived = potion.get(i);
         System.out.println(i + ". [" + infoReceived.get(1) + "] x" + infoReceived.get(6));
-        
+        }
+        System.out.println("");
+        if (potion.isEmpty()){
+            System.out.println("You do not have any item in this category.");
+        }
+        else if (!(potion.isEmpty())){
+            System.out.println("Choose the number of the potion you want to select.");
+            Program read = new Program();
+            int ans = read.scanInt();
+            System.out.println("");
+            printPotion(ans);
         }
     }
     
@@ -98,7 +149,7 @@ public class Inventory {
     }
 
     public static void printPotion(int inventoryItemID){
-        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        ArrayList<String> infoReceived = potion.get(inventoryItemID);
         String potionName = infoReceived.get(1);
         String potionType = infoReceived.get(2);
         String potionHP = infoReceived.get(3);
@@ -108,8 +159,8 @@ public class Inventory {
         System.out.println("___________Item info___________");
         System.out.println("Name:        " + potionName);
         System.out.println("Type:        " + potionType);
-        System.out.println("HP:          " + potionHP);
-        System.out.println("MP:          " + potionMP);
+        System.out.println("+ HP:        " + potionHP);
+        System.out.println("+ MP:        " + potionMP);
         System.out.println("Description: " + potionDescription);
         System.out.println("Quantity:    " + potionQuantity);
         System.out.println("_______________________________");
