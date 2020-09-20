@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Inventory {
     public static ArrayList<ArrayList<String>> weapon = new ArrayList<ArrayList<String>>();
     public static ArrayList<ArrayList<String>> potion = new ArrayList<ArrayList<String>>();
-
-    public static void setInventory(int itemID, int quantity){
+    //put item in the inventory
+    public static void setInventoryItem(int itemID, int quantity){
         ArrayList<String> infoReceived = ItemGen.itemList.get(itemID);
         //adding weapon
         if (itemID >= 1000 && itemID < 2000){
@@ -61,7 +61,53 @@ public class Inventory {
         
     }
 
+    //returns boolean if the player has the item. Can be used for stackable items
+    public static boolean haveItem(int ID){
+        boolean haveItem = false;
+        if(haveItemNum(ID) == -1){
+            haveItem = false;
+        }
+        else if(haveItemNum(ID) != -1) {
+            haveItem = true;
+        }
+        return haveItem;
+    }
 
+    //Search for the order number of item if it is present in the inventory
+    //otherwise returns a value of -1
+    //remember that this does not work for non-stackable items
+    public static int haveItemNum(int ID){
+        String iDString = Integer.toString(ID);
+        int haveItemNum = -1;
+        //for weapon
+        if(ID >= 1000 && ID < 2000){
+            for(int i = 0; i < weapon.size();i++){
+                ArrayList<String> copy = weapon.get(i);
+                String copiedID = copy.get(0);
+                if(copiedID.equals(iDString)){
+                    haveItemNum = i;
+                }
+            }
+            System.out.println("Error. Can't use haveItemNum method for non-stackable item");
+        }
+        //for armour
+        else if(ID >= 2000 && ID < 3000){
+
+        }
+        //for potion
+        else if(ID >= 3000 && ID < 4000){
+            for(int i = 0; i < potion.size();i++){
+                ArrayList<String> copy = potion.get(i);
+                String copiedID = copy.get(0);
+                if(copiedID.equals(iDString)){
+                    haveItemNum = i;
+                }
+            }
+        }
+        return haveItemNum;
+    }
+
+    //Current display of inventory
     public static void showInventory(){
         System.out.println("______________INVENTORY______________");
         System.out.println("");
@@ -76,6 +122,7 @@ public class Inventory {
         Program read = new Program();
         int ans = read.scanInt();
         System.out.println("");
+        //chosing category
         switch (ans) {
             case 1:
                 getweapon();
@@ -92,6 +139,8 @@ public class Inventory {
         }
         
     }
+
+    //displaying weapons in inventory
     public static void getweapon(){
         for (int i = 0; i < weapon.size(); i++){
         ArrayList<String> infoReceived = weapon.get(i);
@@ -110,6 +159,7 @@ public class Inventory {
         }
     }
 
+    //displaying potions in inventory
     public static void getpotion(){
         for (int i = 0; i < potion.size(); i++){
         ArrayList<String> infoReceived = potion.get(i);
@@ -127,7 +177,7 @@ public class Inventory {
             printPotion(ans);
         }
     }
-    
+    //print specific weapon detail based on the order number in arraylist
     public static void printWeapon(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String weaponName = infoReceived.get(1);
@@ -147,7 +197,7 @@ public class Inventory {
         System.out.println("");
 
     }
-
+    //print specific potion detail based on the order number in arraylist
     public static void printPotion(int inventoryItemID){
         ArrayList<String> infoReceived = potion.get(inventoryItemID);
         String potionName = infoReceived.get(1);

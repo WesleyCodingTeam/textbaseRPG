@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 public class ItemPrint{
-
+    //prints item detail in the itemlist of the game
     public static void printItemState(int ID){
         ArrayList<String> infoReceived = ItemGen.itemList.get(ID);
+        //for weapon
         if (ID >= 1000 && ID < 2000){
             String itemName = infoReceived.get(0);
             String itemRank = infoReceived.get(1);
@@ -23,6 +24,7 @@ public class ItemPrint{
             System.out.println("_______________________________");
             System.out.println("");
         }
+        //for potion
         else if (ID >= 3000 && ID < 4000){
             String potionName = infoReceived.get(1);
             String potionType = infoReceived.get(2);
@@ -42,7 +44,7 @@ public class ItemPrint{
         }
 
     }
-
+    //pprints all the items in the itemlist
     public static void printItems(){
         for (int i = 0; i < 5000; i++) {
             if(ItemGen.itemList.containsKey(i)){
