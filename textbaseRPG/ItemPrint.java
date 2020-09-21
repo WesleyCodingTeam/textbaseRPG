@@ -1,38 +1,43 @@
 import java.util.ArrayList;
 
-public class ItemPrint{
+public class ItemPrint extends Inventory{
     //prints item detail in the itemlist of the game
     public static void printItemState(int ID){
         ArrayList<String> infoReceived = ItemGen.itemList.get(ID);
         //for weapon
         if (ID >= 1000 && ID < 2000){
-            String itemName = infoReceived.get(0);
-            String itemRank = infoReceived.get(1);
-            String itemType = infoReceived.get(2);
-            String itemDamage = infoReceived.get(3);
-            String itemDurability = infoReceived.get(4);
-            String itemSpecial = infoReceived.get(5);
-            String itemDescription = infoReceived.get(6);
+            String weaponID = infoReceived.get(WEAPONID);
+            String weaponName = infoReceived.get(WEAPONNAME);
+            String weaponType = infoReceived.get(WEAPONTYPE);
+            String weaponDamage = infoReceived.get(WEAPONDAMAGE);
+            String weaponDurability = infoReceived.get(WEAPONDURABILITY);
+            String weaponSpecial = infoReceived.get(WEAPONSPECIAL);
+            String weaponSpecialType = infoReceived.get(WEAPONSPECIALTYPE);
+            String weaponDescription = infoReceived.get(WEAPONDESCRIPTION);
+            String weaponState = infoReceived.get(WEAPONSTATE);
             System.out.println("___________Item info___________");
-            System.out.println("Name:        " + itemName);
-            System.out.println("Rank:        " + itemRank);
-            System.out.println("Type:        " + itemType);
-            System.out.println("Damage:      " + itemDamage);
-            System.out.println("Durability:  " + itemDurability);
-            System.out.println("Special:     " + itemSpecial);
-            System.out.println("Description: " + itemDescription);
+            System.out.println("ID:          " + weaponID);
+            System.out.println("Name:        " + weaponName);
+            System.out.println("Type:        " + weaponType);
+            System.out.println("Damage:      " + weaponDamage);
+            System.out.println("Durability:  " + weaponDurability);
+            System.out.println("Special:     " + weaponSpecialType +" +"+ weaponSpecial);
+            System.out.println("Description: " + weaponDescription);
+            System.out.println("State:       " + weaponState);
             System.out.println("_______________________________");
             System.out.println("");
         }
         //for potion
         else if (ID >= 3000 && ID < 4000){
-            String potionName = infoReceived.get(1);
-            String potionType = infoReceived.get(2);
-            String potionHP = infoReceived.get(3);
-            String potionMP = infoReceived.get(4);
-            String potionDescription = infoReceived.get(5);
-            String potionQuantity = infoReceived.get(6);
+            String potionID = infoReceived.get(POTIONID);
+            String potionName = infoReceived.get(POTIONNAME);
+            String potionType = infoReceived.get(POTIONTYPE);
+            String potionHP = infoReceived.get(POTIONDHP);
+            String potionMP = infoReceived.get(POTIONMP);
+            String potionDescription = infoReceived.get(POTIONDESCRIPTION);
+            String potionQuantity = infoReceived.get(POTIONQUANTITY);
             System.out.println("___________Item info___________");
+            System.out.println("ID:          " + potionID);
             System.out.println("Name:        " + potionName);
             System.out.println("Type:        " + potionType);
             System.out.println("+ HP:        " + potionHP);
@@ -44,7 +49,7 @@ public class ItemPrint{
         }
 
     }
-    //pprints all the items in the itemlist
+    //prints all the items in the itemlist
     public static void printItems(){
         for (int i = 0; i < 5000; i++) {
             if(ItemGen.itemList.containsKey(i)){
