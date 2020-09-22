@@ -3,8 +3,27 @@ import java.util.ArrayList;
 public class Inventory {
     public static ArrayList<ArrayList<String>> weapon = new ArrayList<ArrayList<String>>();
     public static ArrayList<ArrayList<String>> potion = new ArrayList<ArrayList<String>>();
+    public static final int WEAPONID = 0;
+    public static final int WEAPONNAME = 1;
+    public static final int WEAPONTYPE = 2;
+    public static final int WEAPONDAMAGE = 3;
+    public static final int WEAPONCURRENTDURABILITY = 4;
+    public static final int WEAPONDURABILITY = 5;
+    public static final int WEAPONSPECIAL = 6;
+    public static final int WEAPONSPECIALTYPE = 7;
+    public static final int WEAPONDESCRIPTION = 8;
+    public static final int WEAPONSTATE = 9;
+    public static final int POTIONID = 0;
+    public static final int POTIONNAME = 1;
+    public static final int POTIONTYPE = 2;
+    public static final int POTIONDHP = 3;
+    public static final int POTIONMP = 4;
+    public static final int POTIONDESCRIPTION = 5;
+    public static final int POTIONQUANTITY = 6;
+
     //put item in the inventory
-    public static void setInventoryItem(int itemID, int quantity){
+
+    public static void setInventoryItem (int itemID, int quantity){
         ArrayList<String> infoReceived = ItemGen.itemList.get(itemID);
         //adding weapon
         if (itemID >= 1000 && itemID < 2000){
@@ -22,24 +41,24 @@ public class Inventory {
                 if(!(potion.isEmpty())){
                     boolean hasSame = false;
                     int sameLocation = -1;
-                    int size = infoReceived.size() - 1;
                     int a = 0;
                     while (hasSame == false && a < potion.size()){
                         ArrayList<String> copy = potion.get(a);
-                        String original = infoReceived.get(0);
-                        String copied = copy.get(0);
+                        String original = infoReceived.get(POTIONID);
+                        String copied = copy.get(POTIONID);
                         hasSame = original.equals(copied);
                         if (hasSame == true){
                             sameLocation = a;
+                            break;
                         }
                         a++;
                     }    
                     if (hasSame == true){
                         ArrayList<String> copy = potion.get(sameLocation);
-                        String k = copy.get(size);
+                        String k = copy.get(POTIONQUANTITY);
                         int j = Integer.parseInt(k);
                         j++;
-                        copy.set(size, Integer.toString(j));
+                        copy.set(POTIONQUANTITY, Integer.toString(j));
                         potion.set(sameLocation, copy);
                     }
                     else if (hasSame == false){
@@ -83,7 +102,7 @@ public class Inventory {
         if(ID >= 1000 && ID < 2000){
             for(int i = 0; i < weapon.size();i++){
                 ArrayList<String> copy = weapon.get(i);
-                String copiedID = copy.get(0);
+                String copiedID = copy.get(WEAPONID);
                 if(copiedID.equals(iDString)){
                     haveItemNum = i;
                 }
@@ -98,7 +117,7 @@ public class Inventory {
         else if(ID >= 3000 && ID < 4000){
             for(int i = 0; i < potion.size();i++){
                 ArrayList<String> copy = potion.get(i);
-                String copiedID = copy.get(0);
+                String copiedID = copy.get(POTIONID);
                 if(copiedID.equals(iDString)){
                     haveItemNum = i;
                 }
@@ -125,13 +144,13 @@ public class Inventory {
         //chosing category
         switch (ans) {
             case 1:
-                getweapon();
+                getWeapons();
                 break;    
             case 2:
                 
                 break;
             case 3:
-                getpotion();
+                getPotions();
                 break;
         
             default:
@@ -141,10 +160,10 @@ public class Inventory {
     }
 
     //displaying weapons in inventory
-    public static void getweapon(){
+    public static void getWeapons(){
         for (int i = 0; i < weapon.size(); i++){
         ArrayList<String> infoReceived = weapon.get(i);
-        System.out.println(i + ". [" + infoReceived.get(1) + "]");
+        System.out.println(i + ". [" + infoReceived.get(WEAPONNAME) + "]");
         }
         System.out.println("");
         if (weapon.isEmpty()){
@@ -155,15 +174,15 @@ public class Inventory {
             Program read = new Program();
             int ans = read.scanInt();
             System.out.println("");
-            printWeapon(ans);
+            printSpecificWeapon(ans);
         }
     }
 
     //displaying potions in inventory
-    public static void getpotion(){
+    public static void getPotions(){
         for (int i = 0; i < potion.size(); i++){
         ArrayList<String> infoReceived = potion.get(i);
-        System.out.println(i + ". [" + infoReceived.get(1) + "] x" + infoReceived.get(6));
+        System.out.println(i + ". [" + infoReceived.get(POTIONNAME) + "] x" + infoReceived.get(POTIONQUANTITY));
         }
         System.out.println("");
         if (potion.isEmpty()){
@@ -174,38 +193,42 @@ public class Inventory {
             Program read = new Program();
             int ans = read.scanInt();
             System.out.println("");
-            printPotion(ans);
+            printSpecificPotion(ans);
         }
     }
     //print specific weapon detail based on the order number in arraylist
-    public static void printWeapon(int inventoryItemID){
+    public static void printSpecificWeapon(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
-        String weaponName = infoReceived.get(1);
-        String weaponType = infoReceived.get(2);
-        String weaponDamage = infoReceived.get(3);
-        String weaponDurability = infoReceived.get(4);
-        String weaponSpecial = infoReceived.get(5);
-        String weaponDescription = infoReceived.get(6);
+        String weaponName = infoReceived.get(WEAPONNAME);
+        String weaponType = infoReceived.get(WEAPONTYPE);
+        String weaponDamage = infoReceived.get(WEAPONDAMAGE);
+        String weaponCurrentDurability = infoReceived.get(WEAPONCURRENTDURABILITY);
+        String weaponDurability = infoReceived.get(WEAPONDURABILITY);
+        String weaponSpecial = infoReceived.get(WEAPONSPECIAL);
+        String weaponSpecialType = infoReceived.get(WEAPONSPECIALTYPE);
+        String weaponDescription = infoReceived.get(WEAPONDESCRIPTION);
+        String weaponState = infoReceived.get(WEAPONSTATE);
         System.out.println("___________Item info___________");
         System.out.println("Name:        " + weaponName);
         System.out.println("Type:        " + weaponType);
         System.out.println("Damage:      " + weaponDamage);
-        System.out.println("Durability:  " + weaponDurability);
-        System.out.println("Special:     " + weaponSpecial);
+        System.out.println("Durability:  " + weaponCurrentDurability + "/" +weaponDurability);
+        System.out.println("Special:     " + weaponSpecialType +" +"+ weaponSpecial);
         System.out.println("Description: " + weaponDescription);
+        System.out.println("State:       " + weaponState);
         System.out.println("_______________________________");
         System.out.println("");
 
     }
     //print specific potion detail based on the order number in arraylist
-    public static void printPotion(int inventoryItemID){
+    public static void printSpecificPotion(int inventoryItemID){
         ArrayList<String> infoReceived = potion.get(inventoryItemID);
-        String potionName = infoReceived.get(1);
-        String potionType = infoReceived.get(2);
-        String potionHP = infoReceived.get(3);
-        String potionMP = infoReceived.get(4);
-        String potionDescription = infoReceived.get(5);
-        String potionQuantity = infoReceived.get(6);
+        String potionName = infoReceived.get(POTIONNAME);
+        String potionType = infoReceived.get(POTIONTYPE);
+        String potionHP = infoReceived.get(POTIONDHP);
+        String potionMP = infoReceived.get(POTIONMP);
+        String potionDescription = infoReceived.get(POTIONDESCRIPTION);
+        String potionQuantity = infoReceived.get(POTIONQUANTITY);
         System.out.println("___________Item info___________");
         System.out.println("Name:        " + potionName);
         System.out.println("Type:        " + potionType);
