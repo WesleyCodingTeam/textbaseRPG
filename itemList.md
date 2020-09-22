@@ -2,29 +2,27 @@
 
 ## Weapons
 
-| ID   | Name        | Type   | Damage | Durability | Special Multiplier/addition | Description         |
-|------|-------------|--------|--------|------------|-----------------------------|---------------------|
-| 1001 | Basic Sword | Normal | 10     | 100        | 1                           | Just a normal sword |
-| 1002 | Basic Wand  | Normal | 10     | 100        | 1                           | Just a normal wand  |
-| 1003 | Basic Knife | Normal | 10     | 100        | 1                           | Just a normal knife |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-|      |             |        |        |            |                             |                     |
-
-## Armours
+| ID   | Name        | Type   | Damage | Current Durability | Durability | Special Addition stat | Special Type | Description         | State |
+|------|-------------|--------|--------|--------------------|------------|-----------------------|--------------|---------------------|-------|
+| 1001 | Basic Sword | Normal | 10     |                    | 100        | 1                     | Strength     | Just a normal sword |       |
+| 1002 | Basic Wand  | Normal | 10     |                    | 100        | 1                     | Wisdom       | Just a normal wand  |       |
+| 1003 | Basic Knife | Normal | 10     |                    | 100        | 1                     | Agility      | Just a normal knife |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
+|      |             |        |        |                    |            |                       |              |                     |       |
 
 ## Potions
 
@@ -34,3 +32,12 @@
 | 3002 | Mysterious cake | Unknown | -10  | -10  | Looks nice(?)...                                    |          |
 |      |                 |         |      |      |                                                     |          |
 |      |                 |         |      |      |                                                     |          |
+
+## Other Item
+
+| ID   | Name  | Type  | Quantity |
+|------|-------|-------|----------|
+| 4001 | Stone | Quest |          |
+| 4002 | Wood  | Quest |          |
+|      |       |       |          |
+|      |       |       |          |

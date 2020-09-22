@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Inventory {
     public static ArrayList<ArrayList<String>> weapon = new ArrayList<ArrayList<String>>();
     public static ArrayList<ArrayList<String>> potion = new ArrayList<ArrayList<String>>();
+    public static ArrayList<ArrayList<String>> otherItem = new ArrayList<ArrayList<String>>();
     public static final int WEAPONID = 0;
     public static final int WEAPONNAME = 1;
     public static final int WEAPONTYPE = 2;
@@ -20,9 +21,12 @@ public class Inventory {
     public static final int POTIONMP = 4;
     public static final int POTIONDESCRIPTION = 5;
     public static final int POTIONQUANTITY = 6;
+    public static final int OTHERITEMID = 0;
+    public static final int OTHERITEMNAME = 1;
+    public static final int OTHERITEMTYPE = 2;
+    public static final int OTHERITEMQUANTITY = 3;
 
     //put item in the inventory
-
     public static void setInventoryItem (int itemID, int quantity){
         ArrayList<String> infoReceived = ItemGen.itemList.get(itemID);
         //adding weapon
@@ -74,6 +78,45 @@ public class Inventory {
                 }
             }
         }
+        //other items
+        else if(itemID >= 4000 && itemID < 5000){
+            for (int i = 0; i < quantity; i++) {
+                if(!(otherItem.isEmpty())){
+                    boolean hasSame = false;
+                    int sameLocation = -1;
+                    int a = 0;
+                    while (hasSame == false && a < otherItem.size()){
+                        ArrayList<String> copy = otherItem.get(a);
+                        String original = infoReceived.get(OTHERITEMID);
+                        String copied = copy.get(OTHERITEMID);
+                        hasSame = original.equals(copied);
+                        if (hasSame == true){
+                            sameLocation = a;
+                            break;
+                        }
+                        a++;
+                    }    
+                    if (hasSame == true){
+                        ArrayList<String> copy = otherItem.get(sameLocation);
+                        String k = copy.get(OTHERITEMQUANTITY);
+                        int j = Integer.parseInt(k);
+                        j++;
+                        copy.set(OTHERITEMQUANTITY, Integer.toString(j));
+                        otherItem.set(sameLocation, copy);
+                    }
+                    else if (hasSame == false){
+                        otherItem.add(infoReceived);
+                    }
+                    else {
+                        System.out.println("Error while stacking items.");
+                    }
+                    
+                }
+                else if (otherItem.isEmpty()){
+                    otherItem.add(infoReceived);
+                }
+            } 
+        }
         else {
             System.out.println("Item to inventory error");
         }
@@ -123,6 +166,15 @@ public class Inventory {
                 }
             }
         }
+        else if(ID >= 4000 && ID < 5000){
+            for(int i = 0; i < otherItem.size();i++){
+                ArrayList<String> copy = otherItem.get(i);
+                String copiedID = copy.get(OTHERITEMID);
+                if(copiedID.equals(iDString)){
+                    haveItemNum = i;
+                }
+            }
+        }
         return haveItemNum;
     }
 
@@ -135,6 +187,8 @@ public class Inventory {
         System.out.println("2. Armours");
         System.out.println("");
         System.out.println("3. Potions");
+        System.out.println("");
+        System.out.println("4. Other Items");
         System.out.println("");
         System.out.println("Type the number of category you want.");
         System.out.println("_____________________________________");
@@ -151,6 +205,9 @@ public class Inventory {
                 break;
             case 3:
                 getPotions();
+                break;
+            case 4:
+                getOtherItem();
                 break;
         
             default:
@@ -194,6 +251,24 @@ public class Inventory {
             int ans = read.scanInt();
             System.out.println("");
             printSpecificPotion(ans);
+        }
+    }
+    //displaying potions in inventory
+    public static void getOtherItem(){
+        for (int i = 0; i < otherItem.size(); i++){
+        ArrayList<String> infoReceived = otherItem.get(i);
+        System.out.println(i + ". [" + infoReceived.get(OTHERITEMNAME) + "] x" + infoReceived.get(OTHERITEMQUANTITY));
+        }
+        System.out.println("");
+        if (otherItem.isEmpty()){
+            System.out.println("You do not have any item in this category.");
+        }
+        else if (!(otherItem.isEmpty())){
+            System.out.println("Choose the number of the potion you want to select.");
+            Program read = new Program();
+            int ans = read.scanInt();
+            System.out.println("");
+            printSpecificOtherItem(ans);
         }
     }
     //print specific weapon detail based on the order number in arraylist
@@ -240,6 +315,19 @@ public class Inventory {
         System.out.println("");
 
     }
-    
-    
+    //print specific item detail based on the order number in arraylist
+    public static void printSpecificOtherItem(int inventoryItemID){
+        ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+        String otherItemID = infoReceived.get(OTHERITEMID);
+        String otherItemName = infoReceived.get(OTHERITEMNAME);
+        String otherItemType = infoReceived.get(OTHERITEMTYPE);
+        String otherItemQuantity = infoReceived.get(OTHERITEMQUANTITY);
+        System.out.println("___________Item info___________");
+        System.out.println("ID:          " + otherItemID);
+        System.out.println("Name:        " + otherItemName);
+        System.out.println("Type:        " + otherItemType);
+        System.out.println("Quantity:    " + otherItemQuantity);
+        System.out.println("_______________________________");
+        System.out.println("");
+    }
 }
