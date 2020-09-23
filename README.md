@@ -5,7 +5,7 @@ Text-based RPG on Java (will be developed into picture-based with interactive UI
 ## Contributors
 Project Manager(PM) by Jaeyoung Shin
 
-Software Deveoper(SD) by Jonathan Lee
+Software Developer(SD) by Jonathan Lee
 
 Creative Director(CD) by Hyeongjun Song
 
