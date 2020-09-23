@@ -47,6 +47,20 @@ public class ItemPrint extends Inventory{
             System.out.println("_______________________________");
             System.out.println("");
         }
+        //other items
+        else if(ID >= 4000 && ID < 5000){
+            String otherItemID = infoReceived.get(OTHERITEMID);
+            String otherItemName = infoReceived.get(OTHERITEMNAME);
+            String otherItemType = infoReceived.get(OTHERITEMTYPE);
+            String otherItemQuantity = infoReceived.get(OTHERITEMQUANTITY);
+            System.out.println("___________Item info___________");
+            System.out.println("ID:          " + otherItemID);
+            System.out.println("Name:        " + otherItemName);
+            System.out.println("Type:        " + otherItemType);
+            System.out.println("Quantity:    " + otherItemQuantity);
+            System.out.println("_______________________________");
+            System.out.println("");
+        }
 
     }
     //prints all the items in the itemlist

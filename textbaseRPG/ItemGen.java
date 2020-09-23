@@ -24,6 +24,12 @@ public class ItemGen{
     ID3002.addAll(Arrays.asList("3002","Mysterious cake", "Unknown", "-10", "-10","Looks nice(?)...", "1"));
     itemList.put(3001, ID3001);
     itemList.put(3002, ID3002);
+    //questItem/ other items
+    ArrayList<String> ID4001 = new ArrayList<String>();
+    ID4001.addAll(Arrays.asList("4001","Stone", "Quest", "1"));
+    ArrayList<String> ID4002 = new ArrayList<String>();
+    ID4002.addAll(Arrays.asList("4002","Wood", "Quest", "1"));
+    itemList.put(4001, ID4001);
+    itemList.put(4002, ID4002);
     }
-
 }

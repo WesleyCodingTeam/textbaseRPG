@@ -114,4 +114,29 @@ public class ItemValue extends Inventory{
         String i = Integer.toString(changedQuantity);
         infoReceived.set(POTIONQUANTITY, i);
     }
+    //gets name of item
+    public static String getOtherItemName(int inventoryItemID){
+        ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+        String i = infoReceived.get(OTHERITEMNAME);
+        return i;
+    }
+    //simailar to getPotionHP, but returns MP
+    public static String getOtherItemType(int inventoryItemID){
+        ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+        String i = infoReceived.get(OTHERITEMTYPE);
+        return i;
+    }
+    //gets quantity
+    public static int getOtherItemQuantity(int inventoryItemID){
+        ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+        String i = infoReceived.get(OTHERITEMQUANTITY);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //sets quantity 
+    public static void setOtherItemQuantity(int inventoryItemID, int changedQuantity){
+        ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+        String i = Integer.toString(changedQuantity);
+        infoReceived.set(OTHERITEMQUANTITY, i);
+    }
 }
