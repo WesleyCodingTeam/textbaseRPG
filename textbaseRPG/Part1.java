@@ -14,15 +14,14 @@ public class Part1 {
         System.out.println();
         Program.waitingTime(2000);
         System.out.println("| Do you want to see the quest? (y/n)");
-        Program read = new Program();
-        char ans = read.scanChar();
+        char ans = Program.scanChar();
         while (ans == 'n'){
             System.out.println();
             System.out.println("Hey! You need to earn money!"); //revision required on the word
-            System.out.println();
+            System.out.println(); 
             Program.waitingTime(2000);
             System.out.println("| Do you want to see the quest? (y/n)");
-            ans = read.scanChar();
+            ans = Program.scanChar();
         }
         System.out.println();
         Guild.guildPage();

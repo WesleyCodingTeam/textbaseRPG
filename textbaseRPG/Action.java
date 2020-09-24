@@ -3,8 +3,7 @@ public class Action {
     public static void charAction() {
         System.out.println("| What are you going to do right now?");
         //initializing
-        Program read = new Program();
-        String action = read.scanString();
+        String action = Program.scanString();
         switch (action) {
             //trigers gathering action and this only applies to part 1
             case "gather":
@@ -41,12 +40,14 @@ public class Action {
                 
                     default:
                         System.out.println("Code error guild action default");
+                        charAction();
                         break;
                 }
                 break;
             //stat page
             case "stat":
                 Character.statPage();
+                charAction();
                 break;
             //help message
             case "help":

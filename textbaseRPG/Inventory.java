@@ -192,8 +192,7 @@ public class Inventory {
         System.out.println("");
         System.out.println("Type the number of category you want.");
         System.out.println("_____________________________________");
-        Program read = new Program();
-        int ans = read.scanInt();
+        int ans = Program.scanInt();
         System.out.println("");
         //chosing category
         switch (ans) {
@@ -228,8 +227,7 @@ public class Inventory {
         }
         else if (!(weapon.isEmpty())){
             System.out.println("Choose the number of the weapon you want to select.");
-            Program read = new Program();
-            int ans = read.scanInt();
+            int ans = Program.scanInt();
             System.out.println("");
             printSpecificWeapon(ans);
         }
@@ -247,8 +245,7 @@ public class Inventory {
         }
         else if (!(potion.isEmpty())){
             System.out.println("Choose the number of the potion you want to select.");
-            Program read = new Program();
-            int ans = read.scanInt();
+            int ans = Program.scanInt();
             System.out.println("");
             printSpecificPotion(ans);
         }
@@ -265,8 +262,7 @@ public class Inventory {
         }
         else if (!(otherItem.isEmpty())){
             System.out.println("Choose the number of the potion you want to select.");
-            Program read = new Program();
-            int ans = read.scanInt();
+            int ans = Program.scanInt();
             System.out.println("");
             printSpecificOtherItem(ans);
         }

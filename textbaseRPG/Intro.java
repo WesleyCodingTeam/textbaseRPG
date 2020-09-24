@@ -10,14 +10,12 @@ public class Intro {
         System.out.println();
         System.out.println();
         System.out.println("| What is your name?");
-        //Program folder has scan method which will allow scanning of command. Look at Program.java 
-        Program sc = new Program();
-        String ans = sc.scanString();
+        String ans = Program.scanString();
         System.out.println();
         //assign value to name field in Character.java
         Character.name = ans;
         System.out.println("| What is your age?");
-        int answ = sc.scanInt();
+        int answ = Program.scanInt();
         System.out.println();
         //same method as above comment
         Character.age = answ;
@@ -45,7 +43,7 @@ public class Intro {
             System.out.println();
             Program.waitingTime(500);
             System.out.println("| Roll again? y/n");
-            char i = sc.scanChar();
+            char i = Program.scanChar();
             //allows the loop to be stopped or continued
             if (i == 'n'){
                 stop = true;

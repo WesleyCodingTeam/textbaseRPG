@@ -38,27 +38,27 @@ public class Program {
         return i;
     }
 
-    Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
     //scanning a Character
-    public char scanChar() {
+    public static char scanChar() {
         char next = sc.next().charAt(0);
         sc.nextLine();
         return next;  
     }
     //scanning a string
-    public String scanString() {
+    public static String scanString() {
         String word = sc.next();
         sc.nextLine();
         return word;  
     }
     //scanning an integer
-    public int scanInt() {
+    public static int scanInt() {
         int num = sc.nextInt();
         sc.nextLine();
         return num;  
     }
     //just Program needed for scanner. NOT ACTUALLY USED
-    public void stop(){
+    public static void stop(){
         sc.close();
     }
 }
