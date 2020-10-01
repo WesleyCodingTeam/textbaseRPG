@@ -11,33 +11,33 @@ public class Monster {
     public static final int MONSTERHP = 3;
     public static final int MONSTERDEFENSE = 4;
     public static final int MONSTERDAMAGE = 5;
-    public static final int MONSTERDESCRTION = 6;
+    public static final int MONSTERDESCRIPTION = 6;
     public static void generateMonster(){
         ArrayList<String> ID101 = new ArrayList<String>();
         ID101.addAll(Arrays.asList("101", "Test Mob 1", "Normal", "1000000", "10", "1", "This is the tesing mob."));
         monsterList.put(101, ID101);
     }
 
-    public static void printMonster(int monsterID){
-        ArrayList<String> infoReceived = monsterList.get(monsterID);
+    public static void printMonster(int monsterIDs){
+        ArrayList<String> infoReceived = monsterList.get(monsterIDs);
         String monsterID = infoReceived.get(MONSTERID);
-        String weaponName = infoReceived.get(MONSTERNAME);
-        String weaponType = infoReceived.get(MONSTERTYPE);
-        String weaponDamage = infoReceived.get(MONSTERHP);
-        String weaponDurability = infoReceived.get(MONSTERDEFENSE);
-        String weaponSpecial = infoReceived.get(MONSTERDAMAGE);
-        String weaponSpecialType = infoReceived.get(MONSTERDESCRTION);
+        String monsterName = infoReceived.get(MONSTERNAME);
+        String monsterType = infoReceived.get(MONSTERTYPE);
+        String monsterHP = infoReceived.get(MONSTERHP);
+        String monsterDefense = infoReceived.get(MONSTERDEFENSE);
+        String monsterDamage = infoReceived.get(MONSTERDAMAGE);
+        String monsterDescription = infoReceived.get(MONSTERDESCRIPTION);
         System.out.println("___________Item info___________");
         System.out.println("ID:          " + monsterID);
-        System.out.println("Name:        " + weaponName);
-        System.out.println("Type:        " + weaponType);
-        System.out.println("Damage:      " + weaponDamage);
-        System.out.println("Durability:  " + weaponDurability);
-        System.out.println("Special:     " + weaponSpecialType +" +"+ weaponSpecial);
-        System.out.println("Description: " + weaponDescription);
-        System.out.println("State:       " + weaponState);
+        System.out.println("Name:        " + monsterName);
+        System.out.println("Type:        " + monsterType);
+        System.out.println("HP:          " + monsterHP);
+        System.out.println("Defense:     " + monsterDefense);
+        System.out.println("Damage:      " + monsterDamage);
+        System.out.println("Description: " + monsterDescription);
         System.out.println("_______________________________");
-        System.out.println("");
-        
+        System.out.println(""); 
     }
+
+    
 }

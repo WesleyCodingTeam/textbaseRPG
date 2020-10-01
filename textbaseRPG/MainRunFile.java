@@ -5,6 +5,7 @@ public class MainRunFile{
         //Part1 disabled for the test of item. Just activate it by removing //
         //Part1.questFGame();
         //buttom code is just for inventory testing
-        
+        //Monster.generateMonster();
+        //Monster.printMonster(101);
     } 
 }
