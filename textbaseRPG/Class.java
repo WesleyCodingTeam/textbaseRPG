@@ -1,35 +1,30 @@
 public class Class{
-        static String classesType = Character.classType;
         static int veryhigh = 15;
         static int high = 9;
         static int avg = 6;
         static int low = 3;
-        //does this work?
-
-
-    public static String[] classes(){
-        String[] classes = {"Knight", "Wizard", "Rogue", "Swordsman"};
-        return classes;
-        //not sure what to do here yet
-    }
 
 
     public static void knight(){
+        Character.classType = "Knight";
         Character.str += high;
         Character.wis += avg;
         Character.agi += low;
     }
     public static void wizard(){
+        Character.classType = "Wizard";
         Character.str += low;
         Character.wis += veryhigh;
         Character.agi += low;
     }
     public static void rogue(){
+        Character.classType = "Rogue";
         Character.str += avg;
         Character.wis += low;
         Character.agi += high;
     }
     public static void swordsman(){
+        Character.classType = "Swordsman";
         Character.str += avg;
         Character.wis += avg;
         Character.agi += avg;
@@ -53,27 +48,30 @@ public class Class{
     }
 
 
-
+// this should theoretically work... right?? or does the ifandelse() not work since im using it before it is made?
     public static void selection(){
         System.out.println("You can now choose which class to master!");
         classPage();
-        Program.scanString();
-
+        System.out.println("Type \"k\" for Knight, \"w\" for Wizard, \"r\" for Rogue, and \"s\" for Swordsman!");
+        ifandelse();
     }
-
-    //player's class
-    public static void playerClass(){
-        System.out.println();
-        System.out.println("             CLASS");
-        System.out.println("________________________________");
-        System.out.println("Class:          " + classesType);
-        System.out.println("Strength:       " + Character.str);
-        System.out.println("Wisdom:         " + Character.wis);
-        System.out.println("Agility:        " + Character.agi);
-        System.out.println();
+    public static void ifandelse(){
+        char type = Program.scanChar();
+        if (type == 'k') {
+            knight();
+            System.out.println("You are now a Knight!");
+        } else if (type == 'w') {
+            wizard();
+            System.out.println("You are now a Wizard!");
+        } else if (type == 'r') {
+            rogue();
+            System.out.println("You are now a Rogue!");
+        } else if (type == 's') {
+            swordsman();
+            System.out.println("You are now a Swordsman!");
+        } else {
+            System.out.println("That's not a valid class! Try again!");
+            selection();
+        }
     }
-
-
-
-
 }
