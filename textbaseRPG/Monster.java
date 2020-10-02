@@ -9,12 +9,13 @@ public class Monster {
     public static final int MONSTERNAME = 1;
     public static final int MONSTERTYPE = 2;
     public static final int MONSTERHP = 3;
-    public static final int MONSTERDEFENSE = 4;
-    public static final int MONSTERDAMAGE = 5;
-    public static final int MONSTERDESCRIPTION = 6;
+    public static final int MONSTERCURRENTHP = 4;
+    public static final int MONSTERDEFENSE = 5;
+    public static final int MONSTERDAMAGE = 6;
+    public static final int MONSTERDESCRIPTION = 7;
     public static void generateMonster(){
         ArrayList<String> ID101 = new ArrayList<String>();
-        ID101.addAll(Arrays.asList("101", "Test Mob 1", "Normal", "1000000", "10", "1", "This is the tesing mob."));
+        ID101.addAll(Arrays.asList("101", "Test Mob 1", "Normal", "1000000", "1000000", "3", "1", "This is the tesing mob."));
         monsterList.put(101, ID101);
     }
 
@@ -38,6 +39,31 @@ public class Monster {
         System.out.println("_______________________________");
         System.out.println(""); 
     }
-
-    
+    //gets monster name
+    public static String getMonsterName(int monsterID){
+        ArrayList<String> infoReceived = monsterList.get(monsterID);
+        String i = infoReceived.get(MONSTERNAME);
+        return i;
+    }
+    //gets monster HP
+    public static int getMonsterHP(int monsterID){
+        ArrayList<String> infoReceived = monsterList.get(monsterID);
+        String i = infoReceived.get(MONSTERHP);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //gets monster defense
+    public static int getMonsterDefense(int monsterID){
+        ArrayList<String> infoReceived = monsterList.get(monsterID);
+        String i = infoReceived.get(MONSTERDEFENSE);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //gets monster defense
+    public static int getMonsterDamage(int monsterID){
+        ArrayList<String> infoReceived = monsterList.get(monsterID);
+        String i = infoReceived.get(MONSTERDAMAGE);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
 }
