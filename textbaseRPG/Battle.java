@@ -35,6 +35,7 @@ public class Battle {
         System.out.println("");
         askAction();
     }
+    //user action
     public static void askAction(){
         System.out.println("");
         System.out.println("| What are you going to do?");
