@@ -51,4 +51,9 @@ public class Character {
         System.out.println("________________________________");
         System.out.println();
     }
+
+    //damage counter
+    public static int damageCounter(){
+        return 9;
+    }
 }
