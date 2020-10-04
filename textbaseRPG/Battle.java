@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Battle {
     static int monsterID;
+    static int turn;
     static final int MONSTERID = 0;
     static final int MONSTERNAME = 1;
     static final int MONSTERTYPE = 2;
@@ -13,6 +14,8 @@ public class Battle {
     private static ArrayList<String> currentMonster;
     public static void battleNow(int monsterIDs) {
         monsterID = monsterIDs;
+        turn = 1;
+        Character.currentState = "Fighting";
         currentMonster = Monster.monsterList.get(monsterID);
         String name = getFightingMonsterName();
         System.out.println("");
@@ -23,7 +26,7 @@ public class Battle {
     }
     //prints out current status of battle
     public static void battleStatus(){
-        System.out.println("__________________________________________");
+        System.out.println("________________TURN "+ turn +"________________");
         System.out.println("");
         System.out.println("                +-------------------- ");
         System.out.println("                |Name:"+ getFightingMonsterName());
@@ -39,28 +42,38 @@ public class Battle {
     public static void askAction(){
         System.out.println("");
         System.out.println("| What are you going to do?");
-        System.out.println("1. Fight       2. Run");
+        System.out.println("1. Fight  2.Potion  3.Run");
         System.out.print("> ");
         int answ = Program.scanInt();
-        if (answ == 1) {
-            dealDamage();
-            receiveDamage();
-            battleStatus();
+        switch (answ) {
+            case 1:
+                dealDamage();
+                receiveDamage();
+                turn++;
+                battleStatus();
+                break;
+            case 2:
+                Inventory.usePotion();
+                receiveDamage();
+                turn++;
+                battleStatus();
+                break;
+            case 3:
+                
+            break;
+            default:
+                System.out.println("Wrong command try again!");
+                askAction();
+                break;
         }
-        else if (answ == 2){
 
-        }
-        else{
-            System.out.println("Wrong command try again!");
-            askAction();
-        }
     }
     //deal damage
     public static void dealDamage(){
         int damageDealt = Character.normalAttackDamageCounter() - getFightingMonsterDefense();
         setFightingMonsterCurrentHP(getFightingMonsterCurrentHP() - damageDealt);
         System.out.println("");
-        System.out.println("| You dealt " + damageDealt + "damage to the monster!");
+        System.out.println("| You dealt " + damageDealt + " damage to the monster!");
         System.out.println("");
         Program.waitingTime(1000);
         if (monsterDeathCheck()){
@@ -73,15 +86,15 @@ public class Battle {
     private static void receiveDamage() {
         int damageReceived = getFightingMMonsterDamage();
         Program.waitingTime(1000);
-        System.out.println("| You received " + damageReceived + "damage from the monster!");
+        System.out.println("| You received " + damageReceived + " damage from the monster!");
         System.out.println("");
         Program.waitingTime(1000);
+        Character.hpNow -= damageReceived;
         if (characterDeathCheck()){
             System.out.println("| You died...");
             System.out.println("");
             //some code to go back home
         }
-        Character.hpNow -= damageReceived;
     }
     //check if character is dead or not
     public static boolean characterDeathCheck(){

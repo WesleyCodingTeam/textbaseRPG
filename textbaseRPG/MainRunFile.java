@@ -7,12 +7,10 @@ public class MainRunFile{
         //buttom code is just for inventory testing
         Items.itemGeneration();
         Inventory.setInventoryItem(1001, 1);
+        Inventory.setInventoryItem(3001, 2);
         Inventory.equipItem(0, 1);
         Character.makeStats("Jaeyoung", "None", 1, 13, 100, 10, 10, 100, 100, 100, 100, 10);
-        Class.selection();
         Monster.generateMonster();
-
-        Monster.printMonster(101);
         Battle.battleNow(101);
     } 
 }

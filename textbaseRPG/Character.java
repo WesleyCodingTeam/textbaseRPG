@@ -12,7 +12,7 @@ public class Character {
         static int mpNow; //current MP
         static int coin; //money
         static int currentPart; //current part in the story
-        static String currentState; //tells what the charcter is doing idle, fighting, shoping etc.
+        static String currentState = "Idle"; //tells what the charcter is doing idle, fighting, shoping etc.
         static double normalDamageMultiplier = 1.0;
     //declaring field
     public static void makeStats(String nameChoice, String classTypeChoice, int lvChoice, int ageChoice, int strChoice, int wisChoice, int agiChoice, int hpMaxChoice, int hpNowChoice, int mpMaxChoice, int mpNowChoice, int coinChoice){
@@ -49,6 +49,24 @@ public class Character {
         System.out.println();
     }
 
+    //healing HP using potion,skill etc
+    public static void healHP(int healAmount) {
+        if(healAmount + hpNow >= hpMax){
+            hpNow = hpMax;
+        }
+        else{
+            hpNow += healAmount;
+        }
+    }
+    //healing MP using potion,skill etc
+    public static void healMP(int healAmount) {
+        if(healAmount + mpNow >= mpMax){
+            mpNow = mpMax;
+        }
+        else{
+            mpNow += healAmount;
+        }
+    }
 
     //damage counter
     public static int normalAttackDamageCounter(){

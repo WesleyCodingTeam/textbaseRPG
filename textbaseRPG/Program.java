@@ -52,6 +52,7 @@ public class Program {
                 System.out.println("Wrong input type. Try again.");
                 sc.nextLine();
                 state = false;
+                System.out.print("> ");
             }
         }
         return next; 
@@ -76,6 +77,7 @@ public class Program {
                 System.out.println("Wrong input type. Try again.");
                 sc.nextLine();
                 state = false;
+                System.out.print("> ");
             }
         }
         return num; 
