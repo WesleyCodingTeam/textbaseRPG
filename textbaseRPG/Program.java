@@ -41,9 +41,21 @@ public class Program {
     static Scanner sc = new Scanner(System.in);
     //scanning a Character
     public static char scanChar() {
-        char next = sc.next().charAt(0);
-        sc.nextLine();
-        return next;  
+        char next = '\0';
+        boolean state = false;
+        while (!state){
+            try {
+                next = sc.next().charAt(0);
+                sc.nextLine();
+                state = true;       
+            } catch (Exception e) {
+                System.out.println("Wrong input type. Try again.");
+                sc.nextLine();
+                state = false;
+                System.out.print("> ");
+            }
+        }
+        return next; 
     }
     //scanning a string
     public static String scanString() {
@@ -53,9 +65,22 @@ public class Program {
     }
     //scanning an integer
     public static int scanInt() {
-        int num = sc.nextInt();
-        sc.nextLine();
-        return num;  
+        int num = 0;
+        boolean state = false;
+        while (!state){
+            try {
+                num = sc.nextInt();
+                sc.nextLine();
+                state = true;
+                
+            } catch (Exception e) {
+                System.out.println("Wrong input type. Try again.");
+                sc.nextLine();
+                state = false;
+                System.out.print("> ");
+            }
+        }
+        return num; 
     }
     //just Program needed for scanner. NOT ACTUALLY USED
     public static void stop(){

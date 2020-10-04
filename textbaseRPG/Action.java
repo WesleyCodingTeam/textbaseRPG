@@ -1,14 +1,15 @@
 public class Action {
-    static boolean found = false;
+    
     public static void charAction() {
         System.out.println("| What are you going to do right now?");
+        System.out.print("> ");
         //initializing
         String action = Program.scanString();
         switch (action) {
             //trigers gathering action and this only applies to part 1
             case "gather":
                 if (Character.currentPart == 1){
-                    gatheringAction();
+                    Part1.gatheringAction();
                 }
                 else {
                     System.out.println("- You are not weak!! You can earn money by fighting!");
@@ -27,7 +28,7 @@ public class Action {
                 charAction();
                 break;
             //check for new quest    
-            case "guild":
+            case "home":
                 switch (Character.currentPart) {
                     case 1:
                         if (Part1.quest1.questState == false){
@@ -77,66 +78,6 @@ public class Action {
     }
 
 
-    //method for gathering action
-    public static void gatheringAction(){
-        System.out.println();
-        System.out.print("| Gathering ");
-        for (int i = 0; i <5; i++){
-            System.out.print(".");
-            Program.waitingTime(300);
-        }
-        System.out.println();
-        System.out.println();
-        //probablity of gathering wood and stone
-        boolean wood = Program.percentProb(65);
-        boolean stone = Program.percentProb(40);
-        //special action trigger
-        if (Part1.quest1.currentNumDetail1 > 40 && Part1.quest1.currentNumDetail2 > 20 && found == false){
-            gettingPower();
-            found = true;
-        }
-        //only getting wood
-        if (wood == true && stone == false){
-            int i = Program.randomNum(5, 9);
-            System.out.println("| You got " + i + " wood!");
-            Part1.quest1.currentNumDetail1 += i;
-            
-        }
-        //only getting stone
-        else if (wood == false && stone == true){
-            int j = Program.randomNum(5, 9);
-            System.out.println("| You got " + j + " stone!");
-            Part1.quest1.currentNumDetail2 += j;
-        }
-        //getting both wood and stone
-        else if (wood == true && stone == true){
-            int i = Program.randomNum(3, 6);
-            int j = Program.randomNum(3, 6);
-            Part1.quest1.currentNumDetail1 += i;
-            Part1.quest1.currentNumDetail2 += j;
-            System.out.println("| You got " + i + " wood and " + j + " stone!"); 
-        }
-        //not getting anything
-        else{
-            System.out.println("| You didn't get anything!");
-        }
-        System.out.println();
-        Program.waitingTime(2000);
-        //check if quest was completed
-        Part1.quest1.questCheckCompletion();
-    }
-    
-    //dialogue when he is about to die and god comes
-    public static void gettingPower(){
-        System.out.println("Some sound of hitting a chest."); //edit reqired on dialogue
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-    }
-
     //help message
     public static void help(){
         System.out.println("| You can gather woods and stones if you type 'gather'.");
@@ -148,7 +89,7 @@ public class Action {
         System.out.println("| If you want to check your progress, type 'quest'.");
         System.out.println();
         Program.waitingTime(2000);
-        System.out.println("| If you completed the quest, type 'guild' to get back to guild.");
+        System.out.println("| If you completed the quest, type 'home' to get back to home.");
         System.out.println();
         Program.waitingTime(2000);
         System.out.println("| If you want to see your stats, type 'stat' to see your stat.");

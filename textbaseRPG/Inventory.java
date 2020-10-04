@@ -25,10 +25,11 @@ public class Inventory {
     public static final int OTHERITEMNAME = 1;
     public static final int OTHERITEMTYPE = 2;
     public static final int OTHERITEMQUANTITY = 3;
+    public static int currentEquipedWeapon = -1;
 
     //put item in the inventory
     public static void setInventoryItem (int itemID, int quantity){
-        ArrayList<String> infoReceived = ItemGen.itemList.get(itemID);
+        ArrayList<String> infoReceived = Items.itemList.get(itemID);
         //adding weapon
         if (itemID >= 1000 && itemID < 2000){
             for (int i = 0; i < quantity; i++) {
@@ -192,6 +193,7 @@ public class Inventory {
         System.out.println("");
         System.out.println("Type the number of category you want.");
         System.out.println("_____________________________________");
+        System.out.print("> ");
         int ans = Program.scanInt();
         System.out.println("");
         //chosing category
@@ -200,7 +202,7 @@ public class Inventory {
                 getWeapons();
                 break;    
             case 2:
-                
+                //armour not made yet
                 break;
             case 3:
                 getPotions();
@@ -227,6 +229,7 @@ public class Inventory {
         }
         else if (!(weapon.isEmpty())){
             System.out.println("Choose the number of the weapon you want to select.");
+            System.out.print("> ");
             int ans = Program.scanInt();
             System.out.println("");
             printSpecificWeapon(ans);
@@ -245,6 +248,7 @@ public class Inventory {
         }
         else if (!(potion.isEmpty())){
             System.out.println("Choose the number of the potion you want to select.");
+            System.out.print("> ");
             int ans = Program.scanInt();
             System.out.println("");
             printSpecificPotion(ans);
@@ -261,7 +265,8 @@ public class Inventory {
             System.out.println("You do not have any item in this category.");
         }
         else if (!(otherItem.isEmpty())){
-            System.out.println("Choose the number of the potion you want to select.");
+            System.out.println("Choose the number of the item you want to select.");
+            System.out.print("> ");
             int ans = Program.scanInt();
             System.out.println("");
             printSpecificOtherItem(ans);
@@ -291,6 +296,7 @@ public class Inventory {
         System.out.println("");
 
     }
+
     //print specific potion detail based on the order number in arraylist
     public static void printSpecificPotion(int inventoryItemID){
         ArrayList<String> infoReceived = potion.get(inventoryItemID);
@@ -325,5 +331,235 @@ public class Inventory {
         System.out.println("Quantity:    " + otherItemQuantity);
         System.out.println("_______________________________");
         System.out.println("");
+    }
+    //check which number of item is equiped. Returns -1 if not equiped.
+    public static void updateEquiped() {
+        currentEquipedWeapon = -1;
+        for(int i = 0; i < weapon.size();i++){
+            ArrayList<String> copy = weapon.get(i);
+            String copiedState = copy.get(WEAPONSTATE);
+            if(copiedState.equals("Equiped")){
+                currentEquipedWeapon = i;
+            }
+        }
+}
+    //equip item itemType: 1= weapon, 2=armor
+    public static void equipItem(int itemEquipNum, int itemType) {
+        switch (itemType) {
+            case 1:
+                updateEquiped();
+                if (currentEquipedWeapon == -1){
+                    setWeaponState(itemEquipNum, "Equiped");
+                }
+                else {
+                    setWeaponState(currentEquipedWeapon, "Unequiped");
+                    setWeaponState(itemEquipNum, "Equiped");
+                }
+                System.out.println("[" + getWeaponName(itemEquipNum) + "] equiped.");
+                updateEquiped();
+                break;
+            case 2:
+                //not yet made
+                break;
+            default:
+                System.out.println("Error. Non-equipable item.");
+                break;
+        }
+    }
+    //use potion
+    public static void usePotion() {
+        updatePotion();
+        System.out.println("What potion do you want to use?");
+        System.out.println("");
+        for (int i = 0; i < potion.size(); i++){
+            ArrayList<String> infoReceived = potion.get(i);
+            System.out.println(i + ". [" + infoReceived.get(POTIONNAME) + "] x" + infoReceived.get(POTIONQUANTITY));
+            }
+        System.out.println("");
+        if (potion.isEmpty()){
+            System.out.println("You do not have any item in this category.");
+            if(Character.currentState.equals("Fighting")){
+                Battle.battleStatus();
+            }
+        }
+        else if (!(potion.isEmpty())){
+            System.out.println("Choose the number of the potion you want to select.");
+            System.out.print("> ");
+            int ans = Program.scanInt();
+            System.out.println("");
+            if(ans < potion.size()){
+                printSpecificPotion(ans);
+                Program.waitingTime(1000);
+                System.out.println("| Do you want to use this potion? (y/n)");
+                System.out.print("> ");
+                char answer = Program.scanChar();
+                if(answer == 'y'){
+                    setPotionQuantity(ans, getPotionQuantity(ans) - 1);
+                    System.out.println("");
+                    Character.healHP(getPotionHP(ans));
+                    System.out.println("| You healed " + getPotionHP(ans) + " HP!");
+                    System.out.println("");
+                    Character.healMP(getPotionMP(ans));
+                    System.out.println("| You healed " + getPotionMP(ans) + " MP!");
+                }
+                else{
+                    if(Character.currentState.equals("Fighting")){
+                        Battle.battleStatus();
+                    }
+                }
+            }
+            else{
+                System.out.println("| You selected something that is not in the list.\n| Please try again");
+                System.out.println("");
+                usePotion();
+            }
+        }
+        updatePotion();
+    }
+    public static String getWeaponName(int inventoryItemID){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = infoReceived.get(WEAPONNAME);
+        return i;
+    }
+    //set name of the weapon
+    public static void setWeaponName(int inventoryItemID, String changedName){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        infoReceived.set(WEAPONNAME, changedName);
+    }
+    //return int value of weapon damage
+    public static int getWeaponDamage(int inventoryItemID){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = infoReceived.get(WEAPONDAMAGE);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //set damage
+    public static void setWeaponDamage(int inventoryItemID, int changedDamage){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = Integer.toString(changedDamage); 
+        infoReceived.set(WEAPONDAMAGE, i);
+    }
+    //returns the current durability
+    public static int getWeaponCurrentDurability(int inventoryItemID){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = infoReceived.get(WEAPONCURRENTDURABILITY);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //set current durability
+    public static void setWeaponCurrentDurability(int inventoryItemID, int changedCurrentDurability){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = Integer.toString(changedCurrentDurability); 
+        infoReceived.set(WEAPONCURRENTDURABILITY, i);
+    }
+    //returns the durability
+    public static int getWeaponDurability(int inventoryItemID){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = infoReceived.get(WEAPONDURABILITY);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //set durability
+    public static void setWeaponDurability(int inventoryItemID, int changedDurability){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = Integer.toString(changedDurability); 
+        infoReceived.set(WEAPONDURABILITY, i);
+    }
+    //returns the special int
+    public static int getWeaponSpecial(int inventoryItemID){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = infoReceived.get(WEAPONSPECIAL);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //set special
+    public static void setWeaponSpecial(int inventoryItemID, int changedSpecial){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = Integer.toString(changedSpecial); 
+        infoReceived.set(WEAPONSPECIAL, i);
+    }
+    //returns the specialtype
+    public static String getWeaponSpecialType(int inventoryItemID){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = infoReceived.get(WEAPONSPECIALTYPE);
+        return i;
+    }
+    //gets weapon state equiped, unequiped
+    public static String getWeaponState(int inventoryItemID){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        String i = infoReceived.get(WEAPONSTATE);
+        return i;
+    }
+    //sets weapon state equiped, unequiped
+    public static void setWeaponState(int inventoryItemID, String changedState){
+        ArrayList<String> infoReceived = weapon.get(inventoryItemID);
+        infoReceived.set(WEAPONSTATE, changedState);
+    }
+    //returns the name of the potion
+    public static String getPotionName(int inventoryItemID){
+        ArrayList<String> infoReceived = potion.get(inventoryItemID);
+        String i = infoReceived.get(POTIONNAME);
+        return i;
+    }
+    //return int value of heal HP value in the inventory
+    //uses the element number as inventoryItemID
+    public static int getPotionHP(int inventoryItemID){
+        ArrayList<String> infoReceived = potion.get(inventoryItemID);
+        String i = infoReceived.get(POTIONDHP);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //simailar to getPotionHP, but returns MP
+    public static int getPotionMP(int inventoryItemID){
+        ArrayList<String> infoReceived = potion.get(inventoryItemID);
+        String i = infoReceived.get(POTIONMP);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //gets quantity
+    public static int getPotionQuantity(int inventoryItemID){
+        ArrayList<String> infoReceived = potion.get(inventoryItemID);
+        String i = infoReceived.get(POTIONQUANTITY);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    public static void setPotionQuantity(int inventoryItemID, int changedQuantity){
+        ArrayList<String> infoReceived = potion.get(inventoryItemID);
+        String i = Integer.toString(changedQuantity);
+        infoReceived.set(POTIONQUANTITY, i);
+    }
+    public static void updatePotion(){
+        for(int i = 0; i < potion.size(); i++){
+            ArrayList<String> copy = potion.get(i);
+            String copiedState = copy.get(POTIONQUANTITY);
+            if(copiedState.equals("0")){
+                potion.remove(i);
+            }
+        }
+    }
+    //gets name of item
+    public static String getOtherItemName(int inventoryItemID){
+        ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+        String i = infoReceived.get(OTHERITEMNAME);
+        return i;
+    }
+    //simailar to getPotionHP, but returns MP
+    public static String getOtherItemType(int inventoryItemID){
+        ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+        String i = infoReceived.get(OTHERITEMTYPE);
+        return i;
+    }
+    //gets quantity
+    public static int getOtherItemQuantity(int inventoryItemID){
+        ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+        String i = infoReceived.get(OTHERITEMQUANTITY);
+        int j = Integer.parseInt(i);  
+        return j;
+    }
+    //sets quantity 
+    public static void setOtherItemQuantity(int inventoryItemID, int changedQuantity){
+        ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+        String i = Integer.toString(changedQuantity);
+        infoReceived.set(OTHERITEMQUANTITY, i);
     }
 }

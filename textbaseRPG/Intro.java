@@ -10,18 +10,20 @@ public class Intro {
         System.out.println();
         System.out.println();
         System.out.println("| What is your name?");
+        System.out.print("> ");
         String ans = Program.scanString();
         System.out.println();
         //assign value to name field in Character.java
         Character.name = ans;
         System.out.println("| What is your age?");
+        System.out.print("> ");
         int answ = Program.scanInt();
         System.out.println();
         //same method as above comment
         Character.age = answ;
         System.out.println("| You can roll the dice to set your stat. You can roll up to 10 times.");
         System.out.println();
-        System.out.println("| The stat is random from 5 ~ 15.");
+        System.out.println("| The strength, wisdom, agility stat is random from 5 ~ 15.");
         System.out.println();
         Program.waitingTime(2000);
         //roll is counter
@@ -37,12 +39,13 @@ public class Intro {
             Character.wis = Program.randomNum(5, 15);
             Character.agi = Program.randomNum(5, 15);
             //creating stat/Character initialization
-            Character.makeStats(Character.name, "None", 1, Character.age, Character.str, Character.wis, Character.agi, 100, 100, 100, 100, 10, 10);
+            Character.makeStats(Character.name, "None", 1, Character.age, Character.str, Character.wis, Character.agi, 100, 100, 100, 100, 10);
             //use statPage method to print out stats
             Character.statPage();
             System.out.println();
             Program.waitingTime(500);
             System.out.println("| Roll again? y/n");
+            System.out.print("> ");
             char i = Program.scanChar();
             //allows the loop to be stopped or continued
             if (i == 'n'){
