@@ -10,13 +10,12 @@ public class Character {
         static int hpNow; //current HP
         static int mpMax; //maximum MP
         static int mpNow; //current MP
-        static int atk; //attack damage, this must be calulated in regard to other effects(weapon damage etc.)
         static int coin; //money
         static int currentPart; //current part in the story
         static String currentState; //tells what the charcter is doing idle, fighting, shoping etc.
-
+        static double normalDamageMultiplier = 1.0;
     //declaring field
-    public static void makeStats(String nameChoice, String classTypeChoice, int lvChoice, int ageChoice, int strChoice, int wisChoice, int agiChoice, int hpMaxChoice, int hpNowChoice, int mpMaxChoice, int mpNowChoice, int atkChoice, int coinChoice){
+    public static void makeStats(String nameChoice, String classTypeChoice, int lvChoice, int ageChoice, int strChoice, int wisChoice, int agiChoice, int hpMaxChoice, int hpNowChoice, int mpMaxChoice, int mpNowChoice, int coinChoice){
         name = nameChoice;
         classType = classTypeChoice;
         lv = lvChoice;
@@ -28,7 +27,6 @@ public class Character {
         hpNow = hpNowChoice;
         mpMax = mpMaxChoice;
         mpNow = mpNowChoice;
-        atk = atkChoice;
         coin = coinChoice;
         }
     
@@ -43,7 +41,6 @@ public class Character {
         System.out.println("Lv:             "+ lv);
         System.out.println("HP:             " + hpNow + "/" + hpMax);
         System.out.println("MP:             " + mpNow + "/" + mpMax);
-        System.out.println("Attack:         " + atk);
         System.out.println("Strength:       " + str);
         System.out.println("Wisdom:         " + wis);
         System.out.println("Agility:        " + agi);
@@ -52,8 +49,12 @@ public class Character {
         System.out.println();
     }
 
+
     //damage counter
-    public static int damageCounter(){
-        return 9;
+    public static int normalAttackDamageCounter(){
+        int damage = 0;
+        Inventory.updateEquiped();
+        damage = (int) (str * normalDamageMultiplier + Inventory.getWeaponDamage(Inventory.currentEquipedWeapon));
+        return damage;
     }
 }

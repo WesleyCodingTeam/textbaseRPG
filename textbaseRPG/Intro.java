@@ -39,7 +39,7 @@ public class Intro {
             Character.wis = Program.randomNum(5, 15);
             Character.agi = Program.randomNum(5, 15);
             //creating stat/Character initialization
-            Character.makeStats(Character.name, "None", 1, Character.age, Character.str, Character.wis, Character.agi, 100, 100, 100, 100, 10, 10);
+            Character.makeStats(Character.name, "None", 1, Character.age, Character.str, Character.wis, Character.agi, 100, 100, 100, 100, 10);
             //use statPage method to print out stats
             Character.statPage();
             System.out.println();

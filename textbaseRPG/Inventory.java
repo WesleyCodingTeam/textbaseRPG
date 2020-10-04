@@ -25,6 +25,7 @@ public class Inventory {
     public static final int OTHERITEMNAME = 1;
     public static final int OTHERITEMTYPE = 2;
     public static final int OTHERITEMQUANTITY = 3;
+    public static int currentEquipedWeapon = -1;
 
     //put item in the inventory
     public static void setInventoryItem (int itemID, int quantity){
@@ -201,7 +202,7 @@ public class Inventory {
                 getWeapons();
                 break;    
             case 2:
-                
+                //armour not made yet
                 break;
             case 3:
                 getPotions();
@@ -331,7 +332,41 @@ public class Inventory {
         System.out.println("_______________________________");
         System.out.println("");
     }
-
+    //check which number of item is equiped. Returns -1 if not equiped.
+    public static void updateEquiped() {
+        currentEquipedWeapon = -1;
+        for(int i = 0; i < weapon.size();i++){
+            ArrayList<String> copy = weapon.get(i);
+            String copiedState = copy.get(WEAPONSTATE);
+            if(copiedState.equals("Equiped")){
+                currentEquipedWeapon = i;
+            }
+        }
+}
+    //equip item itemType: 1= weapon, 2=armor
+    public static void equipItem(int itemEquipNum, int itemType) {
+        switch (itemType) {
+            case 1:
+                updateEquiped();
+                if (currentEquipedWeapon == -1){
+                    setWeaponState(itemEquipNum, "Equiped");
+                }
+                else {
+                    setWeaponState(currentEquipedWeapon, "Unequiped");
+                    setWeaponState(itemEquipNum, "Equiped");
+                }
+                System.out.println("[" + getWeaponName(itemEquipNum) + "] equiped.");
+                updateEquiped();
+                break;
+            case 2:
+                //not yet made
+                break;
+            default:
+                System.out.println("Error. Non-equipable item.");
+                break;
+        }
+    }
+   
     public static String getWeaponName(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = infoReceived.get(WEAPONNAME);

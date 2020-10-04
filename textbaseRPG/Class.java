@@ -10,24 +10,28 @@ public class Class{
         Character.str += high;
         Character.wis += avg;
         Character.agi += low;
+        Character.normalDamageMultiplier = 1.5;
     }
     public static void wizard(){
         Character.classType = "Wizard";
         Character.str += low;
         Character.wis += veryhigh;
         Character.agi += low;
+        Character.normalDamageMultiplier = 0.5;
     }
     public static void rogue(){
         Character.classType = "Rogue";
         Character.str += avg;
         Character.wis += low;
         Character.agi += high;
+        Character.normalDamageMultiplier = 1.2;
     }
     public static void swordsman(){
         Character.classType = "Swordsman";
         Character.str += avg;
         Character.wis += avg;
         Character.agi += avg;
+        Character.normalDamageMultiplier = 1.3;
     }
 
 
@@ -57,6 +61,7 @@ public class Class{
     }
     public static void ifandelse(){
         char type = Program.scanChar();
+        System.out.print("> ");
         if (type == 'k') {
             knight();
             System.out.println("You are now a Knight!");

@@ -43,25 +43,8 @@ public class Battle {
         System.out.print("> ");
         int answ = Program.scanInt();
         if (answ == 1) {
-            int damageDealt = Character.str - getFightingMonsterDefense();
-            setFightingMonsterCurrentHP(getFightingMonsterCurrentHP() - damageDealt);
-            System.out.println("");
-            System.out.println("| You dealt " + damageDealt + "damage to the monster!");
-            System.out.println("");
-            if (monsterDeathCheck()){
-                System.out.println("| You slain "+ getFightingMonsterName() + "!");
-                System.out.println("");
-                //some code to proceed to next
-            }
-            int damageReceived = getFightingMMonsterDamage();
-            System.out.println("| You received " + damageReceived + "damage from the monster!");
-            System.out.println("");
-            if (characterDeathCheck()){
-                System.out.println("| You died...");
-                System.out.println("");
-                //some code to go back home
-            }
-            Character.hpNow -= damageReceived;
+            dealDamage();
+            receiveDamage();
             battleStatus();
         }
         else if (answ == 2){
@@ -71,6 +54,34 @@ public class Battle {
             System.out.println("Wrong command try again!");
             askAction();
         }
+    }
+    //deal damage
+    public static void dealDamage(){
+        int damageDealt = Character.normalAttackDamageCounter() - getFightingMonsterDefense();
+        setFightingMonsterCurrentHP(getFightingMonsterCurrentHP() - damageDealt);
+        System.out.println("");
+        System.out.println("| You dealt " + damageDealt + "damage to the monster!");
+        System.out.println("");
+        Program.waitingTime(1000);
+        if (monsterDeathCheck()){
+            System.out.println("| You slain "+ getFightingMonsterName() + "!");
+            System.out.println("");
+            //some code to proceed to next
+        }        
+    }
+    //receive damage
+    private static void receiveDamage() {
+        int damageReceived = getFightingMMonsterDamage();
+        Program.waitingTime(1000);
+        System.out.println("| You received " + damageReceived + "damage from the monster!");
+        System.out.println("");
+        Program.waitingTime(1000);
+        if (characterDeathCheck()){
+            System.out.println("| You died...");
+            System.out.println("");
+            //some code to go back home
+        }
+        Character.hpNow -= damageReceived;
     }
     //check if character is dead or not
     public static boolean characterDeathCheck(){
