@@ -121,7 +121,7 @@ public class Part1 {
             System.out.println("-- A Dire Wolve strikes! --");
             System.out.println();
             Program.waitingTime(2000);
-            Battle.battleNow(101);
+            Battle.battleNowTutorial(102);
 
 
     }
