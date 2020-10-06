@@ -1,13 +1,22 @@
 public class Intro {
     public static void introduction(){
         //intro statements
-        System.out.println("| The game is starting");
-        //prints "." out 5 times
+        System.out.println("| The Game is Loading...");
+        //prints "..." out 3 times
         for (int i = 0; i <5; i++){
-            System.out.print(".");
+            System.out.print("...");
             Program.waitingTime(500);
+            System.out.println();
         }
+        System.out.println("| Connected!");
+        //prints "..." out 3 times
+
+            Program.waitingTime(500);
         System.out.println();
+        System.out.println();
+        System.out.println("| Welcome. Player.");
+        System.out.println();
+        Program.waitingTime(1000);
         System.out.println();
         System.out.println("| What is your name?");
         System.out.print("> ");
