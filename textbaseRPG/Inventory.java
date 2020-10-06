@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 public class Inventory {
-    public static ArrayList<ArrayList<String>> weapon = new ArrayList<ArrayList<String>>();
-    public static ArrayList<ArrayList<String>> potion = new ArrayList<ArrayList<String>>();
-    public static ArrayList<ArrayList<String>> otherItem = new ArrayList<ArrayList<String>>();
+    public static ArrayList<ArrayList<String>> weapon = new ArrayList<ArrayList<String>>(); //arraylist that stores weapons
+    public static ArrayList<ArrayList<String>> potion = new ArrayList<ArrayList<String>>(); //arraylist that stores potions
+    public static ArrayList<ArrayList<String>> otherItem = new ArrayList<ArrayList<String>>(); //arraylist that stores items
+    //constant for weapon array order
     public static final int WEAPONID = 0;
     public static final int WEAPONNAME = 1;
     public static final int WEAPONTYPE = 2;
@@ -14,6 +15,7 @@ public class Inventory {
     public static final int WEAPONSPECIALTYPE = 7;
     public static final int WEAPONDESCRIPTION = 8;
     public static final int WEAPONSTATE = 9;
+    //constant for potion array order
     public static final int POTIONID = 0;
     public static final int POTIONNAME = 1;
     public static final int POTIONTYPE = 2;
@@ -21,11 +23,12 @@ public class Inventory {
     public static final int POTIONMP = 4;
     public static final int POTIONDESCRIPTION = 5;
     public static final int POTIONQUANTITY = 6;
+    //constant for items array order
     public static final int OTHERITEMID = 0;
     public static final int OTHERITEMNAME = 1;
     public static final int OTHERITEMTYPE = 2;
     public static final int OTHERITEMQUANTITY = 3;
-    public static int currentEquipedWeapon = -1;
+    public static int currentEquipedWeapon = -1; //int value that shows what number(item ID) of Weapon is equiped. -1 if not equipped
 
     //put item in the inventory
     public static void setInventoryItem (int itemID, int quantity){
@@ -124,7 +127,7 @@ public class Inventory {
         
     }
 
-    //returns boolean if the player has the item. Can be used for stackable items
+    //returns boolean if the player has the item. Can be used for stackable and unstackable items
     public static boolean haveItem(int ID){
         boolean haveItem = false;
         if(haveItemNum(ID) == -1){
@@ -151,11 +154,11 @@ public class Inventory {
                     haveItemNum = i;
                 }
             }
-            System.out.println("Error. Can't use haveItemNum method for non-stackable item");
+            // Can't solely use haveItemNum method for non-stackable item
         }
         //for armour
         else if(ID >= 2000 && ID < 3000){
-
+        // Can't solely use haveItemNum method for non-stackable item
         }
         //for potion
         else if(ID >= 3000 && ID < 4000){
@@ -254,7 +257,7 @@ public class Inventory {
             printSpecificPotion(ans);
         }
     }
-    //displaying potions in inventory
+    //displaying items in inventory
     public static void getOtherItem(){
         for (int i = 0; i < otherItem.size(); i++){
         ArrayList<String> infoReceived = otherItem.get(i);
@@ -332,7 +335,7 @@ public class Inventory {
         System.out.println("_______________________________");
         System.out.println("");
     }
-    //check which number of item is equiped. Returns -1 if not equiped.
+    //check which number(position) of weapon is equiped and update it to currentEquipedWeapon . Assigns -1 to currentEquipWeapon if not equiped.
     public static void updateEquiped() {
         currentEquipedWeapon = -1;
         for(int i = 0; i < weapon.size();i++){
@@ -343,7 +346,7 @@ public class Inventory {
             }
         }
 }
-    //equip item itemType: 1= weapon, 2=armor
+    //equips item in position itemEquipNum. itemType: 1= weapon, 2=armor
     public static void equipItem(int itemEquipNum, int itemType) {
         switch (itemType) {
             case 1:
@@ -416,86 +419,87 @@ public class Inventory {
         }
         updatePotion();
     }
+    //gets name of the weapon in position inventoryItemID
     public static String getWeaponName(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = infoReceived.get(WEAPONNAME);
         return i;
     }
-    //set name of the weapon
+    //set name of the weapon in position inventoryItemID
     public static void setWeaponName(int inventoryItemID, String changedName){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         infoReceived.set(WEAPONNAME, changedName);
     }
-    //return int value of weapon damage
+    //return int value of weapon damage in position inventoryItemID
     public static int getWeaponDamage(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = infoReceived.get(WEAPONDAMAGE);
         int j = Integer.parseInt(i);  
         return j;
     }
-    //set damage
+    //set damage in position inventoryItemID
     public static void setWeaponDamage(int inventoryItemID, int changedDamage){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = Integer.toString(changedDamage); 
         infoReceived.set(WEAPONDAMAGE, i);
     }
-    //returns the current durability
+    //returns the current durability in position inventoryItemID
     public static int getWeaponCurrentDurability(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = infoReceived.get(WEAPONCURRENTDURABILITY);
         int j = Integer.parseInt(i);  
         return j;
     }
-    //set current durability
+    //set current durability in position inventoryItemID
     public static void setWeaponCurrentDurability(int inventoryItemID, int changedCurrentDurability){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = Integer.toString(changedCurrentDurability); 
         infoReceived.set(WEAPONCURRENTDURABILITY, i);
     }
-    //returns the durability
+    //returns the durability in position inventoryItemID
     public static int getWeaponDurability(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = infoReceived.get(WEAPONDURABILITY);
         int j = Integer.parseInt(i);  
         return j;
     }
-    //set durability
+    //set durability in position inventoryItemID
     public static void setWeaponDurability(int inventoryItemID, int changedDurability){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = Integer.toString(changedDurability); 
         infoReceived.set(WEAPONDURABILITY, i);
     }
-    //returns the special int
+    //returns the special int in position inventoryItemID
     public static int getWeaponSpecial(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = infoReceived.get(WEAPONSPECIAL);
         int j = Integer.parseInt(i);  
         return j;
     }
-    //set special
+    //set special in position inventoryItemID
     public static void setWeaponSpecial(int inventoryItemID, int changedSpecial){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = Integer.toString(changedSpecial); 
         infoReceived.set(WEAPONSPECIAL, i);
     }
-    //returns the specialtype
+    //returns the specialtype in position inventoryItemID
     public static String getWeaponSpecialType(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = infoReceived.get(WEAPONSPECIALTYPE);
         return i;
     }
-    //gets weapon state equiped, unequiped
+    //gets weapon state equiped, unequiped in position inventoryItemID
     public static String getWeaponState(int inventoryItemID){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         String i = infoReceived.get(WEAPONSTATE);
         return i;
     }
-    //sets weapon state equiped, unequiped
+    //sets weapon state equiped, unequiped in position inventoryItemID
     public static void setWeaponState(int inventoryItemID, String changedState){
         ArrayList<String> infoReceived = weapon.get(inventoryItemID);
         infoReceived.set(WEAPONSTATE, changedState);
     }
-    //returns the name of the potion
+    //returns the name of the potion in position inventoryItemID
     public static String getPotionName(int inventoryItemID){
         ArrayList<String> infoReceived = potion.get(inventoryItemID);
         String i = infoReceived.get(POTIONNAME);
@@ -509,25 +513,27 @@ public class Inventory {
         int j = Integer.parseInt(i);  
         return j;
     }
-    //simailar to getPotionHP, but returns MP
+    //simailar to getPotionHP, but returns MP in position inventoryItemID
     public static int getPotionMP(int inventoryItemID){
         ArrayList<String> infoReceived = potion.get(inventoryItemID);
         String i = infoReceived.get(POTIONMP);
         int j = Integer.parseInt(i);  
         return j;
     }
-    //gets quantity
+    //gets quantity in position inventoryItemID
     public static int getPotionQuantity(int inventoryItemID){
         ArrayList<String> infoReceived = potion.get(inventoryItemID);
         String i = infoReceived.get(POTIONQUANTITY);
         int j = Integer.parseInt(i);  
         return j;
     }
+    //sets quantity in position inventoryItemID
     public static void setPotionQuantity(int inventoryItemID, int changedQuantity){
         ArrayList<String> infoReceived = potion.get(inventoryItemID);
         String i = Integer.toString(changedQuantity);
         infoReceived.set(POTIONQUANTITY, i);
     }
+    //updates potion quantity. 
     public static void updatePotion(){
         for(int i = 0; i < potion.size(); i++){
             ArrayList<String> copy = potion.get(i);
