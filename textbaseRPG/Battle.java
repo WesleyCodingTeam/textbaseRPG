@@ -195,7 +195,7 @@ public class Battle {
                 turn++;
             }
             else{
-                System.out.println("| You couldn't escape!");//@jun something that says you only can run
+                System.out.println("| You can only run");//@jun something that says you only can run
             }
         }
         System.out.println("| You couldn't escape!");//@jun some thing that says you didn't make it\
