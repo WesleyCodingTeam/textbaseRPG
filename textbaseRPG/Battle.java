@@ -186,6 +186,7 @@ public class Battle {
         while (!pass) {
             System.out.println("");
             System.out.println("| What are you going to do?");
+            Program.waitingTime(1000);
             System.out.println("1.Run");
             System.out.print("> ");
             int answ = Program.scanInt();
@@ -194,10 +195,10 @@ public class Battle {
                 turn++;
             }
             else{
-                System.out.println("| ");//@jun something that says you only can run
+                System.out.println("| You couldn't escape!");//@jun something that says you only can run
             }
         }
-        System.out.println("| ");//@jun some thing that says you didn't make it\
+        System.out.println("| You couldn't escape!");//@jun some thing that says you didn't make it\
         receiveDamage();
         System.out.println("________________TURN "+ turn +"________________");
         System.out.println("");
@@ -209,7 +210,8 @@ public class Battle {
         System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
         System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
         System.out.println("");
-        System.out.println("| ");//@jun some talking and determines to fight
+        Program.waitingTime(2000);
+        System.out.println("| I won't go down without a fight");//@jun some talking and determines to fight
         askActionTutorial();
         System.out.println("________________TURN "+ turn +"________________");
         System.out.println("");
@@ -221,7 +223,8 @@ public class Battle {
         System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
         System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
         System.out.println("");
-        System.out.println("| ");//@jun something like I am gonna die
+        Program.waitingTime(2000);
+        System.out.println("| Is... is this the end?");
         askActionTutorial();
         System.out.println("________________TURN "+ turn +"________________");
         System.out.println("");
@@ -233,34 +236,43 @@ public class Battle {
         System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
         System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
         System.out.println("");
-        System.out.println("| ");//@jun event happening meetting with god maybe
+        Program.waitingTime(2000);
+        System.out.println("| __A voice whispers to you from above__");
+        System.out.println("");
+        Program.waitingTime(2000);
+        System.out.println("| " + Character.name + "  ...Don't give up yet...Live for them... ");
         int answ = 0;
         while(answ != 1){
             System.out.println("");
+            Program.waitingTime(2000);
             System.out.println("| What are you going to do?");
+            Program.waitingTime(1000);
             System.out.println("1. Fight 2.Run");
             System.out.print("> ");
             answ = Program.scanInt();
             switch (answ) {
                 case 1:
-                    System.out.println("| ");//@jun some talking that says like nani I am so strong
+                     Program.waitingTime(2000);
+                    System.out.println("| __You feel your body lose all its weight__");
                     System.out.println("");
-                    System.out.println("| You dealt 1023102391831412431213123 damage to the monster!");//just set whatever the strong power is.
+                    Program.waitingTime(2000);
+                    System.out.println("| You dealt 999999999 damage to the monster!");
                     System.out.println("");
                     Program.waitingTime(1000);
                     System.out.println("| You slain "+ getFightingMonsterName() + "!");
                     System.out.println("");
                     break;
                 case 2:
-                    System.out.println("| ");//@jun some talking that he will not run
+                Program.waitingTime(2000);
+                    System.out.println("| I can take him down");//@jun some talking that he will not run
                 break;
                 default:
+                Program.waitingTime(2000);
                     System.out.println("Wrong command try again!");
                     break;
             }
         }   
-        System.out.println("| ");//@jun some talking with god about the god and the role of the character
-        // proceed back to the gathering
+        System.out.println("| __You faint from the exhaustion__");
 
     }
 
@@ -269,6 +281,7 @@ public class Battle {
     public static void askActionTutorial(){
         System.out.println("");
         System.out.println("| What are you going to do?");
+        Program.waitingTime(1000);
         System.out.println("1. Fight  2.Run");
         System.out.print("> ");
         int answ = Program.scanInt();
@@ -279,7 +292,7 @@ public class Battle {
                 turn++;
                 break;
             case 2:
-                System.out.println("| ");//@jun some talking that he will not run
+                System.out.println("| I can take him down");
                 askActionTutorial();
             break;
             default:

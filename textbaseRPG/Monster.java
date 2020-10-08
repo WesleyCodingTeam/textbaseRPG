@@ -17,7 +17,7 @@ public class Monster {
         ArrayList<String> ID101 = new ArrayList<String>();
         ArrayList<String> ID102 = new ArrayList<String>();
         ID101.addAll(Arrays.asList("101", "Test Mob 1", "Normal", "1000000", "500", "3", "40", "This is the tesing mob."));
-        ID102.addAll(Arrays.asList("102", "Dire wolve", "Rare", "200", "200", "20", "30", "Horrible mob. Run if you meet one."));
+        ID102.addAll(Arrays.asList("102", "Dire wolf", "Rare", "200", "200", "20", "30", "Horrible mob. Run if you meet one."));
         monsterList.put(101, ID101);
         monsterList.put(102, ID102);
     }
