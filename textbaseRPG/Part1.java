@@ -50,11 +50,6 @@ public class Part1 {
         //probablity of gathering wood and stone
         boolean wood = Program.percentProb(65);
         boolean stone = Program.percentProb(40);
-        //special action trigger
-        if (quest1.currentNumDetail1 > 40 && quest1.currentNumDetail2 > 20 && found == false){
-            gettingPower();
-            found = true;
-        }
         //only getting wood
         if (wood == true && stone == false){
             int i = Program.randomNum(5, 9);
@@ -79,6 +74,11 @@ public class Part1 {
         //not getting anything
         else{
             System.out.println("| You didn't get anything!");
+        }
+        //special action trigger
+        if (quest1.currentNumDetail1 > 40 && quest1.currentNumDetail2 > 20 && found == false){
+            gettingPower();
+            found = true;
         }
         System.out.println();
         Program.waitingTime(2000);
