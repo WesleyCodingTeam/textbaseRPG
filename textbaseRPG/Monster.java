@@ -15,7 +15,7 @@ public class Monster {
     public static final int MONSTERDESCRIPTION = 7;
     public static void generateMonster(){
         ArrayList<String> ID101 = new ArrayList<String>();
-        ID101.addAll(Arrays.asList("101", "Test Mob 1", "Normal", "1000000", "500", "3", "40", "This is the tesing mob."));
+        ID101.addAll(Arrays.asList("101", "Test Mob 1", "Normal", "1000", "500", "3", "40", "This is the tesing mob."));
         monsterList.put(101, ID101);
     }
 
