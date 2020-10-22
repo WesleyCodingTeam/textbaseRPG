@@ -199,6 +199,7 @@ public class Battle {
             }
         }
         System.out.println("| You couldn't escape!");
+        Program.waitingTime(2000);
         receiveDamage();
         System.out.println("________________TURN "+ turn +"________________");
         System.out.println("");
@@ -211,7 +212,8 @@ public class Battle {
         System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
         System.out.println("");
         Program.waitingTime(2000);
-        System.out.println("| I won't go down without a fight");//@jun some talking and determines to fight
+        System.out.println("| I won't go down without a fight");
+        Program.waitingTime(2000);
         askActionTutorial();
         System.out.println("________________TURN "+ turn +"________________");
         System.out.println("");
@@ -225,6 +227,7 @@ public class Battle {
         System.out.println("");
         Program.waitingTime(2000);
         System.out.println("| Is... is this the end?");
+        Program.waitingTime(2000);
         askActionTutorial();
         System.out.println("________________TURN "+ turn +"________________");
         System.out.println("");
@@ -241,6 +244,7 @@ public class Battle {
         System.out.println("");
         Program.waitingTime(2000);
         System.out.println("| " + Character.name + "  ...Don't give up yet...Live for them... ");
+        Program.waitingTime(2000);
         int answ = 0;
         while(answ != 1){
             System.out.println("");
@@ -252,7 +256,12 @@ public class Battle {
             answ = Program.scanInt();
             switch (answ) {
                 case 1:
+                
                      Program.waitingTime(2000);
+                     Program.waitingTime(2000);
+                    System.out.println("| __A mystical power runs through your veins__");
+                    System.out.println("");
+                    Program.waitingTime(2000);
                     System.out.println("| __You feel your body lose all its weight__");
                     System.out.println("");
                     Program.waitingTime(2000);
