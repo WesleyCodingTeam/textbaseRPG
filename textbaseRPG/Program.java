@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 public class Program {
@@ -85,5 +86,14 @@ public class Program {
     //just Program needed for scanner. NOT ACTUALLY USED
     public static void stop(){
         sc.close();
+    }
+    //deep copy of arraylist
+    public static ArrayList<String> deepCopy(ArrayList<String> list){
+        ArrayList<String> returnList = new ArrayList<String>();
+        for(int i = 0; i< list.size();i++){
+            String temp = list.get(i);
+            returnList.add(temp);
+        }
+        return returnList;
     }
 }

@@ -16,7 +16,7 @@ public class Battle {
         monsterID = monsterIDs;
         turn = 1;
         Character.currentState = "Fighting";
-        currentMonster = Monster.monsterList.get(monsterID);
+        currentMonster = Program.deepCopy(Monster.monsterList.get(monsterID));
         String name = getFightingMonsterName();
         System.out.println("");
         System.out.println("| Fighting with " + name);
