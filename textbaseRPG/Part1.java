@@ -7,14 +7,14 @@ public class Part1 {
         Character.currentPart = 1;
         Character.currentState = "idle";
         System.out.println();
-        System.out.println("Part 1: All the Heroes do not go to Battle in the Beginning");
+        System.out.println("Part 1: Coward's Alteration");
         System.out.println("-----------------------------------------------------------");
         System.out.println();
         Program.waitingTime(2000);
-        System.out.println("| You are now at the staircase of the guild building where the quest board stands.");
+        System.out.println("-- You are now at the staircase of the guild building where the quest board stands. --");
         System.out.println();
         Program.waitingTime(2000);
-        System.out.println("| Do you want to see the quest? (y/n)");
+        System.out.println("| See Quest Board? (y/n)");
         System.out.print("> ");
         char ans = Program.scanChar();
         while (ans == 'n'){
@@ -28,7 +28,19 @@ public class Part1 {
         }
         System.out.println();
         Guild.guildPage();
-        System.out.println("- (Shouting) Hey, " + Character.name + "! Going gathering? I will teach you how to do it.");
+        System.out.println("- Hey, " + Character.name + "! Going gathering again laddie?");
+        System.out.println();
+        Program.waitingTime(2000);
+        System.out.println(" Haha... yeah...");
+        System.out.println();
+        Program.waitingTime(2000);
+        System.out.println("- Ya remember how to get gather 'em right?'");
+        System.out.println();
+        Program.waitingTime(2000);
+        System.out.println(" Uh...");
+        System.out.println();
+        Program.waitingTime(2000);
+        System.out.println(" No wonder yer sister calls you hopeless, arighty...");
         System.out.println();
         Program.waitingTime(2000);
         //first help message
@@ -88,12 +100,30 @@ public class Part1 {
     
     //dialogue when he is about to die and god comes
     public static void gettingPower(){
-        System.out.println("Some sound of hitting a chest."); //edit reqired on dialogue
+        System.out.println("===Swish, Swish=== You hear the bushes around you shake." ); //edit reqired on dialogue
             System.out.println();
             System.out.println();
+            Program.waitingTime(1000);
+            System.out.println();
+            System.out.println("-- You hear disturbing growls --");
             System.out.println();
             System.out.println();
+            Program.waitingTime(2000);
+            System.out.println("Dire Wolves... ");
             System.out.println();
+            Program.waitingTime(2000);
+            System.out.println("-- You start to shake --");
             System.out.println();
+            Program.waitingTime(2000);
+            System.out.println("I've never fought a monster before...");
+            System.out.println();
+            Program.waitingTime(2000);
+            System.out.println("-- A Dire Wolf strikes! --");
+            System.out.println();
+            Program.waitingTime(2000);
+            Battle.battleNowTutorial(102);
+
+
     }
 }
+

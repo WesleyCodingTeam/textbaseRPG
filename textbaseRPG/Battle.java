@@ -71,6 +71,9 @@ public class Battle {
     //deal damage
     public static void dealDamage(){
         int damageDealt = Character.normalAttackDamageCounter() - getFightingMonsterDefense();
+        if (damageDealt < 0) {
+            damageDealt = 0;
+        }
         setFightingMonsterCurrentHP(getFightingMonsterCurrentHP() - damageDealt);
         System.out.println("");
         System.out.println("| You dealt " + damageDealt + " damage to the monster!");
@@ -158,5 +161,154 @@ public class Battle {
     public static void setFightingMonsterDamage(int changedDamage){
         String i = Integer.toString(changedDamage); 
         currentMonster.set(MONSTERDAMAGE, i);
+    }
+
+    public static void battleNowTutorial(int monsterIDs) {
+        monsterID = monsterIDs;
+        turn = 1;
+        Character.currentState = "Fighting";
+        currentMonster = Monster.monsterList.get(monsterID);
+        String name = getFightingMonsterName();
+        System.out.println("");
+        System.out.println("| Fighting with " + name+"!!!");
+        System.out.println();
+        System.out.println("________________TURN "+ turn +"________________");
+        System.out.println("");
+        System.out.println("                +-------------------- ");
+        System.out.println("                |Name:"+ getFightingMonsterName());
+        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
+        System.out.println("                +-------------------- ");
+        System.out.println("");
+        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
+        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
+        System.out.println("");
+        boolean pass = false;
+        while (!pass) {
+            System.out.println("");
+            System.out.println("| What are you going to do?");
+            Program.waitingTime(1000);
+            System.out.println("1.Run");
+            System.out.print("> ");
+            int answ = Program.scanInt();
+            if (answ == 1){
+                pass = true;
+                turn++;
+            }
+            else{
+                System.out.println("| You can only run");
+            }
+        }
+        System.out.println("| You couldn't escape!");
+        Program.waitingTime(2000);
+        receiveDamage();
+        System.out.println("________________TURN "+ turn +"________________");
+        System.out.println("");
+        System.out.println("                +-------------------- ");
+        System.out.println("                |Name:"+ getFightingMonsterName());
+        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
+        System.out.println("                +-------------------- ");
+        System.out.println("");
+        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
+        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
+        System.out.println("");
+        Program.waitingTime(2000);
+        System.out.println("| I won't go down without a fight");
+        Program.waitingTime(2000);
+        askActionTutorial();
+        System.out.println("________________TURN "+ turn +"________________");
+        System.out.println("");
+        System.out.println("                +-------------------- ");
+        System.out.println("                |Name:"+ getFightingMonsterName());
+        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
+        System.out.println("                +-------------------- ");
+        System.out.println("");
+        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
+        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
+        System.out.println("");
+        Program.waitingTime(2000);
+        System.out.println("| Is... is this the end?");
+        Program.waitingTime(2000);
+        askActionTutorial();
+        System.out.println("________________TURN "+ turn +"________________");
+        System.out.println("");
+        System.out.println("                +-------------------- ");
+        System.out.println("                |Name:"+ getFightingMonsterName());
+        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
+        System.out.println("                +-------------------- ");
+        System.out.println("");
+        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
+        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
+        System.out.println("");
+        Program.waitingTime(2000);
+        System.out.println("| __A voice whispers to you from above__");
+        System.out.println("");
+        Program.waitingTime(2000);
+        System.out.println("| " + Character.name + "  ...Don't give up yet...Live for them... ");
+        Program.waitingTime(2000);
+        int answ = 0;
+        while(answ != 1){
+            System.out.println("");
+            Program.waitingTime(2000);
+            System.out.println("| What are you going to do?");
+            Program.waitingTime(1000);
+            System.out.println("1. Fight 2.Run");
+            System.out.print("> ");
+            answ = Program.scanInt();
+            switch (answ) {
+                case 1:
+                
+                     Program.waitingTime(2000);
+                     Program.waitingTime(2000);
+                    System.out.println("| __A mystical power runs through your veins__");
+                    System.out.println("");
+                    Program.waitingTime(2000);
+                    System.out.println("| __You feel your body lose all its weight__");
+                    System.out.println("");
+                    Program.waitingTime(2000);
+                    System.out.println("| You dealt 999999999 damage to the monster!");
+                    System.out.println("");
+                    Program.waitingTime(1000);
+                    System.out.println("| You slain "+ getFightingMonsterName() + "!");
+                    System.out.println("");
+                    break;
+                case 2:
+                Program.waitingTime(2000);
+                    System.out.println("| I can take him down");//@jun some talking that he will not run
+                break;
+                default:
+                Program.waitingTime(2000);
+                    System.out.println("Wrong command try again!");
+                    break;
+            }
+        }   
+        System.out.println("| __You faint from the exhaustion__");
+
+    }
+
+
+    //user action
+    public static void askActionTutorial(){
+        System.out.println("");
+        System.out.println("| What are you going to do?");
+        Program.waitingTime(1000);
+        System.out.println("1. Fight  2.Run");
+        System.out.print("> ");
+        int answ = Program.scanInt();
+        switch (answ) {
+            case 1:
+                dealDamage();
+                receiveDamage();
+                turn++;
+                break;
+            case 2:
+                System.out.println("| I can take him down");
+                askActionTutorial();
+            break;
+            default:
+                System.out.println("Wrong command try again!");
+                askAction();
+                break;
+        }
+
     }
 }
