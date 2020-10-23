@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/wesleycodingteam/textbaserpg/badge)](https://www.codefactor.io/repository/github/wesleycodingteam/textbaserpg)
+
 # Text-based RPG
 
 Text-based RPG on Java (will be developed into picture-based with interactive UI)
