@@ -203,17 +203,7 @@ public class Battle {
         String name = getFightingMonsterName();
         System.out.println("");
         System.out.println("| Fighting with " + name+"!!!");
-        System.out.println();
-        System.out.println("________________TURN "+ turn +"________________");
-        System.out.println("");
-        System.out.println("                +-------------------- ");
-        System.out.println("                |Name:"+ getFightingMonsterName());
-        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
-        System.out.println("                +-------------------- ");
-        System.out.println("");
-        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
-        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
-        System.out.println("");
+        battleStatusTutorial();
         boolean pass = false;
         while (!pass) {
             System.out.println("");
@@ -227,55 +217,31 @@ public class Battle {
                 turn++;
             }
             else{
-                System.out.println("| You can only run");
+                System.out.println("| You can only run!");
             }
         }
         System.out.println("| You couldn't escape!");
         Program.waitingTime(2000);
         receiveDamage();
-        System.out.println("________________TURN "+ turn +"________________");
-        System.out.println("");
-        System.out.println("                +-------------------- ");
-        System.out.println("                |Name:"+ getFightingMonsterName());
-        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
-        System.out.println("                +-------------------- ");
-        System.out.println("");
-        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
-        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
-        System.out.println("");
+        battleStatusTutorial();
         Program.waitingTime(2000);
         System.out.println("| I won't go down without a fight");
         Program.waitingTime(2000);
         askActionTutorial();
-        System.out.println("________________TURN "+ turn +"________________");
-        System.out.println("");
-        System.out.println("                +-------------------- ");
-        System.out.println("                |Name:"+ getFightingMonsterName());
-        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
-        System.out.println("                +-------------------- ");
-        System.out.println("");
-        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
-        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
-        System.out.println("");
+        battleStatusTutorial();
         Program.waitingTime(2000);
         System.out.println("| Is... is this the end?");
         Program.waitingTime(2000);
         askActionTutorial();
-        System.out.println("________________TURN "+ turn +"________________");
-        System.out.println("");
-        System.out.println("                +-------------------- ");
-        System.out.println("                |Name:"+ getFightingMonsterName());
-        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
-        System.out.println("                +-------------------- ");
-        System.out.println("");
-        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
-        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
-        System.out.println("");
+        battleStatusTutorial();
         Program.waitingTime(2000);
-        System.out.println("| __A voice whispers to you from above__");
+        System.out.println("| __A voice whispers to you from above and you feel a beam of light shining upon you__");
         System.out.println("");
         Program.waitingTime(2000);
         System.out.println("| " + Character.name + "  ...Don't give up yet...Live for them... ");
+        System.out.println("");
+        Program.waitingTime(2000);
+        System.out.println("| Wha.. What is this? Am I seeing things because I am going to die? ");
         Program.waitingTime(2000);
         int answ = 0;
         while(answ != 1){
@@ -288,10 +254,17 @@ public class Battle {
             answ = Program.scanInt();
             switch (answ) {
                 case 1:
-                
-                     Program.waitingTime(2000);
-                     Program.waitingTime(2000);
+                    Program.waitingTime(2000);
                     System.out.println("| __A mystical power runs through your veins__");
+                    System.out.println("");
+                    Program.waitingTime(1000);
+                    String randomWords = "!$%$^%@!&##!(#(!#&*#!(!*^#&!#";
+                    for(int i = 0;i< randomWords.length();i++){
+                        String print = randomWords.substring(i, i+1);
+                        System.out.print(print);
+                        Program.waitingTime(50);
+                    }
+                    System.out.println("");
                     System.out.println("");
                     Program.waitingTime(2000);
                     System.out.println("| __You feel your body lose all its weight__");
@@ -305,7 +278,7 @@ public class Battle {
                     break;
                 case 2:
                 Program.waitingTime(2000);
-                    System.out.println("| I can take him down");//@jun some talking that he will not run
+                    System.out.println("| There is no way. It is either me or the wolf that will die.");//@jun some talking that he will not run
                 break;
                 default:
                 Program.waitingTime(2000);
@@ -314,10 +287,23 @@ public class Battle {
             }
         }   
         System.out.println("| __You faint from the exhaustion__");
-
     }
 
-
+    //display tutorial
+    public static void battleStatusTutorial(){
+        System.out.println("");
+        System.out.println("________________TURN "+ turn +"________________");
+        System.out.println("");
+        System.out.println("                +-------------------- ");
+        System.out.println("                |Name:"+ getFightingMonsterName());
+        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
+        System.out.println("                |" + barGauge(1));
+        System.out.println("                +-------------------- ");
+        System.out.println("");
+        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax + " " + barGauge(2));
+        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax + " " + barGauge(3));
+        System.out.println("");
+    }
     //user action
     public static void askActionTutorial(){
         System.out.println("");
@@ -333,12 +319,12 @@ public class Battle {
                 turn++;
                 break;
             case 2:
-                System.out.println("| I can take him down");
+                System.out.println("| I think I can take him down");
                 askActionTutorial();
             break;
             default:
                 System.out.println("Wrong command try again!");
-                askAction();
+                askActionTutorial();
                 break;
         }
 

@@ -14,6 +14,7 @@ public class Character {
         static int currentPart; //current part in the story
         static String currentState = "Idle"; //tells what the charcter is doing idle, fighting, shoping etc.
         static double normalDamageMultiplier = 1.0;
+        static String currentLocation;
     //declaring field
     public static void makeStats(String nameChoice, String classTypeChoice, int lvChoice, int ageChoice, int strChoice, int wisChoice, int agiChoice, int hpMaxChoice, int hpNowChoice, int mpMaxChoice, int mpNowChoice, int coinChoice){
         name = nameChoice;

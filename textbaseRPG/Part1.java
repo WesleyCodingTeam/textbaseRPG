@@ -6,6 +6,7 @@ public class Part1 {
         //dialogue part 1
         Character.currentPart = 1;
         Character.currentState = "idle";
+        Character.currentLocation = "quest board";
         System.out.println();
         System.out.println("Part 1: Coward's Alteration");
         System.out.println("-----------------------------------------------------------");
@@ -90,15 +91,15 @@ public class Part1 {
         else{
             System.out.println("| You didn't get anything!");
         }
+        //check if quest was completed
+        quest1.questCheckCompletion();
         //special action trigger
-        if (quest1.currentNumDetail1 > 40 && quest1.currentNumDetail2 > 20 && found == false){
+        if (quest1.currentNumDetail1 >= 50 && quest1.currentNumDetail2 >= 20 && found == false){
             gettingPower();
             found = true;
         }
         System.out.println();
         Program.waitingTime(2000);
-        //check if quest was completed
-        quest1.questCheckCompletion();
     }
     
     //dialogue when he is about to die and god comes
@@ -129,4 +130,3 @@ public class Part1 {
 
     }
 }
-

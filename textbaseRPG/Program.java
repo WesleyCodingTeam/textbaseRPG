@@ -87,6 +87,7 @@ public class Program {
     public static void stop(){
         sc.close();
     }
+    
     //deep copy of arraylist
     public static ArrayList<String> deepCopy(ArrayList<String> list){
         ArrayList<String> returnList = new ArrayList<String>();
