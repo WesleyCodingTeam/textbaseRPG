@@ -2,7 +2,7 @@ public class QuestGenerator {
     //field
     char qRank; //F,D,C,B,A,S
     String questDetail1; //some words explaining the quest
-    int currentNumDetail1;; //current progress
+    int currentNumDetail1; //current progress
     int numDetail1; //goal number
     String questDetail2; //some words explaining the quest
     int currentNumDetail2; //current progress

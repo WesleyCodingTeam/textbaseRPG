@@ -67,13 +67,14 @@ public class Part1 {
             int i = Program.randomNum(5, 9);
             System.out.println("| You got " + i + " wood!");
             quest1.currentNumDetail1 += i;
-            
+            Inventory.setInventoryItem(4002, i);
         }
         //only getting stone
         else if (wood == false && stone == true){
             int j = Program.randomNum(5, 9);
             System.out.println("| You got " + j + " stone!");
             quest1.currentNumDetail2 += j;
+            Inventory.setInventoryItem(4001, j);
         }
         //getting both wood and stone
         else if (wood == true && stone == true){
@@ -81,7 +82,9 @@ public class Part1 {
             int j = Program.randomNum(3, 6);
             quest1.currentNumDetail1 += i;
             quest1.currentNumDetail2 += j;
-            System.out.println("| You got " + i + " wood and " + j + " stone!"); 
+            System.out.println("| You got " + i + " wood and " + j + " stone!");
+            Inventory.setInventoryItem(4002, i);
+            Inventory.setInventoryItem(4001, j); 
         }
         //not getting anything
         else{

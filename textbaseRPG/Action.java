@@ -55,6 +55,8 @@ public class Action {
                 help();
                 charAction(); 
                 break;
+            case "inventory":
+                Inventory.showInventory();
             //when the user typed in wrong command
             default:
                 System.out.println("| Wrong command. Try again. 'help' command suggested to look for the right command");

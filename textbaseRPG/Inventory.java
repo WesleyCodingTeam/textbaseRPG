@@ -32,7 +32,7 @@ public class Inventory {
 
     //put item in the inventory
     public static void setInventoryItem (int itemID, int quantity){
-        ArrayList<String> infoReceived = Items.itemList.get(itemID);
+        ArrayList<String> infoReceived = Program.deepCopy(Items.itemList.get(itemID));
         //adding weapon
         if (itemID >= 1000 && itemID < 2000){
             for (int i = 0; i < quantity; i++) {

@@ -16,7 +16,7 @@ public class Battle {
         monsterID = monsterIDs;
         turn = 1;
         Character.currentState = "Fighting";
-        currentMonster = Monster.monsterList.get(monsterID);
+        currentMonster = Program.deepCopy(Monster.monsterList.get(monsterID));
         String name = getFightingMonsterName();
         System.out.println("");
         System.out.println("| Fighting with " + name);
@@ -31,10 +31,11 @@ public class Battle {
         System.out.println("                +-------------------- ");
         System.out.println("                |Name:"+ getFightingMonsterName());
         System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
+        System.out.println("                |" + barGauge(1));
         System.out.println("                +-------------------- ");
         System.out.println("");
-        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax);
-        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax);
+        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax + " " + barGauge(2));
+        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax + " " + barGauge(3));
         System.out.println("");
         askAction();
     }
@@ -66,6 +67,41 @@ public class Battle {
                 askAction();
                 break;
         }
+
+    }
+    //hp display gauge
+    public static String barGauge(int type){
+        int divideLife=0;
+        int life_Remaining=0;
+        int numOfHashtag=0;
+        if(type == 1){
+            numOfHashtag = 20;
+            divideLife = getFightingMonsterHP()/numOfHashtag;
+            life_Remaining = getFightingMonsterCurrentHP()/divideLife;
+        }
+        else if (type == 2){
+            numOfHashtag = 10;
+            divideLife = Character.hpMax/numOfHashtag;
+            life_Remaining = Character.hpNow/divideLife;
+        }
+        else if (type == 3){
+            numOfHashtag = 10;
+            divideLife = Character.mpMax/numOfHashtag;
+            life_Remaining = Character.mpNow/divideLife;
+        }
+        else{
+            System.out.println("Error on bar gauge");
+        }
+        String lifeBar = "[";
+        int i;
+        for (i = 1;i<=life_Remaining;i++){
+            lifeBar += "#";
+        }
+        for (int j = 0; j<numOfHashtag-i;j++){
+            lifeBar += " ";
+        }
+        lifeBar += "]";
+        return lifeBar;
 
     }
     //deal damage
