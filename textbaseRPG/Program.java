@@ -9,7 +9,7 @@ public class Program {
         } 
         catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
-        };
+        }
     }
 
     //returns number greater than equal to a and less than equal to b
