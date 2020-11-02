@@ -104,9 +104,7 @@ public class Battle {
         if (Character.hpNow <= 0){
             return true;
         }
-        else{
             return false;
-        }
     }
     //check if monster is dead or not
     public static boolean monsterDeathCheck(){
