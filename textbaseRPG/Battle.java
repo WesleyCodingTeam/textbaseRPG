@@ -111,9 +111,7 @@ public class Battle {
         if (getFightingMonsterCurrentHP() <= 0){
             return true;
         }
-        else{
             return false;
-        }
     }
     //gets fighting monster name
     public static String getFightingMonsterName(){
