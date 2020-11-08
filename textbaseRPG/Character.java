@@ -11,10 +11,10 @@ public class Character {
         static int mpMax; //maximum MP
         static int mpNow; //current MP
         static int coin; //money
-        static int currentPart; //current part in the story
+        static int currentPart = 0; //current part in the story
         static String currentState = "Idle"; //tells what the charcter is doing idle, fighting, shoping etc.
         static double normalDamageMultiplier = 1.0;
-        static String currentLocation;
+        static String currentLocation = "Your House";
     //declaring field
     public static void makeStats(String nameChoice, String classTypeChoice, int lvChoice, int ageChoice, int strChoice, int wisChoice, int agiChoice, int hpMaxChoice, int hpNowChoice, int mpMaxChoice, int mpNowChoice, int coinChoice){
         name = nameChoice;

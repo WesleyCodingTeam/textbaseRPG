@@ -116,6 +116,7 @@ public class Battle {
         System.out.println("");
         Program.waitingTime(1000);
         if (monsterDeathCheck()){
+            Character.currentState = "Idle";
             System.out.println("| You slain "+ getFightingMonsterName() + "!");
             System.out.println("");
             //some code to proceed to next
@@ -130,6 +131,7 @@ public class Battle {
         Program.waitingTime(1000);
         Character.hpNow -= damageReceived;
         if (characterDeathCheck()){
+            Character.currentState = "Idle";
             System.out.println("| You died...");
             System.out.println("");
             //some code to go back home

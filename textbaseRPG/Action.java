@@ -79,8 +79,6 @@ public class Action {
                 break;
         }
     }
-
-
     //help message
     public static void help(){
         System.out.println("| You can gather woods and stones if you type 'gather'.");

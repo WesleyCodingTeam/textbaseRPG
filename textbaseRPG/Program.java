@@ -2,6 +2,16 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 public class Program {
+    //initialization. Things that needs to be ran in the beginning
+    public static void thingsToRunInBeginning(){
+        Items.itemGeneration(); 
+        Monster.generateMonster();
+        Map.generateMap();
+    }
+    //make arbitrary character for testing
+    public static void testCharacterGeneration(){
+        Character.makeStats("Jaeyoung", "None", 1, 13, 11, 11, 11, 100, 100, 100, 100, 10);
+    }
     //makes the Program stops for a while for amount t. 1 second is t = 1000
     public static void waitingTime(int t) {
         try {
@@ -60,8 +70,8 @@ public class Program {
     }
     //scanning a string
     public static String scanString() {
-        String word = sc.next();
-        sc.nextLine();
+        String word = sc.nextLine();
+        word = word.toLowerCase();
         return word;  
     }
     //scanning an integer
