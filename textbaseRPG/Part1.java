@@ -6,6 +6,7 @@ public class Part1 {
         //dialogue part 1
         Character.currentPart = 1;
         Character.currentState = "idle";
+        Character.currentLocation = "quest board";
         System.out.println();
         System.out.println("Part 1: Coward's Alteration");
         System.out.println("-----------------------------------------------------------");
@@ -67,13 +68,14 @@ public class Part1 {
             int i = Program.randomNum(5, 9);
             System.out.println("| You got " + i + " wood!");
             quest1.currentNumDetail1 += i;
-            
+            Inventory.setInventoryItem(4002, i);
         }
         //only getting stone
         else if (wood == false && stone == true){
             int j = Program.randomNum(5, 9);
             System.out.println("| You got " + j + " stone!");
             quest1.currentNumDetail2 += j;
+            Inventory.setInventoryItem(4001, j);
         }
         //getting both wood and stone
         else if (wood == true && stone == true){
@@ -81,21 +83,23 @@ public class Part1 {
             int j = Program.randomNum(3, 6);
             quest1.currentNumDetail1 += i;
             quest1.currentNumDetail2 += j;
-            System.out.println("| You got " + i + " wood and " + j + " stone!"); 
+            System.out.println("| You got " + i + " wood and " + j + " stone!");
+            Inventory.setInventoryItem(4002, i);
+            Inventory.setInventoryItem(4001, j); 
         }
         //not getting anything
         else{
             System.out.println("| You didn't get anything!");
         }
+        //check if quest was completed
+        quest1.questCheckCompletion();
         //special action trigger
-        if (quest1.currentNumDetail1 > 40 && quest1.currentNumDetail2 > 20 && found == false){
+        if (quest1.currentNumDetail1 >= 50 && quest1.currentNumDetail2 >= 20 && found == false){
             gettingPower();
             found = true;
         }
         System.out.println();
         Program.waitingTime(2000);
-        //check if quest was completed
-        quest1.questCheckCompletion();
     }
     
     //dialogue when he is about to die and god comes
@@ -126,4 +130,3 @@ public class Part1 {
 
     }
 }
-

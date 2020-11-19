@@ -12,7 +12,7 @@ public class Action {
                     Part1.gatheringAction();
                 }
                 else {
-                    System.out.println("- You are not weak!! You can earn money by fighting!");
+                    System.out.println("- You are not weak!! You now can earn money by fighting!");
                     System.out.println();
                     Program.waitingTime(2000);
                 }
@@ -55,6 +55,9 @@ public class Action {
                 help();
                 charAction(); 
                 break;
+            case "inventory":
+                Inventory.showInventory();
+                break;
             //when the user typed in wrong command
             default:
                 System.out.println("| Wrong command. Try again. 'help' command suggested to look for the right command");
@@ -76,8 +79,6 @@ public class Action {
                 break;
         }
     }
-
-
     //help message
     public static void help(){
         System.out.println("| You can gather woods and stones if you type 'gather'.");
