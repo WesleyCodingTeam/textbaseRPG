@@ -17,8 +17,8 @@ public class Shop {
     public static void weponAsk(){
         System.out.println("Which item would you like to buy?");
         String askedWeapon = Program.scanString();
+        for (i = 0; )
         setInventoryItem(int, int quantity);
-        //I need to figure out this part later
     }
 
 
@@ -37,6 +37,13 @@ public class Shop {
         System.out.println();
     }
 
+    public static void potionAsk(){
+        System.out.println("Which item would you like to buy?");
+        //String askedWeapon = Program.scanString();
+        //setInventoryItem(int, int quantity);
+        
+    }
+
 
 
     public static void buyItem(){
@@ -49,9 +56,9 @@ public class Shop {
         else if (type == 'p'){
             potionPage();
         }
-        else{
-
-        }
+        //else 
+        //    "other" method
+        //}
 
 
 
