@@ -6,7 +6,7 @@ public class Part1 {
         //dialogue part 1
         MainCharacter.currentPart = 1;
         MainCharacter.currentState = "idle";
-        MainCharacter.currentLocation = "quest board";
+        MainCharacter.currentLocation = "guild";
         System.out.println();
         System.out.println("Part 1: Coward's Alteration");
         System.out.println("-----------------------------------------------------------");
@@ -14,34 +14,18 @@ public class Part1 {
         Program.waitingTime(2000);
         Program.systemDialogue("You are now at the staircase of the guild building where the quest board stands.");
         Program.systemDialogue("See Quest Board? (y/n)");
-        System.out.print("> ");
-        char ans = Program.scanChar();
-        while (ans == 'n'){
-            System.out.println();
-            System.out.println("Hey! You need to earn money!"); //revision required on the word
-            System.out.println(); 
-            Program.waitingTime(2000);
-            System.out.println("| Do you want to see the quest? (y/n)");
-            System.out.print("> ");
-            ans = Program.scanChar();
+        char ans = Program.askChar();
+        while (ans != 'y'){
+            Program.narrationDialogue("You think of your sister. You can't just go empty handed.");
+            Program.systemDialogue("See Quest Board? (y/n)");
+            ans = Program.askChar();
         }
-        System.out.println();
         Guild.guildPage();
-        System.out.println("- Hey, " + MainCharacter.name + "! Going gathering again laddie?");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println(" Haha... yeah...");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println("- Ya remember how to get gather 'em right?'");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println(" Uh...");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println(" No wonder yer sister calls you hopeless, arighty...");
-        System.out.println();
-        Program.waitingTime(2000);
+        Program.npcDialogue("Hey, " + MainCharacter.name + "! Going gathering again laddie?");
+        Program.dialogue("Haha... yeah...");
+        Program.npcDialogue("Ya remember how to get gather 'em right?'");
+        Program.dialogue("Uh...");
+        Program.npcDialogue("No wonder yer sister calls you hopeless, arighty...");
         //first help message
         Action.help();
         //charAction method in action.java
@@ -64,14 +48,14 @@ public class Part1 {
         //only getting wood
         if (wood == true && stone == false){
             int i = Program.randomNum(5, 9);
-            System.out.println("| You got " + i + " wood!");
+            Program.systemDialogue("You got " + i + " wood!");
             quest1.currentNumDetail1 += i;
             Inventory.setInventoryItem(4002, i);
         }
         //only getting stone
         else if (wood == false && stone == true){
             int j = Program.randomNum(5, 9);
-            System.out.println("| You got " + j + " stone!");
+            Program.systemDialogue("You got " + j + " stone!");
             quest1.currentNumDetail2 += j;
             Inventory.setInventoryItem(4001, j);
         }
@@ -87,7 +71,7 @@ public class Part1 {
         }
         //not getting anything
         else{
-            System.out.println("| You didn't get anything!");
+            Program.systemDialogue("You didn't get anything!");
         }
         //check if quest was completed
         quest1.questCheckCompletion();
@@ -96,36 +80,18 @@ public class Part1 {
             gettingPower();
             found = true;
         }
-        System.out.println();
-        Program.waitingTime(2000);
     }
     
     //dialogue when he is about to die and god comes
     public static void gettingPower(){
-        System.out.println("===Swish, Swish=== You hear the bushes around you shake." ); //edit reqired on dialogue
-            System.out.println();
-            System.out.println();
-            Program.waitingTime(1000);
-            System.out.println();
-            System.out.println("-- You hear disturbing growls --");
-            System.out.println();
-            System.out.println();
-            Program.waitingTime(2000);
-            System.out.println("Dire Wolves... ");
-            System.out.println();
-            Program.waitingTime(2000);
-            System.out.println("-- You start to shake --");
-            System.out.println();
-            Program.waitingTime(2000);
-            System.out.println("I've never fought a monster before...");
-            System.out.println();
-            Program.waitingTime(2000);
-            System.out.println("-- A Dire Wolf strikes! --");
-            System.out.println();
-            Program.waitingTime(2000);
-            Battle.battleNowTutorial(102);
-            Part1half.play();
-
-
+        Program.narrationDialogue("===Swish, Swish=== You hear the bushes around you shake.");
+        Program.narrationDialogue("You hear disturbing growls");
+        Program.narrationDialogue("You start to shake");
+        Program.dialogue("Dire Wolves...");
+        Program.dialogue("I've never fought a monster before...");
+        Program.narrationDialogue("A Dire Wolf strikes!");
+        System.out.println("" ); //edit reqired on dialogue
+        Battle.battleNowTutorial(102);
+        Part1half.play();
     }
 }

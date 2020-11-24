@@ -19,8 +19,7 @@ public class Battle {
         currentMonster = Program.deepCopy(Monster.monsterList.get(monsterID));
         String name = getFightingMonsterName();
         System.out.println("");
-        System.out.println("| Fighting with " + name);
-        System.out.println();
+        Program.narrationDialogue("You encounterned with " + name+"!");
         battleStatus();
         
     }
@@ -41,11 +40,9 @@ public class Battle {
     }
     //user action
     public static void askAction(){
-        System.out.println("");
-        System.out.println("| What are you going to do?");
-        System.out.println("1. Fight  2.Potion  3.Run");
-        System.out.print("> ");
-        int answ = Program.scanInt();
+        Program.narrationDialogue("What are you going to do?");
+        Program.dialogue("1. Fight  2.Potion  3.Run");
+        int answ = Program.askInt();
         switch (answ) {
             case 1:
                 dealDamage();
@@ -63,7 +60,7 @@ public class Battle {
                 
             break;
             default:
-                System.out.println("Wrong command try again!");
+                Program.systemDialogue("Wrong command try again!");
                 askAction();
                 break;
         }
@@ -111,29 +108,21 @@ public class Battle {
             damageDealt = 0;
         }
         setFightingMonsterCurrentHP(getFightingMonsterCurrentHP() - damageDealt);
-        System.out.println("");
-        System.out.println("| You dealt " + damageDealt + " damage to the monster!");
-        System.out.println("");
-        Program.waitingTime(1000);
+        Program.systemDialogue("You dealt " + damageDealt + " damage to the monster!");
         if (monsterDeathCheck()){
             MainCharacter.currentState = "Idle";
-            System.out.println("| You slain "+ getFightingMonsterName() + "!");
-            System.out.println("");
+            Program.systemDialogue("You slain "+ getFightingMonsterName() + "!");
             //some code to proceed to next
         }        
     }
     //receive damage
     private static void receiveDamage() {
         int damageReceived = getFightingMMonsterDamage();
-        Program.waitingTime(1000);
-        System.out.println("| You received " + damageReceived + " damage from the monster!");
-        System.out.println("");
-        Program.waitingTime(1000);
+        Program.systemDialogue("You received " + damageReceived + " damage from the monster!");
         MainCharacter.hpNow -= damageReceived;
         if (characterDeathCheck()){
             MainCharacter.currentState = "Idle";
-            System.out.println("| You died...");
-            System.out.println("");
+            Program.systemDialogue("You died......");
             //some code to go back home
         }
     }
@@ -203,93 +192,58 @@ public class Battle {
         MainCharacter.currentState = "Fighting";
         currentMonster = Monster.monsterList.get(monsterID);
         String name = getFightingMonsterName();
-        System.out.println("");
-        System.out.println("| Fighting with " + name+"!!!");
+        Program.systemDialogue("Fighting with " + name+"!!!");
         battleStatusTutorial();
         boolean pass = false;
         while (!pass) {
-            System.out.println("");
-            System.out.println("| What are you going to do?");
-            Program.waitingTime(1000);
-            System.out.println("1.Run");
-            System.out.print("> ");
-            int answ = Program.scanInt();
+            Program.systemDialogue("What are you going to do?");
+            
+            Program.dialogue("1.Run");
+            int answ = Program.askInt();
             if (answ == 1){
                 pass = true;
                 turn++;
             }
             else{
-                System.out.println("| You can only run!");
+                Program.systemDialogue("You have nothing else to do!");
             }
         }
-        System.out.println("| You couldn't escape!");
-        Program.waitingTime(2000);
+        Program.systemDialogue("You couldn't escape!");
         receiveDamage();
         battleStatusTutorial();
-        Program.waitingTime(2000);
-        System.out.println("| I won't go down without a fight");
-        Program.waitingTime(2000);
+        Program.dialogue("I won't go down without a fight!");
+        askActionTutorial();
+        battleStatusTutorial();
+        Program.dialogue("Is... is this the end?");
         askActionTutorial();
         battleStatusTutorial();
         Program.waitingTime(2000);
-        System.out.println("| Is... is this the end?");
-        Program.waitingTime(2000);
-        askActionTutorial();
-        battleStatusTutorial();
-        Program.waitingTime(2000);
-        System.out.println("| __A voice whispers to you from above and you feel a beam of light shining upon you__");
-        System.out.println("");
-        Program.waitingTime(2000);
-        System.out.println("| " + MainCharacter.name + "  ...Don't give up yet...Live for them... ");
-        System.out.println("");
-        Program.waitingTime(2000);
-        System.out.println("| Wha.. What is this? Am I seeing things because I am going to die? ");
-        Program.waitingTime(2000);
+        Program.narrationDialogue("A voice whispers to you from above and you feel a beam of light shining upon you");
+        Program.npcDialogue(MainCharacter.name + "  ...Don't give up yet...Live for them... ");
+        Program.dialogue("Wha.. What is this? Am I hearing things because I am going to die? ");
         int answ = 0;
         while(answ != 1){
-            System.out.println("");
-            Program.waitingTime(2000);
-            System.out.println("| What are you going to do?");
-            Program.waitingTime(1000);
-            System.out.println("1. Fight 2.Run");
-            System.out.print("> ");
-            answ = Program.scanInt();
+            Program.systemDialogue("What are you going to do?");
+            Program.dialogue("1. Fight 2.Run");
+            answ = Program.askInt();
             switch (answ) {
                 case 1:
-                    Program.waitingTime(2000);
-                    System.out.println("| __A mystical power runs through your veins__");
-                    System.out.println("");
-                    Program.waitingTime(1000);
-                    String randomWords = "!$%$^%@!&##!(#(!#&*#!(!*^#&!#";
-                    for(int i = 0;i< randomWords.length();i++){
-                        String print = randomWords.substring(i, i+1);
-                        System.out.print(print);
-                        Program.waitingTime(50);
-                    }
-                    System.out.println("");
-                    System.out.println("");
-                    Program.waitingTime(2000);
-                    System.out.println("| __You feel your body lose all its weight__");
-                    System.out.println("");
-                    Program.waitingTime(2000);
-                    System.out.println("| You dealt 999999999 damage to the monster!");
-                    System.out.println("");
-                    Program.waitingTime(1000);
-                    System.out.println("| You slain "+ getFightingMonsterName() + "!");
-                    System.out.println("");
+                    Program.narrationDialogue("A mystical power runs through your veins");
+                    Program.dialogue("!$%$^%@!&##!(#(!#&*#!(!*^#&!#");
+                    Program.narrationDialogue("You feel your body lose all its weight");
+                    Program.systemDialogue("You dealt 999999999 damage to the monster!");
+                    Program.systemDialogue("You slain "+ getFightingMonsterName() + "!");
                     break;
                 case 2:
-                Program.waitingTime(2000);
-                    System.out.println("| There is no way. It is either me or the wolf that will die.");//@jun some talking that he will not run
+                    Program.dialogue("There is no way. It is either me or the wolf that will die.");
                 break;
                 default:
-                Program.waitingTime(2000);
-                    System.out.println("Wrong command try again!");
+                    Program.systemDialogue("Wrong command try again!");
                     break;
             }
         }   
-        System.out.println("| __You faint from the exhaustion__");
-        System.out.println("");
+        Program.narrationDialogue("You faint from the exhaustion");
+        MainCharacter.currentState = "Idle";
     }
 
     //display tutorial
@@ -309,12 +263,9 @@ public class Battle {
     }
     //user action
     public static void askActionTutorial(){
-        System.out.println("");
-        System.out.println("| What are you going to do?");
-        Program.waitingTime(1000);
-        System.out.println("1. Fight  2.Run");
-        System.out.print("> ");
-        int answ = Program.scanInt();
+        Program.systemDialogue("What are you going to do?");
+        Program.dialogue("1. Fight  2.Run");
+        int answ = Program.askInt();
         switch (answ) {
             case 1:
                 dealDamage();
@@ -322,11 +273,11 @@ public class Battle {
                 turn++;
                 break;
             case 2:
-                System.out.println("| I think I can take him down");
+                Program.dialogue("I think I can take him down with this power.");
                 askActionTutorial();
             break;
             default:
-                System.out.println("Wrong command try again!");
+            Program.systemDialogue("Wrong command try again!");
                 askActionTutorial();
                 break;
         }

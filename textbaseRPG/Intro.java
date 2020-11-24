@@ -24,7 +24,7 @@ public class Intro {
             Program.systemDialogue("Rolling the dice....");
             roll++;
             //creating stat/MainCharacter initialization
-            MainCharacter.makeStats(MainCharacter.name, "None", 1, MainCharacter.age, Program.randomNum(5, 15), Program.randomNum(5, 15), Program.randomNum(5, 15), 100, 100, 100, 100, 10);
+            MainCharacter.makeStats(MainCharacter.name, "None", 0, MainCharacter.age, Program.randomNum(5, 15), Program.randomNum(5, 15), Program.randomNum(5, 15), 100, 100, 100, 100, 0);
             //use statPage method to print out stats
             MainCharacter.statPage();
             System.out.println();

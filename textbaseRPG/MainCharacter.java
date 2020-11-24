@@ -12,6 +12,7 @@ public class MainCharacter {
         static int mpNow; //current MP
         static int coin; //money
         static int currentPart = 0; //current part in the story
+        static String occupation = "villager";
         static String currentState = "Idle"; //tells what the charcter is doing idle, fighting, shoping etc.
         static double normalDamageMultiplier = 1.0;
         static String currentLocation = "Your House";
@@ -38,6 +39,7 @@ public class MainCharacter {
         System.out.println("________________________________");
         System.out.println("Name:           " + name);
         System.out.println("Age:            " + age);
+        System.out.println("Job:            " + occupation);
         System.out.println("Class:          " + classType);
         System.out.println("Lv:             "+ lv);
         System.out.println("HP:             " + hpNow + "/" + hpMax);
