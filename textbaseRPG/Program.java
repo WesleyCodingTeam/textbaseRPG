@@ -2,15 +2,46 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 public class Program {
+    private static int dialogueSpeed;
     //initialization. Things that needs to be ran in the beginning
     public static void thingsToRunInBeginning(){
         Items.itemGeneration(); 
         Monster.generateMonster();
         Map.generateMap();
+        setDialogueSpeed(50);
+    }
+    //dialogue style
+    public static void dialogue(String dialogue){
+        for(int i = 0; i < dialogue.length(); i++){
+            System.out.print(dialogue.substring(i, i+1));
+            waitingTime(dialogueSpeed);
+        }
+        System.out.println("");
+        System.out.println("");
+        waitingTime(1000);
+    }
+    //NPC dialogue
+    public static void npcDialogue(String dialogues) {
+        System.out.print("- ");
+        dialogue(dialogues);
+    }
+    //system dialogue
+    public static void systemDialogue(String dialogues) {
+        System.out.print("| ");
+        dialogue(dialogues);
+    }
+    //narration dialogue
+    public static void narrationDialogue(String dialogues) {
+        System.out.print("-- ");
+        dialogue(dialogues);
+    }
+    //set dialogue speed
+    public static void setDialogueSpeed(int speed){
+        dialogueSpeed = speed;
     }
     //make arbitrary character for testing
     public static void testCharacterGeneration(){
-        Character.makeStats("Jaeyoung", "None", 1, 13, 11, 11, 11, 100, 100, 100, 100, 10);
+        MainCharacter.makeStats("Jaeyoung", "None", 1, 13, 11, 11, 11, 100, 100, 100, 100, 10);
     }
     //makes the Program stops for a while for amount t. 1 second is t = 1000
     public static void waitingTime(int t) {
@@ -50,7 +81,7 @@ public class Program {
     }
 
     static Scanner sc = new Scanner(System.in);
-    //scanning a Character
+    //scanning a MainCharacter
     public static char scanChar() {
         char next = '\0';
         boolean state = false;
@@ -97,7 +128,29 @@ public class Program {
     public static void stop(){
         sc.close();
     }
-    
+    //asking for return of String (scanning)
+    public static String askString(){
+        System.out.print("> ");
+        String ans = Program.scanString();
+        ans = ans.toLowerCase();
+        System.out.println();
+        return ans;
+    }
+    //asking for return of char (scanning)
+    public static char askChar(){
+        System.out.print("> ");
+        char ans = Program.scanChar();
+        ans = Character.toLowerCase(ans);
+        System.out.println();
+        return ans;
+    }
+    //asking for return of char (scanning)
+    public static int askInt(){
+        System.out.print("> ");
+        int ans = Program.scanInt();
+        System.out.println();
+        return ans;
+    }
     //deep copy of arraylist
     public static ArrayList<String> deepCopy(ArrayList<String> list){
         ArrayList<String> returnList = new ArrayList<String>();

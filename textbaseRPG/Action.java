@@ -8,7 +8,7 @@ public class Action {
         switch (action) {
             //trigers gathering action and this only applies to part 1
             case "gather":
-                if (Character.currentPart == 1){
+                if (MainCharacter.currentPart == 1){
                     Part1.gatheringAction();
                 }
                 else {
@@ -29,10 +29,10 @@ public class Action {
                 break;
             //check for new quest    
             case "home":
-                switch (Character.currentPart) {
+                switch (MainCharacter.currentPart) {
                     case 1:
                         if (Part1.quest1.questState == false){
-                            System.out.println("- Keep working, " + Character.name + ". You didn't finish your quest!");
+                            System.out.println("- Keep working, " + MainCharacter.name + ". You didn't finish your quest!");
                             System.out.println();
                             Program.waitingTime(2000);
                             charAction();
@@ -47,7 +47,7 @@ public class Action {
                 break;
             //stat page
             case "stat":
-                Character.statPage();
+                MainCharacter.statPage();
                 charAction();
                 break;
             //help message
@@ -69,7 +69,7 @@ public class Action {
     }
     //checking guest based on parts
     public static void questCheck(){
-        switch (Character.currentPart){
+        switch (MainCharacter.currentPart){
             case 1:
                 Part1.quest1.questCheck();
                 break;

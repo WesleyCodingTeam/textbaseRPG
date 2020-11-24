@@ -381,7 +381,7 @@ public class Inventory {
         System.out.println("");
         if (potion.isEmpty()){
             System.out.println("You do not have any item in this category.");
-            if(Character.currentState.equals("Fighting")){
+            if(MainCharacter.currentState.equals("Fighting")){
                 Battle.battleStatus();
             }
         }
@@ -399,14 +399,14 @@ public class Inventory {
                 if(answer == 'y'){
                     setPotionQuantity(ans, getPotionQuantity(ans) - 1);
                     System.out.println("");
-                    Character.healHP(getPotionHP(ans));
+                    MainCharacter.healHP(getPotionHP(ans));
                     System.out.println("| You healed " + getPotionHP(ans) + " HP!");
                     System.out.println("");
-                    Character.healMP(getPotionMP(ans));
+                    MainCharacter.healMP(getPotionMP(ans));
                     System.out.println("| You healed " + getPotionMP(ans) + " MP!");
                 }
                 else{
-                    if(Character.currentState.equals("Fighting")){
+                    if(MainCharacter.currentState.equals("Fighting")){
                         Battle.battleStatus();
                     }
                 }

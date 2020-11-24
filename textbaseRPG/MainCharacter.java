@@ -1,6 +1,6 @@
-public class Character {
-        static String name; //Character name
-        static String classType; //Character class
+public class MainCharacter {
+        static String name; //MainCharacter name
+        static String classType; //MainCharacter class
         static int lv; //level
         static int age; // age
         static int str; //strength

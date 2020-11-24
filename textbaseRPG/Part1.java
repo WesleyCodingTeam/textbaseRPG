@@ -4,18 +4,16 @@ public class Part1 {
     static boolean found = false;
     public static void questFGame(){
         //dialogue part 1
-        Character.currentPart = 1;
-        Character.currentState = "idle";
-        Character.currentLocation = "quest board";
+        MainCharacter.currentPart = 1;
+        MainCharacter.currentState = "idle";
+        MainCharacter.currentLocation = "quest board";
         System.out.println();
         System.out.println("Part 1: Coward's Alteration");
         System.out.println("-----------------------------------------------------------");
         System.out.println();
         Program.waitingTime(2000);
-        System.out.println("-- You are now at the staircase of the guild building where the quest board stands. --");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println("| See Quest Board? (y/n)");
+        Program.systemDialogue("You are now at the staircase of the guild building where the quest board stands.");
+        Program.systemDialogue("See Quest Board? (y/n)");
         System.out.print("> ");
         char ans = Program.scanChar();
         while (ans == 'n'){
@@ -29,7 +27,7 @@ public class Part1 {
         }
         System.out.println();
         Guild.guildPage();
-        System.out.println("- Hey, " + Character.name + "! Going gathering again laddie?");
+        System.out.println("- Hey, " + MainCharacter.name + "! Going gathering again laddie?");
         System.out.println();
         Program.waitingTime(2000);
         System.out.println(" Haha... yeah...");
@@ -126,6 +124,7 @@ public class Part1 {
             System.out.println();
             Program.waitingTime(2000);
             Battle.battleNowTutorial(102);
+            Part1half.play();
 
 
     }

@@ -2,7 +2,7 @@ import java.util.*;
 public class Map {
     private static ArrayList<Location> list_of_location = new ArrayList<Location>();
     public static void changeLocation(String name_Of_Location){
-        Character.currentLocation = name_Of_Location;
+        MainCharacter.currentLocation = name_Of_Location;
     }
     public static void generateMap(){
         Location yourHouse = new Location("Your House");
@@ -18,17 +18,17 @@ public class Map {
         //reset all the inaccessible location
         changeAllToInaccessible();
         //adding accessible location
-        switch (Character.currentPart) {
+        switch (MainCharacter.currentPart) {
             case 2:
                 
                 
             case 1:
-                if(Character.currentState.equals("Idle") && Character.currentLocation.equals("Village")){
+                if(MainCharacter.currentState.equals("Idle") && MainCharacter.currentLocation.equals("Village")){
                     changeLocationToAccessible("Your House");
                     changeLocationToAccessible("Shop");
                     changeLocationToAccessible("Guild");
                 }
-                else if(Character.currentState.equals("Idle")){
+                else if(MainCharacter.currentState.equals("Idle")){
                     changeLocationToAccessible("Village");
                 }
                 break;
@@ -79,7 +79,7 @@ public class Map {
         }
     }
     public static void actionAtLocation(){
-        switch (Character.currentLocation) {
+        switch (MainCharacter.currentLocation) {
             case "Village":
                 System.out.println("Yay!");
                 moveUI();

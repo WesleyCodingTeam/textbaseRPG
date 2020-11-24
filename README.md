@@ -25,3 +25,12 @@ Creative Director(CD) by Hyeongjun Song
 See [settingFile.md](settingFile.md)
 
 https://drive.google.com/file/d/1eXL4-6aVPqakbfQ3Ypk9Yic0peBJ1nV4/view?usp=sharing
+
+## Dialogue rule
+one dash for NPC talking
+
+no dash for main character/internal dialogue
+
+two dash for narration
+
+| for system message

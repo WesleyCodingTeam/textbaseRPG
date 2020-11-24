@@ -15,7 +15,7 @@ public class Battle {
     public static void battleNow(int monsterIDs) {
         monsterID = monsterIDs;
         turn = 1;
-        Character.currentState = "Fighting";
+        MainCharacter.currentState = "Fighting";
         currentMonster = Program.deepCopy(Monster.monsterList.get(monsterID));
         String name = getFightingMonsterName();
         System.out.println("");
@@ -34,8 +34,8 @@ public class Battle {
         System.out.println("                |" + barGauge(1));
         System.out.println("                +-------------------- ");
         System.out.println("");
-        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax + " " + barGauge(2));
-        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax + " " + barGauge(3));
+        System.out.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
+        System.out.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
         System.out.println("");
         askAction();
     }
@@ -81,13 +81,13 @@ public class Battle {
         }
         else if (type == 2){
             numOfHashtag = 10;
-            divideLife = Character.hpMax/numOfHashtag;
-            life_Remaining = Character.hpNow/divideLife;
+            divideLife = MainCharacter.hpMax/numOfHashtag;
+            life_Remaining = MainCharacter.hpNow/divideLife;
         }
         else if (type == 3){
             numOfHashtag = 10;
-            divideLife = Character.mpMax/numOfHashtag;
-            life_Remaining = Character.mpNow/divideLife;
+            divideLife = MainCharacter.mpMax/numOfHashtag;
+            life_Remaining = MainCharacter.mpNow/divideLife;
         }
         else{
             System.out.println("Error on bar gauge");
@@ -106,7 +106,7 @@ public class Battle {
     }
     //deal damage
     public static void dealDamage(){
-        int damageDealt = Character.normalAttackDamageCounter() - getFightingMonsterDefense();
+        int damageDealt = MainCharacter.normalAttackDamageCounter() - getFightingMonsterDefense();
         if (damageDealt < 0) {
             damageDealt = 0;
         }
@@ -116,7 +116,7 @@ public class Battle {
         System.out.println("");
         Program.waitingTime(1000);
         if (monsterDeathCheck()){
-            Character.currentState = "Idle";
+            MainCharacter.currentState = "Idle";
             System.out.println("| You slain "+ getFightingMonsterName() + "!");
             System.out.println("");
             //some code to proceed to next
@@ -129,9 +129,9 @@ public class Battle {
         System.out.println("| You received " + damageReceived + " damage from the monster!");
         System.out.println("");
         Program.waitingTime(1000);
-        Character.hpNow -= damageReceived;
+        MainCharacter.hpNow -= damageReceived;
         if (characterDeathCheck()){
-            Character.currentState = "Idle";
+            MainCharacter.currentState = "Idle";
             System.out.println("| You died...");
             System.out.println("");
             //some code to go back home
@@ -139,7 +139,7 @@ public class Battle {
     }
     //check if character is dead or not
     public static boolean characterDeathCheck(){
-        if (Character.hpNow <= 0){
+        if (MainCharacter.hpNow <= 0){
             return true;
         }
             return false;
@@ -200,7 +200,7 @@ public class Battle {
     public static void battleNowTutorial(int monsterIDs) {
         monsterID = monsterIDs;
         turn = 1;
-        Character.currentState = "Fighting";
+        MainCharacter.currentState = "Fighting";
         currentMonster = Monster.monsterList.get(monsterID);
         String name = getFightingMonsterName();
         System.out.println("");
@@ -240,7 +240,7 @@ public class Battle {
         System.out.println("| __A voice whispers to you from above and you feel a beam of light shining upon you__");
         System.out.println("");
         Program.waitingTime(2000);
-        System.out.println("| " + Character.name + "  ...Don't give up yet...Live for them... ");
+        System.out.println("| " + MainCharacter.name + "  ...Don't give up yet...Live for them... ");
         System.out.println("");
         Program.waitingTime(2000);
         System.out.println("| Wha.. What is this? Am I seeing things because I am going to die? ");
@@ -289,6 +289,7 @@ public class Battle {
             }
         }   
         System.out.println("| __You faint from the exhaustion__");
+        System.out.println("");
     }
 
     //display tutorial
@@ -302,8 +303,8 @@ public class Battle {
         System.out.println("                |" + barGauge(1));
         System.out.println("                +-------------------- ");
         System.out.println("");
-        System.out.println("My HP:" + Character.hpNow +"/"+ Character.hpMax + " " + barGauge(2));
-        System.out.println("My MP:" + Character.mpNow +"/"+ Character.mpMax + " " + barGauge(3));
+        System.out.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
+        System.out.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
         System.out.println("");
     }
     //user action
