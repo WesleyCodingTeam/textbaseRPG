@@ -244,6 +244,7 @@ public class Battle {
         }   
         Program.narrationDialogue("You faint from the exhaustion");
         MainCharacter.currentState = "Idle";
+        MainCharacter.occupation = "Hero";
     }
 
     //display tutorial
@@ -273,7 +274,7 @@ public class Battle {
                 turn++;
                 break;
             case 2:
-                Program.dialogue("I think I can take him down with this power.");
+                Program.dialogue("I don't think I can run.");
                 askActionTutorial();
             break;
             default:

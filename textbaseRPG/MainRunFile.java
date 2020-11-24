@@ -6,6 +6,6 @@ public class MainRunFile{
         MainCharacter.currentPart = 1;
         Map.moveUI();  */
         Program.thingsToRunInBeginning();
-        Part1half.play();
+        Intro.introduction();
     } 
 }
