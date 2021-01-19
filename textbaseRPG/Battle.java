@@ -214,7 +214,7 @@ public class Battle {
         Program.dialogue("I won't go down without a fight!");
         askActionTutorial();
         battleStatusTutorial();
-        Program.dialogue("Is... is this the end?");
+        Program.dialogue("It is too strong. Is... is this the end?");
         askActionTutorial();
         battleStatusTutorial();
         Program.waitingTime(2000);
@@ -241,7 +241,8 @@ public class Battle {
                     Program.systemDialogue("Wrong command try again!");
                     break;
             }
-        }   
+        } 
+        MainCharacter.levelUp();
         Program.narrationDialogue("You faint from the exhaustion");
         MainCharacter.currentState = "Idle";
         MainCharacter.occupation = "Hero";

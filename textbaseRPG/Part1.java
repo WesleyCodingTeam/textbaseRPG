@@ -23,7 +23,7 @@ public class Part1 {
         Guild.guildPage();
         Program.npcDialogue("Hey, " + MainCharacter.name + "! Going gathering again laddie?");
         Program.dialogue("Haha... yeah...");
-        Program.npcDialogue("Ya remember how to get gather 'em right?'");
+        Program.npcDialogue("Ya remember how to gather 'em right?'");
         Program.dialogue("Uh...");
         Program.npcDialogue("No wonder yer sister calls you hopeless, arighty...");
         //first help message

@@ -1,6 +1,7 @@
 public class Part1half {
     public static void play(){
         Program.dialogue("...........................");
+        Program.dialogue("...........................");                                                                                                                            
         Program.narrationDialogue("You slowly open your eyes to see the forest");
         Program.narrationDialogue("Your body aches all over");
         Program.dialogue("Where am I?");

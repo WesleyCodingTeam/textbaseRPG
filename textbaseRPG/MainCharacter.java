@@ -78,4 +78,21 @@ public class MainCharacter {
         damage = (int) (str * normalDamageMultiplier + Inventory.getWeaponDamage(Inventory.currentEquipedWeapon));
         return damage;
     }
+
+    public static void levelUp(){
+        lv++;
+        Program.systemDialogue("YOU LEVELED UP!!! YOU ARE NOW Lv. " + lv+"!");
+    }
+    //checking guest based on parts
+    public static void currentQuestCheck(){
+        switch (MainCharacter.currentPart){
+            case 1:
+                Part1.quest1.questCheck();
+                break;
+        
+            default:
+                Program.systemDialogue("Code error questCheck default");
+                break;
+        }
+    }
 }

@@ -6,8 +6,8 @@ public class Intro {
         for (int i = 0; i <5; i++){
             System.out.print(".");
             Program.waitingTime(500);
-            System.out.println();
         }
+        System.out.println();
         Program.systemDialogue("Connected!");
         Program.systemDialogue("Welcome. Player.");
         Program.systemDialogue("What is your name?");
@@ -64,7 +64,7 @@ public class Intro {
         //calling variable from MainCharacter.java to include name in the dialogue
         Program.dialogue("Eh!? You're right!");
         Program.narrationDialogue("You quickly gather your lousy gear and run out of the house");
-        Program.npcDialogue("Haaah. " + MainCharacter.name +" is almost " + MainCharacter.age + " and I still have to wake him up everyday.");
+        Program.npcDialogue("Haaah. " + MainCharacter.name +" is " + MainCharacter.age + " and I still have to wake him up everyday.");
         Program.npcDialogue("I hope he brings back a few gold at least...");
         //runs part1.java with questFGame method
         Part1.questFGame();
