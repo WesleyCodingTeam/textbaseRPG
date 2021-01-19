@@ -82,17 +82,40 @@ public class MainCharacter {
     public static void levelUp(){
         lv++;
         Program.systemDialogue("YOU LEVELED UP!!! YOU ARE NOW Lv. " + lv+"!");
+        //some code for stat change
     }
-    //checking guest based on parts
-    public static void currentQuestCheck(){
-        switch (MainCharacter.currentPart){
-            case 1:
-                Part1.quest1.questCheck();
-                break;
-        
-            default:
-                Program.systemDialogue("Code error questCheck default");
-                break;
+    public static void myQuests(){
+        Quests temp;
+        for(Integer key:Guild.questList.keySet()){
+            temp = Guild.questList.get(key);
+            //if it is not completed and in the same part, then it will be available
+            if(temp.qAccepted == true){
+                System.out.println("__________________________________ QUEST BOARD___________________________________");
+                switch (temp.qType){
+                    case 1:
+                        System.out.println();
+                        System.out.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ").");
+                        System.out.println();
+                        System.out.println("                                                            Reward: " + temp.rewardM + " coins");
+                        System.out.println();
+                        System.out.println("_________________________________________________________________________________");
+                        System.out.println();
+                        break;
+                
+                    case 2:
+                        System.out.println();
+                        System.out.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ") and " + temp.questDetail2 + " (" + temp.currentNumDetail2 + "/" + temp.numDetail2 + ").");
+                        System.out.println();
+                        System.out.println("                                                            Reward: " + temp.rewardM + " coins");
+                        System.out.println();
+                        System.out.println("_________________________________________________________________________________");
+                        System.out.println();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
+        
     }
 }

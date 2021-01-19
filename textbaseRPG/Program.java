@@ -8,6 +8,7 @@ public class Program {
         Items.itemGeneration(); 
         Monster.generateMonster();
         Map.generateMap();
+        Guild.questIntitialization();
         setDialogueSpeed(50);
     }
     //dialogue style

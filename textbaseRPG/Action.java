@@ -15,7 +15,7 @@ public class Action {
                 break;
             //check current status
             case "quest":
-                MainCharacter.currentQuestCheck();
+                MainCharacter.myQuests();;
                 break;
             //check for new quest    
             case "map":

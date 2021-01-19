@@ -1,6 +1,4 @@
 public class Part1 {
-    //intialize QuestGenerator
-    static QuestGenerator quest1 = new QuestGenerator();
     static boolean found = false;
     public static void questFGame(){
         //dialogue part 1
@@ -20,7 +18,7 @@ public class Part1 {
             Program.systemDialogue("See Quest Board? (y/n)");
             ans = Program.askChar();
         }
-        Guild.guildPage();
+        //need to direct to map!!@!!!!!
         Program.npcDialogue("Hey, " + MainCharacter.name + "! Going gathering again laddie?");
         Program.dialogue("Haha... yeah...");
         Program.npcDialogue("Ya remember how to gather 'em right?'");
