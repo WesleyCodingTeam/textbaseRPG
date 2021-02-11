@@ -22,7 +22,7 @@ public class Part1half {
         Program.dialogue("My job is... Hero!? I was just a villager a second ago!");
         Program.npcDialogue("Do you believe me now?");
         Program.dialogue("Not really, but a little bit.");
-        Program.narrationDialogue("You get up, grab the wolf's body, wood, and stones and slowly walk back to the guild while talking with the ghost of the old hero");
+        Program.narrationDialogue("You get up, grab the wolf's body, wood, and stones while talking with the ghost of the old hero");
         //more stuff need to be added
     }
 }

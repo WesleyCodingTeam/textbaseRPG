@@ -28,6 +28,7 @@ public class Inventory {
     public static final int OTHERITEMNAME = 1;
     public static final int OTHERITEMTYPE = 2;
     public static final int OTHERITEMQUANTITY = 3;
+    public static final int OTHERITEMPRICE = 4;
     public static int currentEquipedWeapon = -1; //int value that shows what number(item ID) of Weapon is equiped. -1 if not equipped
 
     //put item in the inventory
@@ -665,6 +666,16 @@ public class Inventory {
             String i = Integer.toString(changedQuantity);
             infoReceived.set(OTHERITEMQUANTITY, i);
         }
+    }
+    //gets quantity
+    public static int getOtherItemPrice(int inventoryItemID){
+        if(inventoryItemID != -1){
+            ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+            String i = infoReceived.get(OTHERITEMPRICE);
+            int j = Integer.parseInt(i);  
+            return j;
+        }
+        return 0;
     }
     //updates other item quantity. 
     public static void updateOtherItem(){
