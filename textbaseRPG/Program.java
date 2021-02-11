@@ -9,7 +9,7 @@ public class Program {
         Monster.generateMonster();
         Map.generateMap();
         Guild.questIntitialization();
-        setDialogueSpeed(50);
+        setDialogueSpeed(20);
     }
     //dialogue style
     public static void dialogue(String dialogue){
@@ -19,7 +19,7 @@ public class Program {
         }
         System.out.println("");
         System.out.println("");
-        waitingTime(1000);
+        waitingTime(600);
     }
     //NPC dialogue
     public static void npcDialogue(String dialogues) {

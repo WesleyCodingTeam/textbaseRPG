@@ -36,6 +36,9 @@ public class Intro {
                 stop = true;
             }
         }
+        MainCharacter.currentPart = 0;
+        MainCharacter.currentLocation = "Your House";
+        MainCharacter.currentState = "Idle";
         for (int i = 0; i < 6; i++){
             System.out.print(".");
             Program.waitingTime(500);

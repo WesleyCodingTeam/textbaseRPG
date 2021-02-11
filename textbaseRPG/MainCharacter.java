@@ -11,6 +11,7 @@ public class MainCharacter {
         static int mpMax; //maximum MP
         static int mpNow; //current MP
         static int coin; //money
+        static int exp;
         static int currentPart = 0; //current part in the story
         static String occupation = "villager";
         static String currentState = "Idle"; //tells what the charcter is doing idle, fighting, shoping etc.
@@ -89,8 +90,8 @@ public class MainCharacter {
         for(Integer key:Guild.questList.keySet()){
             temp = Guild.questList.get(key);
             //if it is not completed and in the same part, then it will be available
-            if(temp.qAccepted == true){
-                System.out.println("__________________________________ QUEST BOARD___________________________________");
+            if(temp.qAccepted == true && temp.questCompletion == false){
+                System.out.println("__________________________________ QUESTS________________________________________");
                 switch (temp.qType){
                     case 1:
                         System.out.println();

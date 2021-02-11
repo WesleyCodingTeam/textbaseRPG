@@ -126,7 +126,44 @@ public class Inventory {
         }
         
     }
+    //removes Item
+    //might cause error as haveItemNum is not used for nonstackable
+    public static void removeItem(int ID, int qty){
+        int order = haveItemNum(ID);
+        if(haveItem(ID)){
+            if (ID >= 1000 && ID < 2000) {
+                weapon.remove(order);
+            }
+            // adding armour
+            else if (ID >= 2000 && ID < 3000) {
 
+            }
+            // adding potion
+            else if (ID >= 3000 && ID < 4000) {
+                if(qty > getPotionQuantity(order)){
+                    Program.systemDialogue("Unable to remove because the quantity removed is too big.");
+                }
+                else{
+                    setPotionQuantity(order, getPotionQuantity(order)-qty);
+                }
+                updatePotion();
+            }
+            // other items
+            else if (ID >= 4000 && ID < 5000) {
+                if(qty > getOtherItemQuantity(order)){
+                    Program.systemDialogue("Unable to remove because the quantity removed is too big.");
+                }
+                else{
+                    setOtherItemQuantity(order, getOtherItemQuantity(order)-qty);
+                }
+                updateOtherItem();
+            }
+        }
+        else{
+            Program.systemDialogue("No such item exists at inventory.");
+        }
+
+    }
     //returns boolean if the player has the item. Can be used for stackable and unstackable items
     public static boolean haveItem(int ID){
         boolean haveItem = false;
@@ -629,5 +666,14 @@ public class Inventory {
             infoReceived.set(OTHERITEMQUANTITY, i);
         }
     }
-        
+    //updates other item quantity. 
+    public static void updateOtherItem(){
+        for(int i = 0; i < otherItem.size(); i++){
+            ArrayList<String> copy = otherItem.get(i);
+            String copiedState = copy.get(OTHERITEMQUANTITY);
+            if(copiedState.equals("0")){
+                otherItem.remove(i);
+            }
+        }
+    } 
 }

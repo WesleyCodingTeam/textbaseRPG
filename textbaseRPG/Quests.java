@@ -43,27 +43,15 @@ public class Quests {
         switch (qType) {
             case 1:
             if (currentNumDetail1 >= numDetail1){
-                questCompletion = true;
                 completed = true;
-                System.out.println("| YOU COMPLETED THE QUEST!");
-                System.out.println();
-                Program.waitingTime(2000);
-                System.out.println("| Get back to the guild to receive reward!");
-                System.out.println();
-                Program.waitingTime(2000);
+                Program.systemDialogue("YOU COMPLETED THE QUEST!");
             }    
                 break;
             
             case 2:
             if (currentNumDetail1 >= numDetail1 && currentNumDetail2 >= numDetail2){
-                questCompletion = true;
                 completed = true;
-                System.out.println("| YOU COMPLETED THE QUEST!");
-                System.out.println();
-                Program.waitingTime(2000);
-                System.out.println("| Get back to the guild to receive reward!");
-                System.out.println();
-                Program.waitingTime(2000);
+                Program.systemDialogue("YOU COMPLETED THE QUEST!");
                 
             }
                 break;
@@ -71,5 +59,37 @@ public class Quests {
                 break;
         }
         return completed;
+    }
+    //get reward
+    public void getReward(){
+        MainCharacter.coin += rewardM;
+        MainCharacter.exp += rewardEXP;
+        Program.systemDialogue("You received " + rewardM + "coins and " + rewardEXP + "exp!");
+    }
+    //increase the progress of the quest for 1st category
+    public void incQuestProgress1(int progress){
+        currentNumDetail1 += progress;
+    }
+    //increase the progress of the quest for 2nd category
+    public void incQuestProgress2(int progress){
+        currentNumDetail2 += progress;
+    }
+    //sync the progress of quest with item for 1st requirement
+    public void syncQuestWithItem1(int itemID){
+        if(Inventory.haveItem(itemID)){
+            currentNumDetail1 = Inventory.getOtherItemQuantity(Inventory.haveItemNum(itemID));
+        }
+        else{
+            currentNumDetail1 = 0;
+        }
+    }
+    //sync the progress of quest with item for 1st requirement
+    public void syncQuestWithItem2(int itemID){
+        if(Inventory.haveItem(itemID)){
+            currentNumDetail2 = Inventory.getOtherItemQuantity(Inventory.haveItemNum(itemID));
+        }
+        else{
+            currentNumDetail2 = 0;
+        }
     }
 }

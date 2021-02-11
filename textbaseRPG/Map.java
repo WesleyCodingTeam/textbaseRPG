@@ -79,7 +79,7 @@ public class Map {
         }
     }
     public static void actionAtLocation(){
-        Program.narrationDialogue("You are now at " + MainCharacter.currentLocation + ".");
+        Program.narrationDialogue("You are now at the " + MainCharacter.currentLocation + ".");
         switch (MainCharacter.currentLocation) {
             case "Town Square":
                 moveUI();

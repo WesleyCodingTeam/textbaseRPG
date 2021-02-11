@@ -6,8 +6,11 @@ public class Action {
         switch (action) {
             //trigers gathering action and this only applies to part 1
             case "gather":
-                if (MainCharacter.currentPart == 1){
+                if (MainCharacter.currentPart == 1 && MainCharacter.currentLocation.equals("Forest")){
                     Part1.gatheringAction();
+                }
+                else if(MainCharacter.currentPart == 1 && !MainCharacter.currentLocation.equals("Forest")){
+                    Program.dialogue("It seems like I can't gather here. I need to go to the forest");
                 }
                 else {
                     Program.dialogue("I am not weak!! I now can earn money by fighting!");
@@ -41,10 +44,12 @@ public class Action {
     }
     //help message
     public static void help(){
-        Program.systemDialogue("You can gather woods and stones if you type 'gather'.");
-        Program.systemDialogue("You also can sell item you obtained in the shop. Type 'shop' to go the the shop.");
+        if(Guild.introMessage == true){
+                    Program.systemDialogue("You can gather woods and stones if you type 'gather'.");
+        }
         Program.systemDialogue("If you want to check your progress, type 'quest'.");
-        Program.systemDialogue("If you want to  move to somewhere, type 'move' to go wherever you want.");
+        Program.systemDialogue("If you want to see what is in your bag, type 'inventory'.");
+        Program.systemDialogue("If you want to  move to somewhere, type 'map' to go wherever you want.");
         Program.systemDialogue("If you want to see your stats, type 'stat' to see your stat.");
         Program.systemDialogue("If you need help for commands, type 'help' to see this message again.");
     }
