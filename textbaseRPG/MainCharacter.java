@@ -1,6 +1,6 @@
-public class Character {
-        static String name; //Character name
-        static String classType; //Character class
+public class MainCharacter {
+        static String name; //MainCharacter name
+        static String classType; //MainCharacter class
         static int lv; //level
         static int age; // age
         static int str; //strength
@@ -11,7 +11,9 @@ public class Character {
         static int mpMax; //maximum MP
         static int mpNow; //current MP
         static int coin; //money
+        static int exp;
         static int currentPart = 0; //current part in the story
+        static String occupation = "villager";
         static String currentState = "Idle"; //tells what the charcter is doing idle, fighting, shoping etc.
         static double normalDamageMultiplier = 1.0;
         static String currentLocation = "Your House";
@@ -38,6 +40,7 @@ public class Character {
         System.out.println("________________________________");
         System.out.println("Name:           " + name);
         System.out.println("Age:            " + age);
+        System.out.println("Job:            " + occupation);
         System.out.println("Class:          " + classType);
         System.out.println("Lv:             "+ lv);
         System.out.println("HP:             " + hpNow + "/" + hpMax);
@@ -75,5 +78,45 @@ public class Character {
         Inventory.updateEquiped();
         damage = (int) (str * normalDamageMultiplier + Inventory.getWeaponDamage(Inventory.currentEquipedWeapon));
         return damage;
+    }
+
+    public static void levelUp(){
+        lv++;
+        Program.systemDialogue("YOU LEVELED UP!!! YOU ARE NOW Lv. " + lv+"!");
+        //some code for stat change
+    }
+    public static void myQuests(){
+        Quests temp;
+        for(Integer key:Guild.questList.keySet()){
+            temp = Guild.questList.get(key);
+            //if it is not completed and in the same part, then it will be available
+            if(temp.qAccepted == true && temp.questCompletion == false){
+                System.out.println("__________________________________ QUESTS________________________________________");
+                switch (temp.qType){
+                    case 1:
+                        System.out.println();
+                        System.out.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ").");
+                        System.out.println();
+                        System.out.println("                                                            Reward: " + temp.rewardM + " coins");
+                        System.out.println();
+                        System.out.println("_________________________________________________________________________________");
+                        System.out.println();
+                        break;
+                
+                    case 2:
+                        System.out.println();
+                        System.out.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ") and " + temp.questDetail2 + " (" + temp.currentNumDetail2 + "/" + temp.numDetail2 + ").");
+                        System.out.println();
+                        System.out.println("                                                            Reward: " + temp.rewardM + " coins");
+                        System.out.println();
+                        System.out.println("_________________________________________________________________________________");
+                        System.out.println();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        
     }
 }

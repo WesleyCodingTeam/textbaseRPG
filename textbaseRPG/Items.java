@@ -26,11 +26,14 @@ public class Items extends Inventory{
     itemList.put(3002, ID3002);
     //questItem/ other items
     ArrayList<String> ID4001 = new ArrayList<String>();
-    ID4001.addAll(Arrays.asList("4001","Stone", "Quest", "1"));
+    ID4001.addAll(Arrays.asList("4001","Stone", "Quest", "1","1"));
     ArrayList<String> ID4002 = new ArrayList<String>();
-    ID4002.addAll(Arrays.asList("4002","Wood", "Quest", "1"));
+    ID4002.addAll(Arrays.asList("4002","Wood", "Quest", "1","1"));
+    ArrayList<String> ID4003 = new ArrayList<String>();
+    ID4003.addAll(Arrays.asList("4003","Wolf fur", "Monster Loot", "1","30"));
     itemList.put(4001, ID4001);
     itemList.put(4002, ID4002);
+    itemList.put(4003, ID4003);
     }
 
     //prints item detail in the itemlist of the game

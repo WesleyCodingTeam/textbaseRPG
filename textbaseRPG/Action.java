@@ -1,103 +1,56 @@
 public class Action {
     
     public static void charAction() {
-        System.out.println("| What are you going to do right now?");
-        System.out.print("> ");
-        //initializing
-        String action = Program.scanString();
+        Program.systemDialogue("What are you going to do right now?");
+        String action = Program.askString();
         switch (action) {
             //trigers gathering action and this only applies to part 1
             case "gather":
-                if (Character.currentPart == 1){
+                if (MainCharacter.currentPart == 1 && MainCharacter.currentLocation.equals("Forest")){
                     Part1.gatheringAction();
                 }
-                else {
-                    System.out.println("- You are not weak!! You now can earn money by fighting!");
-                    System.out.println();
-                    Program.waitingTime(2000);
+                else if(MainCharacter.currentPart == 1 && !MainCharacter.currentLocation.equals("Forest")){
+                    Program.dialogue("It seems like I can't gather here. I need to go to the forest");
                 }
-                charAction();
-                break;
-            //going shopping
-            case "shop":
-                Shop.shopPage(); 
+                else {
+                    Program.dialogue("I am not weak!! I now can earn money by fighting!");
+                }
                 break;
             //check current status
             case "quest":
-                questCheck();
-                charAction();
+                MainCharacter.myQuests();;
                 break;
             //check for new quest    
-            case "home":
-                switch (Character.currentPart) {
-                    case 1:
-                        if (Part1.quest1.questState == false){
-                            System.out.println("- Keep working, " + Character.name + ". You didn't finish your quest!");
-                            System.out.println();
-                            Program.waitingTime(2000);
-                            charAction();
-                    }
-                        break;
-                
-                    default:
-                        System.out.println("Code error guild action default");
-                        charAction();
-                        break;
-                }
+            case "map":
+                Map.moveUI();
                 break;
             //stat page
             case "stat":
-                Character.statPage();
-                charAction();
+                MainCharacter.statPage();
                 break;
             //help message
             case "help":
                 help();
-                charAction(); 
                 break;
             case "inventory":
                 Inventory.showInventory();
                 break;
             //when the user typed in wrong command
             default:
-                System.out.println("| Wrong command. Try again. 'help' command suggested to look for the right command");
-                System.out.println();
-                charAction(); 
+                Program.systemDialogue("Wrong command. Try again. 'help' command suggested to look for the right command");
                 break;
         }
-        System.out.println();        
-    }
-    //checking guest based on parts
-    public static void questCheck(){
-        switch (Character.currentPart){
-            case 1:
-                Part1.quest1.questCheck();
-                break;
-        
-            default:
-                System.out.println("Code error questCheck default");
-                break;
-        }
+        charAction();      
     }
     //help message
     public static void help(){
-        System.out.println("| You can gather woods and stones if you type 'gather'.");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println("| You also can sell item you obtained in the shop. Type 'shop' to go the the shop.");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println("| If you want to check your progress, type 'quest'.");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println("| If you completed the quest, type 'home' to get back to home.");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println("| If you want to see your stats, type 'stat' to see your stat.");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println("| If you need help for commands, type 'help' to see this message again.");
-        System.out.println();
-        Program.waitingTime(2000);
+        if(Guild.introMessage == true){
+                    Program.systemDialogue("You can gather woods and stones if you type 'gather'.");
+        }
+        Program.systemDialogue("If you want to check your progress, type 'quest'.");
+        Program.systemDialogue("If you want to see what is in your bag, type 'inventory'.");
+        Program.systemDialogue("If you want to  move to somewhere, type 'map' to go wherever you want.");
+        Program.systemDialogue("If you want to see your stats, type 'stat' to see your stat.");
+        Program.systemDialogue("If you need help for commands, type 'help' to see this message again.");
     }
 }

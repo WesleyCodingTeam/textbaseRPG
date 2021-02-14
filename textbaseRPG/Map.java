@@ -1,35 +1,35 @@
 import java.util.*;
 public class Map {
     private static ArrayList<Location> list_of_location = new ArrayList<Location>();
+    //locations of the places in Game
+    private static String[] places = {"Your House","Guild","Shop","Town Square","Forest","Ruins"};
     public static void changeLocation(String name_Of_Location){
-        Character.currentLocation = name_Of_Location;
+        MainCharacter.currentLocation = name_Of_Location;
     }
     public static void generateMap(){
-        Location yourHouse = new Location("Your House");
-        list_of_location.add(yourHouse);
-        Location guild = new Location("Guild");
-        list_of_location.add(guild);
-        Location shop = new Location("Shop");
-        list_of_location.add(shop);
-        Location village = new Location("Village");
-        list_of_location.add(village);
+        for (String x : places) {
+            list_of_location.add(new Location(x));
+        }
     }
     public static void updateMap(){
         //reset all the inaccessible location
         changeAllToInaccessible();
         //adding accessible location
-        switch (Character.currentPart) {
+        switch (MainCharacter.currentPart) {
             case 2:
-                
-                
+                changeLocationToAccessible("Ruins");
             case 1:
-                if(Character.currentState.equals("Idle") && Character.currentLocation.equals("Village")){
+                if(MainCharacter.currentLocation.equals("Town Square")){
                     changeLocationToAccessible("Your House");
                     changeLocationToAccessible("Shop");
                     changeLocationToAccessible("Guild");
+                    changeLocationToAccessible("Forest");
                 }
-                else if(Character.currentState.equals("Idle")){
-                    changeLocationToAccessible("Village");
+                else if (MainCharacter.currentLocation.equals("Forest")){
+                    changeLocationToAccessible("Town Square");
+                }
+                else if(MainCharacter.currentState.equals("Idle")){
+                    changeLocationToAccessible("Town Square");
                 }
                 break;
             default:
@@ -79,30 +79,28 @@ public class Map {
         }
     }
     public static void actionAtLocation(){
-        switch (Character.currentLocation) {
-            case "Village":
-                System.out.println("Yay!");
+        Program.narrationDialogue("You are now at the " + MainCharacter.currentLocation + ".");
+        switch (MainCharacter.currentLocation) {
+            case "Town Square":
                 moveUI();
                 break;
 
             case "Shop":
-
+                MainCharacter.currentState = "Busy";
+                Shop.shopPage();
+                MainCharacter.currentState = "Idle"; 
                 break;
-            case "Home":
-
-                break;
-                
             case "Guild":
-
+                MainCharacter.currentState = "Busy";
+                Guild.guildPage();
+                MainCharacter.currentState = "Idle"; 
                 break;
-            
-            
             case "Your House":
-
+                // maybe healing for free by sleeping
                 break;
                 
                 
-            case "Sample2":
+            case "Forest":
 
                 break;
             

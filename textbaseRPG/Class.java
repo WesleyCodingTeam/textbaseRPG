@@ -6,32 +6,32 @@ public class Class{
 
 
     public static void knight(){
-        Character.classType = "Knight";
-        Character.str += high;
-        Character.wis += avg;
-        Character.agi += low;
-        Character.normalDamageMultiplier = 1.5;
+        MainCharacter.classType = "Knight";
+        MainCharacter.str += high;
+        MainCharacter.wis += avg;
+        MainCharacter.agi += low;
+        MainCharacter.normalDamageMultiplier = 1.5;
     }
     public static void wizard(){
-        Character.classType = "Wizard";
-        Character.str += low;
-        Character.wis += veryhigh;
-        Character.agi += low;
-        Character.normalDamageMultiplier = 0.5;
+        MainCharacter.classType = "Wizard";
+        MainCharacter.str += low;
+        MainCharacter.wis += veryhigh;
+        MainCharacter.agi += low;
+        MainCharacter.normalDamageMultiplier = 0.5;
     }
     public static void rogue(){
-        Character.classType = "Rogue";
-        Character.str += avg;
-        Character.wis += low;
-        Character.agi += high;
-        Character.normalDamageMultiplier = 1.2;
+        MainCharacter.classType = "Rogue";
+        MainCharacter.str += avg;
+        MainCharacter.wis += low;
+        MainCharacter.agi += high;
+        MainCharacter.normalDamageMultiplier = 1.2;
     }
     public static void swordsman(){
-        Character.classType = "Swordsman";
-        Character.str += avg;
-        Character.wis += avg;
-        Character.agi += avg;
-        Character.normalDamageMultiplier = 1.3;
+        MainCharacter.classType = "Swordsman";
+        MainCharacter.str += avg;
+        MainCharacter.wis += avg;
+        MainCharacter.agi += avg;
+        MainCharacter.normalDamageMultiplier = 1.3;
     }
 
 

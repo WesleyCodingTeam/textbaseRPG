@@ -28,6 +28,7 @@ public class Inventory {
     public static final int OTHERITEMNAME = 1;
     public static final int OTHERITEMTYPE = 2;
     public static final int OTHERITEMQUANTITY = 3;
+    public static final int OTHERITEMPRICE = 4;
     public static int currentEquipedWeapon = -1; //int value that shows what number(item ID) of Weapon is equiped. -1 if not equipped
 
     //put item in the inventory
@@ -126,7 +127,44 @@ public class Inventory {
         }
         
     }
+    //removes Item
+    //might cause error as haveItemNum is not used for nonstackable
+    public static void removeItem(int ID, int qty){
+        int order = haveItemNum(ID);
+        if(haveItem(ID)){
+            if (ID >= 1000 && ID < 2000) {
+                weapon.remove(order);
+            }
+            // adding armour
+            else if (ID >= 2000 && ID < 3000) {
 
+            }
+            // adding potion
+            else if (ID >= 3000 && ID < 4000) {
+                if(qty > getPotionQuantity(order)){
+                    Program.systemDialogue("Unable to remove because the quantity removed is too big.");
+                }
+                else{
+                    setPotionQuantity(order, getPotionQuantity(order)-qty);
+                }
+                updatePotion();
+            }
+            // other items
+            else if (ID >= 4000 && ID < 5000) {
+                if(qty > getOtherItemQuantity(order)){
+                    Program.systemDialogue("Unable to remove because the quantity removed is too big.");
+                }
+                else{
+                    setOtherItemQuantity(order, getOtherItemQuantity(order)-qty);
+                }
+                updateOtherItem();
+            }
+        }
+        else{
+            Program.systemDialogue("No such item exists at inventory.");
+        }
+
+    }
     //returns boolean if the player has the item. Can be used for stackable and unstackable items
     public static boolean haveItem(int ID){
         boolean haveItem = false;
@@ -381,7 +419,7 @@ public class Inventory {
         System.out.println("");
         if (potion.isEmpty()){
             System.out.println("You do not have any item in this category.");
-            if(Character.currentState.equals("Fighting")){
+            if(MainCharacter.currentState.equals("Fighting")){
                 Battle.battleStatus();
             }
         }
@@ -399,14 +437,14 @@ public class Inventory {
                 if(answer == 'y'){
                     setPotionQuantity(ans, getPotionQuantity(ans) - 1);
                     System.out.println("");
-                    Character.healHP(getPotionHP(ans));
+                    MainCharacter.healHP(getPotionHP(ans));
                     System.out.println("| You healed " + getPotionHP(ans) + " HP!");
                     System.out.println("");
-                    Character.healMP(getPotionMP(ans));
+                    MainCharacter.healMP(getPotionMP(ans));
                     System.out.println("| You healed " + getPotionMP(ans) + " MP!");
                 }
                 else{
-                    if(Character.currentState.equals("Fighting")){
+                    if(MainCharacter.currentState.equals("Fighting")){
                         Battle.battleStatus();
                     }
                 }
@@ -629,5 +667,24 @@ public class Inventory {
             infoReceived.set(OTHERITEMQUANTITY, i);
         }
     }
-        
+    //gets quantity
+    public static int getOtherItemPrice(int inventoryItemID){
+        if(inventoryItemID != -1){
+            ArrayList<String> infoReceived = otherItem.get(inventoryItemID);
+            String i = infoReceived.get(OTHERITEMPRICE);
+            int j = Integer.parseInt(i);  
+            return j;
+        }
+        return 0;
+    }
+    //updates other item quantity. 
+    public static void updateOtherItem(){
+        for(int i = 0; i < otherItem.size(); i++){
+            ArrayList<String> copy = otherItem.get(i);
+            String copiedState = copy.get(OTHERITEMQUANTITY);
+            if(copiedState.equals("0")){
+                otherItem.remove(i);
+            }
+        }
+    } 
 }

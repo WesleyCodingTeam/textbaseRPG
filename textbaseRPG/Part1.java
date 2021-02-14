@@ -1,52 +1,16 @@
 public class Part1 {
-    //intialize QuestGenerator
-    static QuestGenerator quest1 = new QuestGenerator();
     static boolean found = false;
     public static void questFGame(){
         //dialogue part 1
-        Character.currentPart = 1;
-        Character.currentState = "idle";
-        Character.currentLocation = "quest board";
-        System.out.println();
+        MainCharacter.currentPart = 1;
+        MainCharacter.currentState = "Idle";
+        MainCharacter.currentLocation = "Town Square";
         System.out.println("Part 1: Coward's Alteration");
         System.out.println("-----------------------------------------------------------");
         System.out.println();
         Program.waitingTime(2000);
-        System.out.println("-- You are now at the staircase of the guild building where the quest board stands. --");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println("| See Quest Board? (y/n)");
-        System.out.print("> ");
-        char ans = Program.scanChar();
-        while (ans == 'n'){
-            System.out.println();
-            System.out.println("Hey! You need to earn money!"); //revision required on the word
-            System.out.println(); 
-            Program.waitingTime(2000);
-            System.out.println("| Do you want to see the quest? (y/n)");
-            System.out.print("> ");
-            ans = Program.scanChar();
-        }
-        System.out.println();
-        Guild.guildPage();
-        System.out.println("- Hey, " + Character.name + "! Going gathering again laddie?");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println(" Haha... yeah...");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println("- Ya remember how to get gather 'em right?'");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println(" Uh...");
-        System.out.println();
-        Program.waitingTime(2000);
-        System.out.println(" No wonder yer sister calls you hopeless, arighty...");
-        System.out.println();
-        Program.waitingTime(2000);
-        //first help message
-        Action.help();
-        //charAction method in action.java
+        Program.narrationDialogue("You wonder how to get to the guild.");
+        Program.npcDialogue("Try type map to move around!");
         Action.charAction();
     }
 
@@ -66,67 +30,47 @@ public class Part1 {
         //only getting wood
         if (wood == true && stone == false){
             int i = Program.randomNum(5, 9);
-            System.out.println("| You got " + i + " wood!");
-            quest1.currentNumDetail1 += i;
+            Program.systemDialogue("You got " + i + " wood!");
             Inventory.setInventoryItem(4002, i);
         }
         //only getting stone
         else if (wood == false && stone == true){
             int j = Program.randomNum(5, 9);
-            System.out.println("| You got " + j + " stone!");
-            quest1.currentNumDetail2 += j;
+            Program.systemDialogue("You got " + j + " stone!");
+
             Inventory.setInventoryItem(4001, j);
         }
         //getting both wood and stone
         else if (wood == true && stone == true){
             int i = Program.randomNum(3, 6);
             int j = Program.randomNum(3, 6);
-            quest1.currentNumDetail1 += i;
-            quest1.currentNumDetail2 += j;
+
             System.out.println("| You got " + i + " wood and " + j + " stone!");
             Inventory.setInventoryItem(4002, i);
             Inventory.setInventoryItem(4001, j); 
         }
         //not getting anything
         else{
-            System.out.println("| You didn't get anything!");
+            Program.systemDialogue("You didn't get anything!");
         }
-        //check if quest was completed
-        quest1.questCheckCompletion();
+        Guild.questList.get(1001).syncQuestWithItem1(4002);
+        Guild.questList.get(1001).syncQuestWithItem2(4001);
         //special action trigger
-        if (quest1.currentNumDetail1 >= 50 && quest1.currentNumDetail2 >= 20 && found == false){
+        if (Guild.questList.get(1001).questCheckCompletion() == true){
             gettingPower();
             found = true;
         }
-        System.out.println();
-        Program.waitingTime(2000);
     }
     
     //dialogue when he is about to die and god comes
     public static void gettingPower(){
-        System.out.println("===Swish, Swish=== You hear the bushes around you shake." ); //edit reqired on dialogue
-            System.out.println();
-            System.out.println();
-            Program.waitingTime(1000);
-            System.out.println();
-            System.out.println("-- You hear disturbing growls --");
-            System.out.println();
-            System.out.println();
-            Program.waitingTime(2000);
-            System.out.println("Dire Wolves... ");
-            System.out.println();
-            Program.waitingTime(2000);
-            System.out.println("-- You start to shake --");
-            System.out.println();
-            Program.waitingTime(2000);
-            System.out.println("I've never fought a monster before...");
-            System.out.println();
-            Program.waitingTime(2000);
-            System.out.println("-- A Dire Wolf strikes! --");
-            System.out.println();
-            Program.waitingTime(2000);
-            Battle.battleNowTutorial(102);
-
-
+        Program.narrationDialogue("===Swish, Swish=== You hear the bushes around you shake.");
+        Program.narrationDialogue("You hear disturbing growls");
+        Program.narrationDialogue("You start to shake");
+        Program.dialogue("Dire Wolves...");
+        Program.dialogue("I've never fought a monster before...");
+        Program.narrationDialogue("A Dire Wolf strikes!");
+        Battle.battleNowTutorial(102);
+        Part1half.play();
     }
 }
