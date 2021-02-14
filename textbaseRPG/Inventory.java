@@ -137,7 +137,7 @@ public class Inventory {
             }
             // adding armour
             else if (ID >= 2000 && ID < 3000) {
-
+                //armour not yet made
             }
             // adding potion
             else if (ID >= 3000 && ID < 4000) {
