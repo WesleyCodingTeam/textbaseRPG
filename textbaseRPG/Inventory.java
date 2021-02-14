@@ -42,7 +42,7 @@ public class Inventory {
             }
         //adding armour
         else if (itemID >= 2000 && itemID < 3000){
-
+            //to be implemented later
         }
         //adding potion
         else if (itemID >= 3000 && itemID < 4000){
