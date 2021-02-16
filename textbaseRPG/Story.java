@@ -53,20 +53,10 @@ public class Story {
         Program.npcDialogue("Isn't yer sister sort of strict bout that?");
         Program.narrationDialogue("You slowly realize what the Guildmaster meant");
         Program.dialogue("Uh.. Sir.. Could I stay at the guild tonight?");
-        
-    }
-
-
-
-
-- It's only gonna get worse kid, go back fer today -
-
-Right... Have any plans Mr. Hero?
-
--- The Old Hero give no reply -- 
-
-Right...
-
--- You realize the only thing to do now is sneak into your home --
+        Program.npcDialogue("It's only gonna get worse kid, go back fer today");
+        Program.dialogue("Right... Have any plans Mr. Hero?");
+        Program.narrationDialogue("The Old Hero give no reply");
+        Program.dialogue("Right...");
+        Program.narrationDialogue("You realize the only thing to do now is sneak into your home");
     }
 }
