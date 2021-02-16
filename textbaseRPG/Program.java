@@ -43,7 +43,7 @@ public class Program {
     }
     //make arbitrary character for testing
     public static void testCharacterGeneration(){
-        MainCharacter.makeStats("Jaeyoung", "None", 1, 13, 11, 11, 11, 100, 100, 100, 100, 10);
+        MainCharacter.makeStats("Jaeyoung", "None", 1, 13, 11, 11, 11, 100, 100, 100, 100, 10000);
     }
     //makes the Program stops for a while for amount t. 1 second is t = 1000
     public static void waitingTime(int t) {

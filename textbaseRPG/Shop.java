@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
-
 public class Shop {
 
     public static HashMap<Integer, ShopStock> weaponStonks = new HashMap<Integer, ShopStock>();
@@ -21,15 +19,15 @@ public class Shop {
     }
 
     public static void shopAsk(){
-        System.out.println("Choose a shop! Jun's Weapon Shop (say \"weapon\") or Jon's Potion Shop (say \"potion\")");
-        String askedShop = Program.scanString();
+        Program.systemDialogue("Choose a shop! Jun's Weapon Shop (say \"weapon\") or Jon's Potion Shop (say \"potion\") Say \" exit \" to exit.");
+        String askedShop = Program.askString();
         if (askedShop.equals("weapon")){
             weaponPage();
             weaponAsk();
         } 
-        if (askedShop.equals("potion")){
+        else if (askedShop.equals("potion")){
             potionPage();
-            potionPage();
+            potionAsk();
         }
     }
 
@@ -64,20 +62,21 @@ public class Shop {
     }
 
     public static void weaponAsk(){
-        System.out.println("Which item would you like to buy? (Say the item ID!) If you don't want anything, say \"0\"!");
-        int askedWeapon = Program.scanInt() + 1000;
+        Program.systemDialogue("Which item would you like to buy? (Say the item ID!) If you don't want anything, say \"0\"!");
+        int askedWeapon = Program.askInt()+ 1000;
         int Price = weaponStonks.get(askedWeapon).price;
         int Quantity = weaponStonks.get(askedWeapon).quantity;
         if (askedWeapon == 1000){
             shopAsk();
         }
         if (availableChecker(Price, Quantity) == false){
-            System.out.println("Either stocks ran out or you ran out of gold!");   
-            shopAsk();
+            Program.systemDialogue("Either stocks ran out or you ran out of gold!");   
+            weaponAsk();
         } else{
             Items.setInventoryItem(askedWeapon, 1);
             weaponStonks.get(askedWeapon).quantity -= 1;
             MainCharacter.minusGold(Price);
+            Program.systemDialogue("You purchased " + weaponStonks.get(askedWeapon).item.get(Inventory.WEAPONNAME) + "!");
             shopAsk();
         }
     }
@@ -103,20 +102,21 @@ public class Shop {
     }
 
     public static void potionAsk(){
-        System.out.println("Which item would you like to buy? (Say the item ID!) If you don't want anything, say \"exit\"!");
-        int askedPotion = Program.scanInt() + 3000;
+        Program.systemDialogue("Which item would you like to buy? (Say the item ID!) If you don't want anything, say \"0\"!");
+        int askedPotion = Program.askInt() + 3000;
         int Price = potionStonks.get(askedPotion).price;
         int Quantity = potionStonks.get(askedPotion).quantity;
         if (askedPotion == 3000){
             shopAsk();
         }
         if (availableChecker(Price, Quantity) == false){
-            System.out.println("Either stocks ran out or you ran out of gold!");
-            shopAsk();
+            Program.systemDialogue("Either stocks ran out or you ran out of gold!");
+            potionAsk();
         } else{
             Items.setInventoryItem(askedPotion, 1);
             potionStonks.get(askedPotion).quantity -= 1;
             MainCharacter.minusGold(Price);
+            Program.systemDialogue("You purchased " + potionStonks.get(askedPotion).item.get(Inventory.POTIONNAME) + "!");
             shopAsk();
         }
     }
