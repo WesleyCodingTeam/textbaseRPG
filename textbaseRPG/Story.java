@@ -60,3 +60,33 @@ public class Story {
         Program.narrationDialogue("You realize the only thing to do now is sneak into your home");
     }
 }
+
+//make prompt to make the player go to his house
+
+ Program.narrationDialogue("You try to sneak into your house");
+
+Program.narrationDialouge("You Slowly Open the door");
+
+Program.narrationDialouge("BONK");
+
+ Program.narrationDialogue("You smash onto the ground")
+
+Program.npcDialogue("What time do you think it is right now!");
+
+Program.dialouge("Uh..");
+
+Program.narrationDialogue("Your sister notices your blood-covered body");
+
+Program.npcDialogue("What happened to you!?);
+
+Program.dialouge("Haha.. just got into a fight...");
+
+Program.npcDialogue("Why didn't you use your healing potion?);
+
+Program.Dialouge("Oh! Right!");
+
+//- open inventory drink potion -
+
+Program.npcDialouge("Ha.. I'm just glad you're safe, better get to bed or you'll get another punch to the head");
+
+Program.dialouge("You decide to get to bed before you get lights knocked out");
