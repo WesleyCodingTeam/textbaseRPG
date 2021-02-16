@@ -71,6 +71,6 @@ public class Part1 {
         Program.dialogue("I've never fought a monster before...");
         Program.narrationDialogue("A Dire Wolf strikes!");
         Battle.battleNowTutorial(102);
-        Part1half.play();
+        Story.storyOfHeroInTheBeginning();
     }
 }

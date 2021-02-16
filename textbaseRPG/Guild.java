@@ -5,6 +5,9 @@ public class Guild {
     public static boolean introMessage = true;
     public static HashMap<Integer, Quests> questList = new HashMap<Integer, Quests>();
     public static void guildPage(){
+        if(Part1.found == true){
+                
+        }
         Program.npcDialogue("Hello! What do you want me to do?");
         Program.dialogue("1. Check and Receive reward.");
         Program.dialogue("2. Look for new quest.");
