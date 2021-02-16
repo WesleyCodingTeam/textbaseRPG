@@ -7,6 +7,7 @@ public class Program {
         Items.itemGeneration(); 
         Monster.generateMonster();
         Map.generateMap();
+        Shop.shopInitialization();
     }
     //make arbitrary character for testing
     public static void testCharacterGeneration(){
@@ -107,4 +108,15 @@ public class Program {
         }
         return returnList;
     }
+
+    //adding consitent space
+    public static String wordConsistence(int lengths, String content){
+        String result = content;
+        int space = lengths - content.length();
+        for(int i = 0; i < space; i++){
+            result += " ";
+        }
+        return result;
+    }
+
 }

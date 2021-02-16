@@ -4,6 +4,6 @@ public class MainRunFile{
         Program.thingsToRunInBeginning();
         Program.testCharacterGeneration();
         Character.currentPart = 1;
-        Map.moveUI();    
+        Shop.potionPage();
     } 
 }

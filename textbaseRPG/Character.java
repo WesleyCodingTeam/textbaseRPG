@@ -76,4 +76,9 @@ public class Character {
         damage = (int) (str * normalDamageMultiplier + Inventory.getWeaponDamage(Inventory.currentEquipedWeapon));
         return damage;
     }
+
+    //gold minus
+    public static void minusGold(int coins){
+        coin -= coins;
+    }
 }
