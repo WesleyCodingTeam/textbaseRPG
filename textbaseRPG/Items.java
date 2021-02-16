@@ -9,11 +9,11 @@ public class Items extends Inventory{
     public static void itemGeneration() {
     //starting to set weapons  
     ArrayList<String> ID1001 = new ArrayList<String>();
-    ID1001.addAll(Arrays.asList("1001", "Basic Sword", "Normal", "10", "100", "100","1", "Strength","Just a normal sword","Unequiped"));
+    ID1001.addAll(Arrays.asList("1001", "Basic Sword", "Normal", "10", "100", "100","1", "Strength","Can't even touch a goblin with this!","Unequiped"));
     ArrayList<String> ID1002 = new ArrayList<String>();
-    ID1002.addAll(Arrays.asList("1002","Basic Wand", "Normal", "10", "100","100", "1", "Wisdom", "Just a normal wand","Unequiped"));
+    ID1002.addAll(Arrays.asList("1002","Basic Wand", "Normal", "10", "100","100", "1", "Wisdom", "Abra Kadabra! Wait... Nothing happened?","Unequiped"));
     ArrayList<String> ID1003 = new ArrayList<String>();
-    ID1003.addAll(Arrays.asList("1003","Basic Knife", "Normal", "10", "100","100", "1", "Agility", "Just a normal knife","Unequiped"));
+    ID1003.addAll(Arrays.asList("1003","Basic Knife", "Normal", "10", "100","100", "1", "Agility", "Good for tickling monsters... Not really.","Unequiped"));
     itemList.put(1001, ID1001);
     itemList.put(1002, ID1002);
     itemList.put(1003, ID1003);

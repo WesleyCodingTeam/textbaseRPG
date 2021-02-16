@@ -9,6 +9,7 @@ public class Program {
         Monster.generateMonster();
         Map.generateMap();
         Guild.questIntitialization();
+        Shop.shopInitialization();
         setDialogueSpeed(20);
     }
     //dialogue style
@@ -161,4 +162,15 @@ public class Program {
         }
         return returnList;
     }
+
+    //adding consitent space
+    public static String wordConsistence(int lengths, String content){
+        String result = content;
+        int space = lengths - content.length();
+        for(int i = 0; i < space; i++){
+            result += " ";
+        }
+        return result;
+    }
+
 }
