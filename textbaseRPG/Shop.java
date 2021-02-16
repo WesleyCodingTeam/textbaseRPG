@@ -34,7 +34,7 @@ public class Shop {
     }
 
     public static boolean availableChecker(int sellPrice, int itemQuantity){
-        if (Character.coin < sellPrice){
+        if (MainCharacter.coin < sellPrice){
             return false;
         }
         if (itemQuantity <= 0){
@@ -77,7 +77,7 @@ public class Shop {
         } else{
             Items.setInventoryItem(askedWeapon, 1);
             weaponStonks.get(askedWeapon).quantity -= 1;
-            Character.minusGold(Price);
+            MainCharacter.minusGold(Price);
             shopAsk();
         }
     }
@@ -116,7 +116,7 @@ public class Shop {
         } else{
             Items.setInventoryItem(askedPotion, 1);
             potionStonks.get(askedPotion).quantity -= 1;
-            Character.minusGold(Price);
+            MainCharacter.minusGold(Price);
             shopAsk();
         }
     }

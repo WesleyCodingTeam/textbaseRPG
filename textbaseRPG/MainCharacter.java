@@ -117,7 +117,7 @@ public class MainCharacter {
                 }
             }
         }
-        
+    }    
     //gold minus
     public static void minusGold(int coins){
         coin -= coins;

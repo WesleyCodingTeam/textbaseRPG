@@ -87,7 +87,7 @@ public class Map {
 
             case "Shop":
                 MainCharacter.currentState = "Busy";
-                Shop.shopPage();
+                Shop.shopAsk();
                 MainCharacter.currentState = "Idle"; 
                 break;
             case "Guild":
