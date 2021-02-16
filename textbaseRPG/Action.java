@@ -20,7 +20,7 @@ public class Action {
                 break;
             //going shopping
             case "shop":
-                Shop.shopPage(); 
+                Shop.shopAsk(); 
                 break;
             //check current status
             case "quest":

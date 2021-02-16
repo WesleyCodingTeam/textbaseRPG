@@ -1,100 +1,124 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
+
 public class Shop {
+
+    public static HashMap<Integer, ShopStock> weaponStonks = new HashMap<Integer, ShopStock>();
+    public static HashMap<Integer, ShopStock> potionStonks = new HashMap<Integer, ShopStock>();;
+    public static HashMap<Integer, ShopStock> otherStonks = new HashMap<Integer, ShopStock>();;
+
+    public static void shopInitialization(){
+        //weapon
+        weaponStonks.put(1001, new ShopStock(350, Items.itemList.get(1001), 1));
+        weaponStonks.put(1002, new ShopStock(350, Items.itemList.get(1002), 1));
+        weaponStonks.put(1003, new ShopStock(350, Items.itemList.get(1003), 1));
+        //potion
+        potionStonks.put(3001, new ShopStock(350, Items.itemList.get(3001), 5));
+        potionStonks.put(3002, new ShopStock(100, Items.itemList.get(3002), 1));
+
+    }
+
+    public static void shopAsk(){
+        System.out.println("Choose a shop! Jun's Weapon Shop (say \"weapon\") or Jon's Potion Shop (say \"potion\")");
+        String askedShop = Program.scanString();
+        if (askedShop.equals("weapon")){
+            weaponPage();
+            weaponAsk();
+        } 
+        if (askedShop.equals("potion")){
+            potionPage();
+            potionPage();
+        }
+    }
+
+    public static boolean availableChecker(int sellPrice, int itemQuantity){
+        if (Character.coin < sellPrice){
+            return false;
+        }
+        if (itemQuantity <= 0){
+            return false;
+        }
+        return true;
+    }
 
     //page print for list of items
     public static void weaponPage(){
-        //System.out.println();
-        //System.out.println("                                   Weapons");
-        //System.out.println("________________________________________________________________________________");
-        //System.out.println("|Items                |Price       |Description                                 |");
-        //System.out.println("|-------------------------------------------------------------------------------|");
-        //System.out.println("|Basic Sword x 1      |350g        |Can't even tickle a goblin with this!       |");
-        //System.out.println("|Basic Wand x 1       |350g        |Abra Kadabra! Wait... Nothing happened?     |");
-        //System.out.println("|Basic Knife x 1      |359g        |Good for tickling monsters... Not really.   |");
-        //System.out.println("|-------------------------------------------------------------------------------|");
-        //System.out.println();
-        System.out.println("Item ID: 1\nName: " + Items.getWeaponName(1001) + " x " + "1\nPrice: 350g\nDesc: Just a normal sword.\n" );
-        System.out.println("Item ID: 2\nName: " + Items.getWeaponName(1002) + " x " + "1\nPrice: 350g\nDesc: Just a normal wand.\n" );
-        System.out.println("Item ID: 3\nName: " + Items.getWeaponName(1003) + " x " + "1\nPrice: 350g\nDesc: Just a normal knife.\n" );
+        System.out.println();
+        System.out.println("                                                  Weapons");
+        System.out.println("______________________________________________________________________________________________________________________");
+        System.out.println("|ID|Items                           |Price      |Description                                                         |");
+        System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
+        int tempPrice = 0;
+        int tempQuantity = 0;
+        ArrayList<String> tempItem;
+        for (int i = 1001; i <= 1003; i++){
+            tempItem = weaponStonks.get(i).item;
+            tempPrice = weaponStonks.get(i).price;
+            tempQuantity = weaponStonks.get(i).quantity;
+            System.out.println(Program.wordConsistence(3, "|" + (i-1000)) + Program.wordConsistence(33, "|" + tempItem.get(Inventory.WEAPONNAME) + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.get(Inventory.WEAPONDESCRIPTION)) + "|");
+        }
+        System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
+        System.out.println();
     }
 
-    public static void weponAsk(){
-        System.out.println("Which item would you like to buy? (Say the item ID!)");
-        int askedWeapon = Program.scanInt();
-        if (not integer){
-            System.out.println("Put in the item ID dummy!");
-            weaponAsk();
+    public static void weaponAsk(){
+        System.out.println("Which item would you like to buy? (Say the item ID!) If you don't want anything, say \"0\"!");
+        int askedWeapon = Program.scanInt() + 1000;
+        int Price = weaponStonks.get(askedWeapon).price;
+        int Quantity = weaponStonks.get(askedWeapon).quantity;
+        if (askedWeapon == 1000){
+            shopAsk();
         }
-        if (user doesnt have enough gold of selected item){
-            System.out.println("Come back when you have enough gold!");
-            weaponAsk()
+        if (availableChecker(Price, Quantity) == false){
+            System.out.println("Either stocks ran out or you ran out of gold!");   
+            shopAsk();
+        } else{
+            Items.setInventoryItem(askedWeapon, 1);
+            weaponStonks.get(askedWeapon).quantity -= 1;
+            Character.minusGold(Price);
+            shopAsk();
         }
-        Items.setInventoryItem(askedWeapon, 1);
-        //minusGold(cost of that item);
     }
 
-
-
+    //page print for list of items
     public static void potionPage(){
-        //System.out.println("                                   Potions");
-        //System.out.println("________________________________________________________________________________");
-        //System.out.println("|Items                |Price       |Description                                 |");
-        //System.out.println("|-------------------------------------------------------------------------------|");
-        //System.out.println("|HP Potion (S) x 1    |50g         |+35 HP (Only consumable onece every round)  |");
-        //System.out.println("|HP Potion (L) x 1    |359g        |                                            |");
-        //System.out.println("|Mana Potion (S) x 1  |50g         |+35 Man (Only consumable onece every round) |");
-        //System.out.println("|Mana Potion (L) x 1  |359g        |                                            |");
-        //System.out.println("|Cookies x 5          |10g         |+10 HP (Only consumable onece every round)  |");
-        //System.out.println("|-------------------------------------------------------------------------------|");
-        //System.out.println();
-        System.out.println("Item ID: 1\nName: " + Items.getPotionName(3001) + " x " + "5\nPrice: 10g\nDesc: Nice chocolate chip cookie. Increases your hp and mp by 10.\n" );
-        System.out.println("Item ID: 2\nName: " + Items.getPotionName(3002) + " x " + "1\nPrice: 100g\nDesc: Looks nice(?)...\n" );
+        System.out.println();
+        System.out.println("                                                  Potions");
+        System.out.println("______________________________________________________________________________________________________________________");
+        System.out.println("|ID|Items                           |Price      |Description                                                         |");
+        System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
+        int tempPrice = 0;
+        int tempQuantity = 0;
+        ArrayList<String> tempItem;
+        for (int i = 3001; i <= 3002; i++){
+            tempItem = potionStonks.get(i).item;
+            tempPrice = potionStonks.get(i).price;
+            tempQuantity = potionStonks.get(i).quantity;
+            System.out.println(Program.wordConsistence(3, "|" + (i-3000)) + Program.wordConsistence(33, "|" + tempItem.get(Inventory.POTIONNAME) + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.get(Inventory.POTIONDESCRIPTION)) + "|");
+        }
+        System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
+        System.out.println();
     }
 
     public static void potionAsk(){
-        System.out.println("Which item would you like to buy? (Say the item ID!)");
-        int askedPotion = Program.scanInt();
-        if (not integer){
-            System.out.println("Put in the item ID, dummy!");
-            potionAsk();
+        System.out.println("Which item would you like to buy? (Say the item ID!) If you don't want anything, say \"exit\"!");
+        int askedPotion = Program.scanInt() + 3000;
+        int Price = potionStonks.get(askedPotion).price;
+        int Quantity = potionStonks.get(askedPotion).quantity;
+        if (askedPotion == 3000){
+            shopAsk();
         }
-        if (user doesnt have enough gold of selected item){
-            System.out.println("Come back when you have enough gold!");
-            potionAsk()
+        if (availableChecker(Price, Quantity) == false){
+            System.out.println("Either stocks ran out or you ran out of gold!");
+            shopAsk();
+        } else{
+            Items.setInventoryItem(askedPotion, 1);
+            potionStonks.get(askedPotion).quantity -= 1;
+            Character.minusGold(Price);
+            shopAsk();
         }
-        Items.setInventoryItem(askedPotion, 1);
-        //minusGold(cost of that item);
     }
-
-
-
-    public static void buyItem(){
-        System.out.println("What would you like to buy? Type \"w\" for weapons, \"p\" for potions, or \"O\" for others.");
-        char type = Program.scanChar();
-        if (type =='w'){
-            weaponPage();
-            
-        }
-        else if (type == 'p'){
-            potionPage();
-        }
-        //else 
-        //    "other" method
-        //}
-
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
 
 }
