@@ -14,9 +14,12 @@ public class Quests {
     int questID;
     int questPart;
     boolean qAccepted;
+    int questSyncItemID1;
+    int questSyncItemID2;
+    boolean questAlertDone = false;
     
-    //declaring field method
-    public Quests(char qRank, String questDetail1, int currentNumDetail1, int numDetail1, String questDetail2, int currentNumDetail2, int numDetail2, int rewardM, int rewardEXP, int qType, int questPart,int questID){
+    //type 2
+    public Quests(char qRank, String questDetail1, int currentNumDetail1, int numDetail1, int questSyncItemID1, String questDetail2, int currentNumDetail2, int numDetail2, int questSyncItemID2, int rewardM, int rewardEXP, int questPart,int questID){
         this.qRank = qRank;
         this.questDetail1 = questDetail1;
         this.currentNumDetail1 = currentNumDetail1;
@@ -26,18 +29,35 @@ public class Quests {
         this.numDetail2 = numDetail2;
         this.rewardM = rewardM;
         this.rewardEXP = rewardEXP;
-        this.qType = qType;
+        this.qType = 2;
         this.questID = questID;
         this.questCompletion = false;
         this.questPart = questPart;
         this.qAccepted = false;
+        this.questSyncItemID1 = questSyncItemID1;
+        this.questSyncItemID2 = questSyncItemID2;
         
+    }
+    //type 1
+    public Quests(char qRank, String questDetail1, int currentNumDetail1, int numDetail1, int questSyncItemID1, int rewardM, int rewardEXP, int questPart,int questID){
+        this.qRank = qRank;
+        this.questDetail1 = questDetail1;
+        this.currentNumDetail1 = currentNumDetail1;
+        this.numDetail1 = numDetail1;
+        this.rewardM = rewardM;
+        this.rewardEXP = rewardEXP;
+        this.qType = 1;
+        this.questID = questID;
+        this.questCompletion = false;
+        this.questPart = questPart;
+        this.qAccepted = false;
+        this.questSyncItemID1 = questSyncItemID1;
     }
 
 
 
     //returns true or false based on completion of the quest
-    public boolean questCheckCompletion(){
+    public boolean questCheckCompletionBoolean(){
         boolean completed = false;
         //qType used for distinguish between quest with 1 objective or 2 objective
         switch (qType) {
@@ -60,11 +80,31 @@ public class Quests {
         }
         return completed;
     }
+    //returns true or false based on completion of the quest
+    public void questCheckCompletionVoid(){
+        //qType used for distinguish between quest with 1 objective or 2 objective
+        switch (qType) {
+            case 1:
+            if (currentNumDetail1 >= numDetail1){
+                Program.systemDialogue("YOU COMPLETED THE QUEST!");
+            }    
+                break;
+            
+            case 2:
+            if (currentNumDetail1 >= numDetail1 && currentNumDetail2 >= numDetail2){
+                Program.systemDialogue("YOU COMPLETED THE QUEST!");
+                
+            }
+                break;
+            default:
+                break;
+        }
+    }
     //get reward
     public void getReward(){
         MainCharacter.coin += rewardM;
         MainCharacter.currentExp += rewardEXP;
-        Program.systemDialogue("You received " + rewardM + "coins and " + rewardEXP + "exp!");
+        Program.systemDialogue("You received " + rewardM + " coins and " + rewardEXP + " exp!");
     }
     //increase the progress of the quest for 1st category
     public void incQuestProgress1(int progress){
@@ -75,7 +115,8 @@ public class Quests {
         currentNumDetail2 += progress;
     }
     //sync the progress of quest with item for 1st requirement
-    public void syncQuestWithItem1(int itemID){
+    public void syncQuestWithItem1(){
+        int itemID = questSyncItemID1;
         if(Inventory.haveItem(itemID)){
             currentNumDetail1 = Inventory.getOtherItemQuantity(Inventory.haveItemNum(itemID));
         }
@@ -84,7 +125,8 @@ public class Quests {
         }
     }
     //sync the progress of quest with item for 1st requirement
-    public void syncQuestWithItem2(int itemID){
+    public void syncQuestWithItem2(){
+        int itemID = questSyncItemID2;
         if(Inventory.haveItem(itemID)){
             currentNumDetail2 = Inventory.getOtherItemQuantity(Inventory.haveItemNum(itemID));
         }

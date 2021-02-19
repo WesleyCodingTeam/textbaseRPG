@@ -20,7 +20,7 @@ public class Program {
         }
         System.out.println("");
         System.out.println("");
-        waitingTime(600);
+        waitingTime(400);
     }
     //NPC dialogue
     public static void npcDialogue(String dialogues) {
@@ -44,6 +44,9 @@ public class Program {
     //make arbitrary character for testing
     public static void testCharacterGeneration(){
         MainCharacter.makeStats("Jaeyoung", "None", 1, 13, 11, 11, 11, 100, 100, 100, 100, 10000);
+        MainCharacter.currentLocation = "Your House";
+        MainCharacter.currentPart = 1;
+        MainCharacter.currentState = "Idle";
     }
     //makes the Program stops for a while for amount t. 1 second is t = 1000
     public static void waitingTime(int t) {

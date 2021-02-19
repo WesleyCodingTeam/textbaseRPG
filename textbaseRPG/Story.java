@@ -30,12 +30,13 @@ public class Story {
         Program.narrationDialogue("Carrying the heavy Great Wolf and raw materials, you limp towards the entrance. You burst through the doors");
         Program.npcDialogue("Woah! Somebody help that kid!");
         Program.narrationDialogue("People quickly gather around you and help you with your bounty");
-        Program.npcDialogue("This is.. this is a Great Wolf! An A class monster!");
+        Program.npcDialogue("This is.. this is a Great Wolf! An B class monster!");
         Program.npcDialogue(MainCharacter.name +"!");
         Program.narrationDialogue("The friendly guildmaster quickly runs over to you");
         Program.npcDialogue(MainCharacter.name+"! Yer look like yer nearly dead!");
         Program.dialogue("Hahahah... I completed the quest...");
-        Program.npcDialogue("What? Er... Right!");
+        Program.npcDialogue("What? Er... Right! Get this cookie! You are hurt!");
+        Inventory.setInventoryItem(3001, 1);
     }
     public static void guildStory2(){
         Program.dialogue("Sir... What about the Great Wolf?");
@@ -60,7 +61,6 @@ public class Story {
         Program.narrationDialogue("You realize the only thing to do now is sneak into your home");
     }
     public static void conflictAtHome(){
-        //make prompt to make the player go to his house
         Program.narrationDialogue("You try to sneak into your house");
         Program.narrationDialogue("You Slowly Open the door");
         Program.narrationDialogue("BONK");
@@ -72,7 +72,7 @@ public class Story {
         Program.dialogue("Haha.. just got into a fight...");
         Program.npcDialogue("Why didn't you use your healing potion?");
         Program.dialogue("Oh! Right!");
-        // - open inventory drink potion -
+        Program.systemDialogue("Tip! Use inventory to use your potion!");
         Program.npcDialogue("Ha.. I'm just glad you're safe, better get to bed or you'll get another punch to the head");
         Program.dialogue("You decide to get to bed before you get lights knocked out");
     

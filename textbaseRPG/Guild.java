@@ -3,10 +3,13 @@ import java.util.HashMap;
 public class Guild {
     //first time message
     public static boolean introMessage = true;
+    public static boolean guildStoryDone = false;
+    public static boolean guildStory2Done = false;
     public static HashMap<Integer, Quests> questList = new HashMap<Integer, Quests>();
     public static void guildPage(){
-        if(Part1.found == true){
-                
+        if(Part1.found && !guildStoryDone){
+            Story.guildStory();
+            guildStoryDone = true;
         }
         Program.npcDialogue("Hello! What do you want me to do?");
         Program.dialogue("1. Check and Receive reward.");
@@ -18,6 +21,10 @@ public class Guild {
             if(ans == 1){
                 checkAndGetReward();
                 done = true;
+                if(guildStoryDone && !guildStory2Done){
+                    Story.guildStory2();
+                    guildStory2Done = true;
+                }
             }
             else if(ans == 2){
                 availableQuests();
@@ -44,7 +51,7 @@ public class Guild {
         }
     }
     public static void questIntitialization(){
-        questList.put(1001, new Quests('F', "Get woods", 0, 50, "Get stones" , 0, 30, 100, 5, 2,1,1001));
+        questList.put(1001, new Quests('F', "Get woods", 0, 50, 4002, "Get stones", 0, 30, 4001, 100, 5,1,1001));
     }
     //check for quest comepletion and get reward
     public static void checkAndGetReward(){
@@ -52,7 +59,7 @@ public class Guild {
         int counter = 0;
         for(Integer key:questList.keySet()){
             temp = questList.get(key);
-            if(temp.questCompletion == false && temp.qAccepted == true && temp.questCheckCompletion() == true){
+            if(temp.questCompletion == false && temp.qAccepted == true && temp.questCheckCompletionBoolean() == true){
                 counter++;
                 temp.questCompletion = true;
                 temp.getReward();
@@ -60,6 +67,21 @@ public class Guild {
         }
         if(counter == 0)
         Program.npcDialogue("It seems like you have no quest remaining or you haven't finished the quest yet.");
+    }
+    //check for quest comepletion
+    public static void checkAndSyncIfCompleted(){
+        Quests temp;
+        for(Integer key:questList.keySet()){
+            temp = questList.get(key);
+            if(!temp.questCompletion && temp.qAccepted && !temp.questAlertDone){
+                temp.questAlertDone = true;
+                temp.questCheckCompletionVoid();
+                temp.syncQuestWithItem1();
+                if(temp.qType == 2){
+                    temp.syncQuestWithItem2();
+                }
+            }
+        }
     }
     //print available quest
     public static void availableQuests(){

@@ -30,22 +30,17 @@ public class Part1 {
         //only getting wood
         if (wood == true && stone == false){
             int i = Program.randomNum(5, 9);
-            Program.systemDialogue("You got " + i + " wood!");
             Inventory.setInventoryItem(4002, i);
         }
         //only getting stone
         else if (wood == false && stone == true){
             int j = Program.randomNum(5, 9);
-            Program.systemDialogue("You got " + j + " stone!");
-
             Inventory.setInventoryItem(4001, j);
         }
         //getting both wood and stone
         else if (wood == true && stone == true){
             int i = Program.randomNum(3, 6);
             int j = Program.randomNum(3, 6);
-
-            System.out.println("| You got " + i + " wood and " + j + " stone!");
             Inventory.setInventoryItem(4002, i);
             Inventory.setInventoryItem(4001, j); 
         }
@@ -53,10 +48,8 @@ public class Part1 {
         else{
             Program.systemDialogue("You didn't get anything!");
         }
-        Guild.questList.get(1001).syncQuestWithItem1(4002);
-        Guild.questList.get(1001).syncQuestWithItem2(4001);
         //special action trigger
-        if (Guild.questList.get(1001).questCheckCompletion() == true){
+        if (Guild.questList.get(1001).questCheckCompletionBoolean() == true){
             gettingPower();
             found = true;
         }

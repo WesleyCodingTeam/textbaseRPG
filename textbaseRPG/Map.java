@@ -1,5 +1,6 @@
 import java.util.*;
 public class Map {
+    public static boolean conflictAtHomeDone = false;
     private static ArrayList<Location> list_of_location = new ArrayList<Location>();
     //locations of the places in Game
     private static String[] places = {"Your House","Guild","Shop","Town Square","Forest","Ruins"};
@@ -97,6 +98,10 @@ public class Map {
                 break;
             case "Your House":
                 // maybe healing for free by sleeping
+                if(Shop.shopStoryDone && !conflictAtHomeDone){
+                    conflictAtHomeDone = true;
+                    Story.conflictAtHome();
+                }
                 break;
                 
                 

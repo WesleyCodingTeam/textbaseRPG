@@ -231,7 +231,7 @@ public class Battle {
                     Program.narrationDialogue("A mystical power runs through your veins");
                     Program.dialogue("!$%$^%@!&##!(#(!#&*#!(!*^#&!#");
                     Program.narrationDialogue("You feel your body lose all its weight");
-                    Program.systemDialogue("You dealt 999999999 damage to the monster!");
+                    Program.systemDialogue("You dealt 99999 damage to the monster!");
                     Program.systemDialogue("You slain "+ getFightingMonsterName() + "!");
                     break;
                 case 2:
@@ -242,7 +242,7 @@ public class Battle {
                     break;
             }
         } 
-        MainCharacter.levelUp();
+        MainCharacter.lv = 1;
         Program.narrationDialogue("You faint from the exhaustion");
         MainCharacter.currentState = "Idle";
         MainCharacter.occupation = "Hero";

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Shop {
-
+    public static boolean shopStoryDone = false;
     public static HashMap<Integer, ShopStock> weaponStonks = new HashMap<Integer, ShopStock>();
     public static HashMap<Integer, ShopStock> potionStonks = new HashMap<Integer, ShopStock>();;
     public static HashMap<Integer, ShopStock> otherStonks = new HashMap<Integer, ShopStock>();;
@@ -19,6 +19,10 @@ public class Shop {
     }
 
     public static void shopAsk(){
+        if(Guild.guildStory2Done && !shopStoryDone){
+            Story.shopTutorial();
+            shopStoryDone = true;
+        }
         Program.systemDialogue("Choose a shop! Jun's Weapon Shop (say \"weapon\") or Jon's Potion Shop (say \"potion\") Say \" exit \" to exit.");
         String askedShop = Program.askString();
         if (askedShop.equals("weapon")){
@@ -45,6 +49,7 @@ public class Shop {
     public static void weaponPage(){
         System.out.println();
         System.out.println("                                                  Weapons");
+        System.out.println("Your current gold: " + MainCharacter.coin + "coins");
         System.out.println("______________________________________________________________________________________________________________________");
         System.out.println("|ID|Items                           |Price      |Description                                                         |");
         System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
@@ -55,7 +60,7 @@ public class Shop {
             tempItem = weaponStonks.get(i).item;
             tempPrice = weaponStonks.get(i).price;
             tempQuantity = weaponStonks.get(i).quantity;
-            System.out.println(Program.wordConsistence(3, "|" + (i-1000)) + Program.wordConsistence(33, "|" + tempItem.get(Inventory.WEAPONNAME) + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.get(Inventory.WEAPONDESCRIPTION)) + "|");
+            System.out.println(Program.wordConsistence(3, "|" + (i)) + Program.wordConsistence(33, "|" + tempItem.get(Inventory.WEAPONNAME) + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.get(Inventory.WEAPONDESCRIPTION)) + "|");
         }
         System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
         System.out.println();
@@ -63,20 +68,22 @@ public class Shop {
 
     public static void weaponAsk(){
         Program.systemDialogue("Which item would you like to buy? (Say the item ID!) If you don't want anything, say \"0\"!");
-        int askedWeapon = Program.askInt()+ 1000;
-        int Price = weaponStonks.get(askedWeapon).price;
-        int Quantity = weaponStonks.get(askedWeapon).quantity;
-        if (askedWeapon == 1000){
-            shopAsk();
+        int askedWeapon = Program.askInt();
+        if (weaponStonks.containsKey(askedWeapon)){
+            int Price = weaponStonks.get(askedWeapon).price;
+            int Quantity = weaponStonks.get(askedWeapon).quantity;
+            if (availableChecker(Price, Quantity) == false){
+                Program.systemDialogue("Either stocks ran out or you ran out of gold!");   
+                weaponAsk();
+            } else{
+                Items.setInventoryItem(askedWeapon, 1);
+                weaponStonks.get(askedWeapon).quantity -= 1;
+                MainCharacter.minusGold(Price);
+                Program.systemDialogue("You purchased " + weaponStonks.get(askedWeapon).item.get(Inventory.WEAPONNAME) + "!");
+                shopAsk();
+            }
         }
-        if (availableChecker(Price, Quantity) == false){
-            Program.systemDialogue("Either stocks ran out or you ran out of gold!");   
-            weaponAsk();
-        } else{
-            Items.setInventoryItem(askedWeapon, 1);
-            weaponStonks.get(askedWeapon).quantity -= 1;
-            MainCharacter.minusGold(Price);
-            Program.systemDialogue("You purchased " + weaponStonks.get(askedWeapon).item.get(Inventory.WEAPONNAME) + "!");
+        else {
             shopAsk();
         }
     }
@@ -85,6 +92,7 @@ public class Shop {
     public static void potionPage(){
         System.out.println();
         System.out.println("                                                  Potions");
+        System.out.println("Your current gold: " + MainCharacter.coin + "coins");
         System.out.println("______________________________________________________________________________________________________________________");
         System.out.println("|ID|Items                           |Price      |Description                                                         |");
         System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
@@ -95,7 +103,7 @@ public class Shop {
             tempItem = potionStonks.get(i).item;
             tempPrice = potionStonks.get(i).price;
             tempQuantity = potionStonks.get(i).quantity;
-            System.out.println(Program.wordConsistence(3, "|" + (i-3000)) + Program.wordConsistence(33, "|" + tempItem.get(Inventory.POTIONNAME) + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.get(Inventory.POTIONDESCRIPTION)) + "|");
+            System.out.println(Program.wordConsistence(3, "|" + (i)) + Program.wordConsistence(33, "|" + tempItem.get(Inventory.POTIONNAME) + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.get(Inventory.POTIONDESCRIPTION)) + "|");
         }
         System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
         System.out.println();
@@ -103,20 +111,22 @@ public class Shop {
 
     public static void potionAsk(){
         Program.systemDialogue("Which item would you like to buy? (Say the item ID!) If you don't want anything, say \"0\"!");
-        int askedPotion = Program.askInt() + 3000;
-        int Price = potionStonks.get(askedPotion).price;
-        int Quantity = potionStonks.get(askedPotion).quantity;
-        if (askedPotion == 3000){
-            shopAsk();
+        int askedPotion = Program.askInt();
+        if (potionStonks.containsKey(askedPotion)){
+            int Price = potionStonks.get(askedPotion).price;
+            int Quantity = potionStonks.get(askedPotion).quantity;
+            if (availableChecker(Price, Quantity) == false){
+                Program.systemDialogue("Either stocks ran out or you ran out of gold!");
+                potionAsk();
+            } else{
+                Items.setInventoryItem(askedPotion, 1);
+                potionStonks.get(askedPotion).quantity -= 1;
+                MainCharacter.minusGold(Price);
+                Program.systemDialogue("You purchased " + potionStonks.get(askedPotion).item.get(Inventory.POTIONNAME) + "!");
+                shopAsk();
+            }
         }
-        if (availableChecker(Price, Quantity) == false){
-            Program.systemDialogue("Either stocks ran out or you ran out of gold!");
-            potionAsk();
-        } else{
-            Items.setInventoryItem(askedPotion, 1);
-            potionStonks.get(askedPotion).quantity -= 1;
-            MainCharacter.minusGold(Price);
-            Program.systemDialogue("You purchased " + potionStonks.get(askedPotion).item.get(Inventory.POTIONNAME) + "!");
+        else {
             shopAsk();
         }
     }

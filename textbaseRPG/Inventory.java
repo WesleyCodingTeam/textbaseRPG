@@ -38,8 +38,9 @@ public class Inventory {
         if (itemID >= 1000 && itemID < 2000){
             for (int i = 0; i < quantity; i++) {
                weapon.add(infoReceived);  
-            }   
-            }
+            }  
+            Program.systemDialogue("You got " + quantity + " " + infoReceived.get(WEAPONNAME)+"!"); 
+        }
         //adding armour
         else if (itemID >= 2000 && itemID < 3000){
             //to be implemented later
@@ -74,7 +75,7 @@ public class Inventory {
                         potion.add(infoReceived);
                     }
                     else {
-                        System.out.println("Error while stacking items.");
+                        Program.systemDialogue("Error while stacking items.");
                     }
                     
                 }
@@ -82,6 +83,7 @@ public class Inventory {
                     potion.add(infoReceived);
                 }
             }
+            Program.systemDialogue("You got " + quantity + " " + infoReceived.get(POTIONNAME)+"!"); 
         }
         //other items
         else if(itemID >= 4000 && itemID < 5000){
@@ -113,17 +115,18 @@ public class Inventory {
                         otherItem.add(infoReceived);
                     }
                     else {
-                        System.out.println("Error while stacking items.");
+                        Program.systemDialogue("Error while stacking items.");
                     }
                     
                 }
                 else if (otherItem.isEmpty()){
                     otherItem.add(infoReceived);
                 }
-            } 
+            }
+            Program.systemDialogue("You got " + quantity + " " + infoReceived.get(OTHERITEMNAME)+"!");  
         }
         else {
-            System.out.println("Item to inventory error");
+            Program.systemDialogue("Item to inventory error");
         }
         
     }
@@ -234,9 +237,7 @@ public class Inventory {
         System.out.println("");
         System.out.println("Type the number of category you want.");
         System.out.println("_____________________________________");
-        System.out.print("> ");
-        int ans = Program.scanInt();
-        System.out.println("");
+        int ans = Program.askInt();
         //chosing category
         switch (ans) {
             case 1:
@@ -266,33 +267,37 @@ public class Inventory {
         }
         System.out.println("");
         if (weapon.isEmpty()){
-            System.out.println("You do not have any item in this category.");
+            Program.systemDialogue("You do not have any item in this category.");
         }
         else if (!(weapon.isEmpty())){
-            System.out.println("Choose the number of the weapon you want to select.");
-            System.out.print("> ");
-            int ans = Program.scanInt();
-            System.out.println("");
+            Program.systemDialogue("Choose the number of the weapon you want to select.");
+            int ans = Program.askInt();
             printSpecificWeapon(ans);
         }
     }
 
     //displaying potions in inventory
     public static void getPotions(){
-        for (int i = 0; i < potion.size(); i++){
-        ArrayList<String> infoReceived = potion.get(i);
-        System.out.println(i + ". [" + infoReceived.get(POTIONNAME) + "] x" + infoReceived.get(POTIONQUANTITY));
+        Program.systemDialogue("Are you going to use potion(y/n)");
+        Program.systemDialogue("If no, then list of potion will be printed");
+        char answer = Program.askChar();
+        if(answer == 'y'){
+            usePotion();
         }
-        System.out.println("");
-        if (potion.isEmpty()){
-            System.out.println("You do not have any item in this category.");
-        }
-        else if (!(potion.isEmpty())){
-            System.out.println("Choose the number of the potion you want to select.");
-            System.out.print("> ");
-            int ans = Program.scanInt();
+        else{
+            for (int i = 0; i < potion.size(); i++){
+                ArrayList<String> infoReceived = potion.get(i);
+                System.out.println(i + ". [" + infoReceived.get(POTIONNAME) + "] x" + infoReceived.get(POTIONQUANTITY));
+            }
             System.out.println("");
-            printSpecificPotion(ans);
+            if (potion.isEmpty()){
+                Program.systemDialogue("You do not have any item in this category.");
+            }
+            else if (!(potion.isEmpty())){
+                Program.systemDialogue("Choose the number of the potion you want to select.");
+                int ans = Program.askInt();
+                printSpecificPotion(ans);
+            }
         }
     }
     //displaying items in inventory
@@ -303,13 +308,11 @@ public class Inventory {
         }
         System.out.println("");
         if (otherItem.isEmpty()){
-            System.out.println("You do not have any item in this category.");
+            Program.systemDialogue("You do not have any item in this category.");
         }
         else if (!(otherItem.isEmpty())){
-            System.out.println("Choose the number of the item you want to select.");
-            System.out.print("> ");
-            int ans = Program.scanInt();
-            System.out.println("");
+            Program.systemDialogue("Choose the number of the item you want to select.");
+            int ans = Program.askInt();
             printSpecificOtherItem(ans);
         }
     }
@@ -396,52 +399,46 @@ public class Inventory {
                     setWeaponState(currentEquipedWeapon, "Unequiped");
                     setWeaponState(itemEquipNum, "Equiped");
                 }
-                System.out.println("[" + getWeaponName(itemEquipNum) + "] equiped.");
+                Program.systemDialogue("[" + getWeaponName(itemEquipNum) + "] equiped.");
                 updateEquiped();
                 break;
             case 2:
                 //not yet made
                 break;
             default:
-                System.out.println("Error. Non-equipable item.");
+                Program.systemDialogue("Error. Non-equipable item.");
                 break;
         }
     }
     //use potion
     public static void usePotion() {
         updatePotion();
-        System.out.println("What potion do you want to use?");
-        System.out.println("");
+        Program.systemDialogue("What potion do you want to use?");
         for (int i = 0; i < potion.size(); i++){
             ArrayList<String> infoReceived = potion.get(i);
             System.out.println(i + ". [" + infoReceived.get(POTIONNAME) + "] x" + infoReceived.get(POTIONQUANTITY));
             }
         System.out.println("");
         if (potion.isEmpty()){
-            System.out.println("You do not have any item in this category.");
+            Program.systemDialogue("You do not have any item in this category.");
             if(MainCharacter.currentState.equals("Fighting")){
                 Battle.battleStatus();
             }
         }
         else if (!(potion.isEmpty())){
-            System.out.println("Choose the number of the potion you want to select.");
-            System.out.print("> ");
-            int ans = Program.scanInt();
-            System.out.println("");
+            Program.systemDialogue("Choose the number of the potion you want to select.");
+            int ans = Program.askInt();
             if(ans < potion.size()){
                 printSpecificPotion(ans);
                 Program.waitingTime(1000);
-                System.out.println("| Do you want to use this potion? (y/n)");
-                System.out.print("> ");
-                char answer = Program.scanChar();
+                Program.systemDialogue("Do you want to use this potion? (y/n)");
+                char answer = Program.askChar();
                 if(answer == 'y'){
                     setPotionQuantity(ans, getPotionQuantity(ans) - 1);
-                    System.out.println("");
                     MainCharacter.healHP(getPotionHP(ans));
-                    System.out.println("| You healed " + getPotionHP(ans) + " HP!");
-                    System.out.println("");
+                    Program.systemDialogue("You healed " + getPotionHP(ans) + " HP!");
                     MainCharacter.healMP(getPotionMP(ans));
-                    System.out.println("| You healed " + getPotionMP(ans) + " MP!");
+                    Program.systemDialogue("You healed " + getPotionMP(ans) + " MP!");
                 }
                 else{
                     if(MainCharacter.currentState.equals("Fighting")){
@@ -450,8 +447,7 @@ public class Inventory {
                 }
             }
             else{
-                System.out.println("| You selected something that is not in the list.\n| Please try again");
-                System.out.println("");
+                Program.systemDialogue("You selected something that is not in the list. Please try again");
                 usePotion();
             }
         }
