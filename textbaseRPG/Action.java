@@ -1,6 +1,7 @@
 public class Action {
     
     public static void charAction() {
+        MainCharacter.checkLevelUp();
         Program.systemDialogue("What are you going to do right now?");
         String action = Program.askString();
         switch (action) {

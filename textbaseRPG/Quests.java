@@ -63,7 +63,7 @@ public class Quests {
     //get reward
     public void getReward(){
         MainCharacter.coin += rewardM;
-        MainCharacter.exp += rewardEXP;
+        MainCharacter.currentExp += rewardEXP;
         Program.systemDialogue("You received " + rewardM + "coins and " + rewardEXP + "exp!");
     }
     //increase the progress of the quest for 1st category
