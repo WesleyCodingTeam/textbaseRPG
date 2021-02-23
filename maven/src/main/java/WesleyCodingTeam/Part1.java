@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 public class Part1 {
     static boolean found = false;
     public static void questFGame(){

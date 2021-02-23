@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 import java.util.ArrayList;
 
 public class ShopStock{

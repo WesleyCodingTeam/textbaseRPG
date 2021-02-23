@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 public class Action {
     
     public static void charAction() {

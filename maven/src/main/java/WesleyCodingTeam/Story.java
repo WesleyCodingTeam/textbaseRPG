@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 public class Story {
     public static void storyOfHeroInTheBeginning(){
         Program.dialogue("...........................");

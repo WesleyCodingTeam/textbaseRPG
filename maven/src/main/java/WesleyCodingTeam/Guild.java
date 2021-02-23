@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 import java.util.HashMap;
 
 public class Guild {

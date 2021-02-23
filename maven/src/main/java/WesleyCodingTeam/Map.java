@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 import java.util.*;
 public class Map {
     public static boolean conflictAtHomeDone = false;

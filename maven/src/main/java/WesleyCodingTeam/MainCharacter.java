@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 public class MainCharacter {
         static String name; //MainCharacter name
         static String classType; //MainCharacter class

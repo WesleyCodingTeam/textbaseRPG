@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 public class Intro {
     public static void introduction(){
         //intro statements

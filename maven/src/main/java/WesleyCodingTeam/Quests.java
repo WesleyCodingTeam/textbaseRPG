@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 public class Quests {
     //field
     char qRank; //F,D,C,B,A,S

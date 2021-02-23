@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 public class Location {
     private String name;
     private int enabled = 0;

@@ -1,3 +1,5 @@
+package WesleyCodingTeam;
+
 public class Class{
         static int veryhigh = 15;
         static int high = 9;
