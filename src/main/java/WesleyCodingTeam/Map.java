@@ -39,7 +39,7 @@ public class Map {
                 System.out.println("Error on updateMap. You are in some strange place.");
                 break;
         }
-        
+
     }
     //use this to make user change location
     public static void moveUI(){
@@ -91,12 +91,12 @@ public class Map {
             case "Shop":
                 MainCharacter.currentState = "Busy";
                 Shop.shopAsk();
-                MainCharacter.currentState = "Idle"; 
+                MainCharacter.currentState = "Idle";
                 break;
             case "Guild":
                 MainCharacter.currentState = "Busy";
                 Guild.guildPage();
-                MainCharacter.currentState = "Idle"; 
+                MainCharacter.currentState = "Idle";
                 break;
             case "Your House":
                 // maybe healing for free by sleeping
@@ -105,17 +105,17 @@ public class Map {
                     Story.conflictAtHome();
                 }
                 break;
-                
-                
+
+
             case "Forest":
 
                 break;
-            
-            
+
+
             case "Sample3":
 
                 break;
-                
+
             default:
                 System.out.println("Error. Can't perform any actions. Let's reposition you!");
                 moveUI();
@@ -141,8 +141,16 @@ public class Map {
             }
         }
         if(found == false){
-            System.out.println("Error. Mismatching Location name.");    
+            System.out.println("Error. Mismatching Location name.");
         }
-        
+
     }
+
 }
+
+
+
+
+
+
+

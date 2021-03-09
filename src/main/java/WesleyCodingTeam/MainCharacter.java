@@ -18,9 +18,12 @@ public class MainCharacter {
         static int extraStat = 0;
         static int currentPart = 0; //current part in the story
         static String occupation = "villager";
-        static String currentState = "Idle"; //tells what the charcter is doing idle, fighting, shoping etc.
+        static String currentState = "Idle"; //tells what the character is doing idle, fighting, shoping etc.
         static double normalDamageMultiplier = 1.0;
         static String currentLocation = "Your House";
+        static String currentField = "Town";
+        static int xCoordinate;
+        static int yCoordinate;
     //declaring field
     public static void makeStats(String nameChoice, String classTypeChoice, int lvChoice, int ageChoice, int strChoice, int wisChoice, int agiChoice, int hpMaxChoice, int hpNowChoice, int mpMaxChoice, int mpNowChoice, int coinChoice){
         name = nameChoice;
@@ -36,7 +39,7 @@ public class MainCharacter {
         mpNow = mpNowChoice;
         coin = coinChoice;
         }
-    
+
     //printing out stat
     public static void statPage(){
         System.out.println();
@@ -166,7 +169,7 @@ public class MainCharacter {
                         System.out.println("_________________________________________________________________________________");
                         System.out.println();
                         break;
-                
+
                     case 2:
                         System.out.println();
                         System.out.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ") and " + temp.questDetail2 + " (" + temp.currentNumDetail2 + "/" + temp.numDetail2 + ").");
@@ -181,9 +184,13 @@ public class MainCharacter {
                 }
             }
         }
-    }    
+    }
     //gold minus
     public static void minusGold(int coins){
         coin -= coins;
+    }
+    public static void changeCoordinate(int x,int y){
+        xCoordinate = x;
+        yCoordinate = y;
     }
 }
