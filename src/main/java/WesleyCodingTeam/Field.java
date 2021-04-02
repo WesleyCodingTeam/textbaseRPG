@@ -20,17 +20,23 @@ public class Field {
     public void printField() {
         int currentXCoordinate = MainCharacter.xCoordinate;
         int currentYCoordinate = MainCharacter.yCoordinate;
+        int view = MainCharacter.maxViewDistance;
+        int left = (currentXCoordinate-view >=0?currentXCoordinate-view:0);
+        int right = (currentXCoordinate+view <width?currentXCoordinate+view:width-1);
+        int top = (currentYCoordinate-view >=0?currentYCoordinate-view:0);
+        int bottom = (currentYCoordinate+view <height?currentYCoordinate+view:height-1);
+        int leftToRight = right - left+1;
         int blankSpace = 20;
         for(int k = 0; k < blankSpace; k++){
             System.out.println();
         }
-        for(int i = 0; i < width*2+2; i++){
+        for(int i = 0; i < leftToRight*2+2; i++){
             System.out.print("_");
         }
         System.out.println();
-        for (int i = 0; i < height; i++) {
+        for (int i = top; i <= bottom; i++) {
             System.out.print("|");
-            for (int j = 0; j < width; j++) {
+            for (int j = left; j <= right; j++) {
                 if(i == currentYCoordinate && j == currentXCoordinate){
                     System.out.print('O' + " ");
                 }
@@ -42,7 +48,7 @@ public class Field {
             System.out.print("|");
             System.out.println();
         }
-        for(int i = 0; i < width*2+2; i++){
+        for(int i = 0; i < leftToRight*2+2; i++){
             System.out.print("_");
         }
         System.out.println();
@@ -50,6 +56,12 @@ public class Field {
 
     public void addWallTile(int xCoordinate, int yCoordinate){
         tiles[yCoordinate][xCoordinate] = new WallTile(xCoordinate, yCoordinate);
+    }
+    public void addMonsterTile(int xCoordinate, int yCoordinate,int monsterId){
+        tiles[yCoordinate][xCoordinate] = new MonsterTile(xCoordinate, yCoordinate,monsterId);
+    }
+    public void deleteTile(int x,int y){
+        tiles[y][x] = new Tile(x,y);
     }
     public void move(){
         printField();
@@ -75,18 +87,22 @@ public class Field {
         }
         if(currentXCoordinate >=0 && currentYCoordinate >= 0 && currentXCoordinate <width && currentYCoordinate < height){
             MainCharacter.changeCoordinate(currentXCoordinate,currentYCoordinate);
+            doSpecifiedAction(currentXCoordinate,currentYCoordinate);
         }
         else{
             Program.systemDialogue("You are not allowed to go to that place. It is out of bound");
         }
         move();
     }
+    private void doSpecifiedAction(int x,int y){
+        Tile curr = tiles[y][x];
+        curr.action();
+    }
 
     private class Tile {
         int x;
         int y;
         char tileShape;
-        boolean playerIsOn = false;
 
         public Tile(int xCoordinate, int yCoordinate) {
             x = xCoordinate;
@@ -147,11 +163,12 @@ public class Field {
         public MonsterTile(int xCoordinate, int yCoordinate, int monsterId) {
             super(xCoordinate, yCoordinate);
             this.monsterId = monsterId;
+            super.tileShape ='M';
         }
 
         @Override
         public void message() {
-
+            Program.systemDialogue("You've encountered with a monster!");
         }
 
         @Override

@@ -18,12 +18,13 @@ public class MainCharacter {
         static int extraStat = 0;
         static int currentPart = 0; //current part in the story
         static String occupation = "villager";
-        static String currentState = "Idle"; //tells what the character is doing idle, fighting, shoping etc.
+        static String currentState = "Idle"; //tells what the character is doing idle, fighting, shopping etc.
         static double normalDamageMultiplier = 1.0;
         static String currentLocation = "Your House";
         static String currentField = "Town";
         static int xCoordinate;
         static int yCoordinate;
+        static int maxViewDistance = 5;
     //declaring field
     public static void makeStats(String nameChoice, String classTypeChoice, int lvChoice, int ageChoice, int strChoice, int wisChoice, int agiChoice, int hpMaxChoice, int hpNowChoice, int mpMaxChoice, int mpNowChoice, int coinChoice){
         name = nameChoice;

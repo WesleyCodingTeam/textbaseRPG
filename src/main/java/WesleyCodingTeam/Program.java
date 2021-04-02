@@ -7,8 +7,8 @@ public class Program {
     private static int dialogueSpeed;
     //initialization. Things that needs to be ran in the beginning
     public static void thingsToRunInBeginning(){
-        Items.itemGeneration(); 
-        Monster.generateMonster();
+        Items.itemGeneration();
+        Data.generateMonster();
         Map.generateMap();
         Guild.questIntitialization();
         Shop.shopInitialization();
@@ -45,7 +45,7 @@ public class Program {
     }
     //make arbitrary character for testing
     public static void testCharacterGeneration(){
-        MainCharacter.makeStats("Jaeyoung", "None", 1, 13, 11, 11, 11, 100, 100, 100, 100, 10000);
+        MainCharacter.makeStats("Jaeyoung", "None", 1, 13, 50, 11, 11, 100, 100, 100, 100, 10000);
         MainCharacter.currentLocation = "Your House";
         MainCharacter.currentPart = 1;
         MainCharacter.currentState = "Idle";
@@ -54,7 +54,7 @@ public class Program {
     public static void waitingTime(int t) {
         try {
             Thread.sleep(t);
-        } 
+        }
         catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -67,7 +67,7 @@ public class Program {
         return out;
     }
 
-    //input a% and results in true or false based on the probablity 
+    //input a% and results in true or false based on the probablity
     public static boolean percentProb(int a) {
         boolean i = false;
         Random rand = new Random();
@@ -96,7 +96,7 @@ public class Program {
             try {
                 next = sc.next().charAt(0);
                 sc.nextLine();
-                state = true;       
+                state = true;
             } catch (Exception e) {
                 System.out.println("Wrong input type. Try again.");
                 sc.nextLine();
@@ -104,13 +104,13 @@ public class Program {
                 System.out.print("> ");
             }
         }
-        return next; 
+        return next;
     }
     //scanning a string
     public static String scanString() {
         String word = sc.nextLine();
         word = word.toLowerCase();
-        return word;  
+        return word;
     }
     //scanning an integer
     public static int scanInt() {
@@ -121,7 +121,7 @@ public class Program {
                 num = sc.nextInt();
                 sc.nextLine();
                 state = true;
-                
+
             } catch (Exception e) {
                 System.out.println("Wrong input type. Try again.");
                 sc.nextLine();
@@ -129,7 +129,7 @@ public class Program {
                 System.out.print("> ");
             }
         }
-        return num; 
+        return num;
     }
     //just Program needed for scanner. NOT ACTUALLY USED
     public static void stop(){
