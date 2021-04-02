@@ -19,7 +19,7 @@ public class Quests {
     int questSyncItemID1;
     int questSyncItemID2;
     boolean questAlertDone = false;
-    
+
     //type 2
     public Quests(char qRank, String questDetail1, int currentNumDetail1, int numDetail1, int questSyncItemID1, String questDetail2, int currentNumDetail2, int numDetail2, int questSyncItemID2, int rewardM, int rewardEXP, int questPart,int questID){
         this.qRank = qRank;
@@ -38,7 +38,7 @@ public class Quests {
         this.qAccepted = false;
         this.questSyncItemID1 = questSyncItemID1;
         this.questSyncItemID2 = questSyncItemID2;
-        
+
     }
     //type 1
     public Quests(char qRank, String questDetail1, int currentNumDetail1, int numDetail1, int questSyncItemID1, int rewardM, int rewardEXP, int questPart,int questID){
@@ -67,14 +67,14 @@ public class Quests {
             if (currentNumDetail1 >= numDetail1){
                 completed = true;
                 Program.systemDialogue("YOU COMPLETED THE QUEST!");
-            }    
+            }
                 break;
-            
+
             case 2:
             if (currentNumDetail1 >= numDetail1 && currentNumDetail2 >= numDetail2){
                 completed = true;
                 Program.systemDialogue("YOU COMPLETED THE QUEST!");
-                
+
             }
                 break;
             default:
@@ -89,13 +89,13 @@ public class Quests {
             case 1:
             if (currentNumDetail1 >= numDetail1){
                 Program.systemDialogue("YOU COMPLETED THE QUEST!");
-            }    
+            }
                 break;
-            
+
             case 2:
             if (currentNumDetail1 >= numDetail1 && currentNumDetail2 >= numDetail2){
                 Program.systemDialogue("YOU COMPLETED THE QUEST!");
-                
+
             }
                 break;
             default:
@@ -120,7 +120,7 @@ public class Quests {
     public void syncQuestWithItem1(){
         int itemID = questSyncItemID1;
         if(Inventory.haveItem(itemID)){
-            currentNumDetail1 = Inventory.getOtherItemQuantity(Inventory.haveItemNum(itemID));
+            currentNumDetail1 = Inventory.otherItem.get(Inventory.itemLocation(itemID)).quantity;
         }
         else{
             currentNumDetail1 = 0;
@@ -130,7 +130,7 @@ public class Quests {
     public void syncQuestWithItem2(){
         int itemID = questSyncItemID2;
         if(Inventory.haveItem(itemID)){
-            currentNumDetail2 = Inventory.getOtherItemQuantity(Inventory.haveItemNum(itemID));
+            currentNumDetail1 = Inventory.otherItem.get(Inventory.itemLocation(itemID)).quantity;
         }
         else{
             currentNumDetail2 = 0;

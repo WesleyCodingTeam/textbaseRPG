@@ -25,6 +25,8 @@ public class MainCharacter {
         static int xCoordinate;
         static int yCoordinate;
         static int maxViewDistance = 5;
+        static int killCount = 0;
+        static int deathNum = 0;
     //declaring field
     public static void makeStats(String nameChoice, String classTypeChoice, int lvChoice, int ageChoice, int strChoice, int wisChoice, int agiChoice, int hpMaxChoice, int hpNowChoice, int mpMaxChoice, int mpNowChoice, int coinChoice){
         name = nameChoice;
@@ -127,8 +129,7 @@ public class MainCharacter {
     //damage counter
     public static int normalAttackDamageCounter(){
         int damage = 0;
-        Inventory.updateEquiped();
-        damage = (int) (str * normalDamageMultiplier + Inventory.getWeaponDamage(Inventory.currentEquipedWeapon));
+        damage = (int) (str * normalDamageMultiplier + (Inventory.currentEquipped!=null?Inventory.currentEquipped.damage:0));
         return damage;
     }
     public static void checkLevelUp() {

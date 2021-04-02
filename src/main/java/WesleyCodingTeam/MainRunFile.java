@@ -8,9 +8,10 @@ public class MainRunFile{
 //        Program.thingsToRunInBeginning();
 //        Intro.introduction();
         Program.testCharacterGeneration();
-        //Program.thingsToRunInBeginning();
-        Data.generateField();
-        Data.generateMonster();
-        Data.field.move();
+        Program.thingsToRunInBeginning();
+        Inventory.setInventoryItem(1001,1);
+        Inventory.setInventoryItem(3002,5);
+        Data.field.printField();
+        Action.charAction();
     }
 }

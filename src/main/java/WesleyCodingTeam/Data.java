@@ -10,6 +10,11 @@ public class Data {
     public static HashMap<Integer, Monster> monsterList = new HashMap<>();
     public static HashMap<Integer, Item> itemList = new HashMap<>();
     public static Field field;
+    public static void initialization(){
+        generateField();
+        generateItem();
+        generateMonster();
+    }
     public static void generateMonster(){
         monsterList.put(101,new Monster(101, "Test Mob 1", "Normal", 1000, 3, 40, "This is the testing mob.", 0));
         monsterList.put(102,new Monster(102, "Dire wolf", "Rare", 200, 20, 30, "Horrible mob. Run if you meet one.", 0));
@@ -50,16 +55,16 @@ public class Data {
                     case "P": {
                         int hp = Integer.parseInt(specs[6]);
                         int mp = Integer.parseInt(specs[7]);
-                        boolean hasSpecial = Boolean.parseBoolean(specs[7]);
+                        boolean hasSpecial = Boolean.parseBoolean(specs[8]);
                         String specialType = null;
                         int specialStat = 0;
                         int quantity;
                         if (hasSpecial) {
-                            specialType = specs[8];
-                            specialStat = Integer.parseInt(specs[9]);
-                            quantity = Integer.parseInt(specs[10]);
+                            specialType = specs[9];
+                            specialStat = Integer.parseInt(specs[10]);
+                            quantity = Integer.parseInt(specs[11]);
                         } else {
-                            quantity = Integer.parseInt(specs[8]);
+                            quantity = Integer.parseInt(specs[9]);
                         }
                         itemList.put(id, new Potion(itemType,id, price, name, type, description,hp,mp, hasSpecial, specialType, specialStat, quantity));
 

@@ -35,22 +35,28 @@ public class Battle {
         switch (answ) {
             case 1:
                 boolean killed = dealDamage();
+                if(killed){
+                    MainCharacter.killCount ++;
+                    break;
+                }
                 boolean died = receiveDamage();
                 turn++;
-                if(!died && !killed){
-                    battleStatus();
+                if(died){
+                    MainCharacter.deathNum++;
+                    break;
                 }
-                if(!killed){
-
-                }
+                battleStatus();
                 break;
             case 2:
-                Inventory.getPotions();
-                receiveDamage();
-                turn++;
-                if(MainCharacter.hpNow>0){
-                    battleStatus();
+                if(Inventory.getPotions()){
+                    boolean die = receiveDamage();
+                    if(die){
+                        MainCharacter.deathNum++;
+                        break;
+                    }
+                    turn++;
                 }
+                battleStatus();
                 break;
             case 3:
 
@@ -139,6 +145,9 @@ public class Battle {
             return true;
         }
             return false;
+    }
+    public static void getReward(){
+
     }
 
     public static void battleNowTutorial(int monsterIDs) {

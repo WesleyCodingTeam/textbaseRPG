@@ -7,8 +7,26 @@ public class Inventory {
     public static ArrayList<Potion> potion = new ArrayList<>(); //arraylist that stores potions
     public static ArrayList<OtherItem> otherItem = new ArrayList<>(); //arraylist that stores items
     //constant for weapon array order
-    public static int currentEquipedWeapon = -1; //int value that shows what number(item ID) of Weapon is equipped. -1 if not equipped
-
+    public static Weapon currentEquipped; //int value that shows what number(item ID) of Weapon is equipped. -1 if not equipped
+    public static boolean haveItem(int itemID){
+        for(OtherItem x: otherItem){
+            if(x.id == itemID){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static int itemLocation(int itemID){
+        if(haveItem(itemID)){
+            for(int x = 0;x<otherItem.size();x++){
+                if(otherItem.get(x).id == itemID){
+                    return x;
+                }
+            }
+        }
+        Program.systemDialogue("error on itemlocation");
+        return -1;
+    }
     //put item in the inventory
     public static void setInventoryItem (int itemID, int quantity){
         //adding weapon
@@ -181,7 +199,7 @@ public class Inventory {
     }
 
     //displaying potions in inventory
-    public static void getPotions(){
+    public static boolean getPotions(){
         Program.systemDialogue("Are you going to use potion(y/n)");
         Program.systemDialogue("If no, then list of potion will be printed");
         char answer = Program.askChar();
@@ -191,6 +209,7 @@ public class Inventory {
         System.out.println("");
         if (potion.isEmpty()){
             Program.systemDialogue("You do not have any item in this category.");
+            return false;
         }
         else {
             Program.systemDialogue("Choose the number of the potion you want to select.");
@@ -204,15 +223,12 @@ public class Inventory {
                         usePotion(ans);
                     }
                     else{
-                        if (MainCharacter.currentState.equals("Fighting")) {
-                            Battle.battleStatus();
-                        }
+                        return false;
                     }
                 }
             }
         }
-
-
+        return true;
     }
     //displaying items in inventory
     public static void getOtherItem(){
@@ -241,6 +257,7 @@ public class Inventory {
                         x.equipped = false;
                     }
                     weapon.get(itemEquipNum).equipped = true;
+                    currentEquipped = weapon.get(itemEquipNum);
                     Program.systemDialogue("[" + weapon.get(itemEquipNum).name + "] equipped.");
                 }
                 else{

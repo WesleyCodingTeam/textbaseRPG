@@ -63,13 +63,10 @@ public class Field {
     public void deleteTile(int x,int y){
         tiles[y][x] = new Tile(x,y);
     }
-    public void move(){
-        printField();
-        Program.systemDialogue("What do you want to do?");
+    public void move(char direction){
         int currentXCoordinate = MainCharacter.xCoordinate;
         int currentYCoordinate = MainCharacter.yCoordinate;
-        char move = Program.askChar();
-        switch (move){
+        switch (direction){
             case 'w':
                 currentYCoordinate -= 1;
                 break;
@@ -92,7 +89,7 @@ public class Field {
         else{
             Program.systemDialogue("You are not allowed to go to that place. It is out of bound");
         }
-        move();
+        printField();
     }
     private void doSpecifiedAction(int x,int y){
         Tile curr = tiles[y][x];
@@ -120,7 +117,6 @@ public class Field {
         }
     }
 
-    // TODO make various tiles that can do many different things
     private class ChestTile extends Tile {
         //the matrix should be n by 2 matrix where the first stores the ID of the item and second one stores the quantity
         int[][] itemList;
@@ -174,7 +170,11 @@ public class Field {
 
         @Override
         public void action() {
+            int prevKill = MainCharacter.killCount;
             Battle.battleNow(monsterId);
+            if(prevKill + 1 == MainCharacter.killCount){
+                deleteTile(this.x,this.y);
+            }
         }
 
     }

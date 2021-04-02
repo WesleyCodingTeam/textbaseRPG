@@ -56,7 +56,7 @@ class Weapon extends Item{
             System.out.println("Special:     " + specialType +" +"+ specialStat);
         }
         System.out.println("Description: " + description);
-        System.out.println("Equipped:       " + equipped);
+        System.out.println("Equipped:    " + equipped);
         System.out.println("_______________________________");
         System.out.println("");
     }

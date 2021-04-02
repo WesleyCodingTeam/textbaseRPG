@@ -1,13 +1,25 @@
 package WesleyCodingTeam;
 
 public class Action {
-    
+
     public static void charAction() {
         MainCharacter.checkLevelUp();
         Guild.checkAndSyncIfCompleted();
         Program.systemDialogue("What are you going to do right now?");
         String action = Program.askString();
         switch (action) {
+            case "w":
+                Data.field.move('w');
+                break;
+            case "a":
+                Data.field.move('a');
+                break;
+            case "s":
+                Data.field.move('s');
+                break;
+            case "d":
+                Data.field.move('d');
+                break;
             //trigers gathering action and this only applies to part 1
             case "gather":
                 if (MainCharacter.currentPart == 1 && MainCharacter.currentLocation.equals("Forest")){
@@ -24,7 +36,7 @@ public class Action {
             case "quest":
                 MainCharacter.myQuests();
                 break;
-            //check for new quest    
+            //check for new quest
             case "map":
                 Map.moveUI();
                 break;
@@ -44,7 +56,7 @@ public class Action {
                 Program.systemDialogue("Wrong command. Try again. 'help' command suggested to look for the right command");
                 break;
         }
-        charAction();      
+        charAction();
     }
     //help message
     public static void help(){
