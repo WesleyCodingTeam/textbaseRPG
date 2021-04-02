@@ -45,7 +45,7 @@ public class Battle {
                 }
                 break;
             case 2:
-                Inventory.usePotion();
+                Inventory.getPotions();
                 receiveDamage();
                 turn++;
                 if(MainCharacter.hpNow>0){

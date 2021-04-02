@@ -21,9 +21,9 @@ public class Field {
         int currentXCoordinate = MainCharacter.xCoordinate;
         int currentYCoordinate = MainCharacter.yCoordinate;
         int view = MainCharacter.maxViewDistance;
-        int left = (currentXCoordinate-view >=0?currentXCoordinate-view:0);
+        int left = (Math.max(currentXCoordinate - view, 0));
         int right = (currentXCoordinate+view <width?currentXCoordinate+view:width-1);
-        int top = (currentYCoordinate-view >=0?currentYCoordinate-view:0);
+        int top = (Math.max(currentYCoordinate - view, 0));
         int bottom = (currentYCoordinate+view <height?currentYCoordinate+view:height-1);
         int leftToRight = right - left+1;
         int blankSpace = 20;
@@ -96,6 +96,7 @@ public class Field {
     }
     private void doSpecifiedAction(int x,int y){
         Tile curr = tiles[y][x];
+        curr.message();
         curr.action();
     }
 

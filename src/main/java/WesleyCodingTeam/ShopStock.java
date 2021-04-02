@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class ShopStock{
 
-    public ArrayList<String> item;
+    public Item item;
     public int price;
     public int quantity;
 
-    public ShopStock(int price, ArrayList<String> item, int quantity){
+    public ShopStock(Item item, int quantity){
         this.item = item;
-        this.price = price;
+        this.price = item.price*quantity;
         this.quantity = quantity;
     }
 }

@@ -7,7 +7,8 @@ public class Program {
     private static int dialogueSpeed;
     //initialization. Things that needs to be ran in the beginning
     public static void thingsToRunInBeginning(){
-        Items.itemGeneration();
+        Data.generateItem();
+        Data.generateField();
         Data.generateMonster();
         Map.generateMap();
         Guild.questIntitialization();
