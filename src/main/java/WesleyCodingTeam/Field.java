@@ -184,7 +184,7 @@ public class Field {
             super(xCoordinate, yCoordinate);
         }
     }
-
+//grass average 5 tiles monster and normal average 10 tiles
     private class GrassTile extends Tile {
         public GrassTile(int xCoordinate, int yCoordinate) {
             super(xCoordinate, yCoordinate);
