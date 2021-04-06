@@ -9,6 +9,8 @@ Started at September 11th, 2020
 
 ![Ballon Rat](./Pics/Ballon_Rat.png)
 
+![shiny doge](./Pics/shiny_doge.png)
+
 ## Contributors
 Project Manager(PM) by Jaeyoung Shin
 
