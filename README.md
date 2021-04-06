@@ -6,10 +6,8 @@ Text-based RPG on Java (will be developed into picture-based with interactive UI
 Started at September 11th, 2020
 
 ## Pictures
+<img src="./Pics/Ballon_Rat.png" width="300">&nbsp; <img src="./Pics/shiny_doge.png" width="300">
 
-![Ballon Rat](./Pics/Ballon_Rat.png)
-
-![shiny doge](./Pics/shiny_doge.png)
 
 ## Contributors
 Project Manager(PM) by Jaeyoung Shin
