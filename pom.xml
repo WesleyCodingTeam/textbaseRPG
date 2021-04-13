@@ -73,6 +73,11 @@
             <artifactId>checkstyle-rules</artifactId>
             <version>${checkstyle-rules.version}</version>
           </dependency>
+          <dependency>
+            <groupId>org.beryx</groupId>
+            <artifactId>text-io</artifactId>
+            <version>3.4.1</version>
+          </dependency>
         </dependencies>
         <configuration>
           <configLocation>com/github/ngeor/checkstyle.xml</configLocation>
