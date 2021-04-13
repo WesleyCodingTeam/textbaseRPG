@@ -19,9 +19,25 @@ public class Data {
         generateMonster();
     }
     public static void generateMonster(){
-        monsterList.put(101,new Monster(101, "Test Mob 1", "Normal", 1000, 3, 40, "This is the testing mob.", 0));
-        monsterList.put(102,new Monster(102, "Dire wolf", "Rare", 200, 20, 30, "Horrible mob. Run if you meet one.", 0));
-        monsterList.put(103,new Monster(103, "Slime King", "Unique", 50, 5, 10, "It is jelly.", 10));
+        Scanner in;
+        try {
+            in = new Scanner(new File("Monsters/monster.txt"));
+            while(in.hasNextLine()){
+                String[] specs = in.nextLine().split(",");
+                int id = Integer.parseInt(specs[0]);
+                String name = specs[1];
+                String type = specs[2];
+                int hp = Integer.parseInt(specs[3]);
+                int defense = Integer.parseInt(specs[4]);
+                int damage = Integer.parseInt(specs[5]);
+                String description = specs[6];
+                int expAmount = Integer.parseInt(specs[7]);
+                monsterList.put(id,new Monster(id,name,type,hp,defense,damage,description,expAmount));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
     public static void generateItem(){
         Scanner in;
