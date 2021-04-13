@@ -45,12 +45,12 @@ public class Shop {
 
     //page print for list of items
     public static void weaponPage(){
-        System.out.println();
-        System.out.println("                                                  Weapons");
-        System.out.println("Your current gold: " + MainCharacter.coin + "coins");
-        System.out.println("______________________________________________________________________________________________________________________");
-        System.out.println("|ID|Items                           |Price      |Description                                                         |");
-        System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
+        Program.terminal.println();
+        Program.terminal.println("                                                  Weapons");
+        Program.terminal.println("Your current gold: " + MainCharacter.coin + "coins");
+        Program.terminal.println("______________________________________________________________________________________________________________________");
+        Program.terminal.println("|ID|Items                           |Price      |Description                                                         |");
+        Program.terminal.println("|--------------------------------------------------------------------------------------------------------------------|");
         int tempPrice;
         int tempQuantity;
         Weapon tempItem;
@@ -58,10 +58,10 @@ public class Shop {
             tempItem = (Weapon) weaponStocks.get(i).item;
             tempPrice = weaponStocks.get(i).price;
             tempQuantity = weaponStocks.get(i).quantity;
-            System.out.println(Program.wordConsistence(3, "|" + (i)) + Program.wordConsistence(33, "|" + tempItem.name + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.description + "|"));
+            Program.terminal.println(Program.wordConsistence(3, "|" + (i)) + Program.wordConsistence(33, "|" + tempItem.name + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.description + "|"));
         }
-        System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
-        System.out.println();
+        Program.terminal.println("|--------------------------------------------------------------------------------------------------------------------|");
+        Program.terminal.println();
     }
 
     public static void weaponAsk(){
@@ -88,12 +88,12 @@ public class Shop {
 
     //page print for list of items
     public static void potionPage(){
-        System.out.println();
-        System.out.println("                                                  Potions");
-        System.out.println("Your current gold: " + MainCharacter.coin + "coins");
-        System.out.println("______________________________________________________________________________________________________________________");
-        System.out.println("|ID|Items                           |Price      |Description                                                         |");
-        System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
+        Program.terminal.println();
+        Program.terminal.println("                                                  Potions");
+        Program.terminal.println("Your current gold: " + MainCharacter.coin + "coins");
+        Program.terminal.println("______________________________________________________________________________________________________________________");
+        Program.terminal.println("|ID|Items                           |Price      |Description                                                         |");
+        Program.terminal.println("|--------------------------------------------------------------------------------------------------------------------|");
         int tempPrice;
         int tempQuantity;
         Potion tempItem;
@@ -101,10 +101,10 @@ public class Shop {
             tempItem = (Potion) potionStocks.get(i).item;
             tempPrice = potionStocks.get(i).price;
             tempQuantity = potionStocks.get(i).quantity;
-            System.out.println(Program.wordConsistence(3, "|" + (i)) + Program.wordConsistence(33, "|" + tempItem.name + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.description + "|"));
+            Program.terminal.println(Program.wordConsistence(3, "|" + (i)) + Program.wordConsistence(33, "|" + tempItem.name + " x " + tempQuantity) + Program.wordConsistence(12, "|"+ tempPrice + "g") + Program.wordConsistence(69, "|" + tempItem.description + "|"));
         }
-        System.out.println("|--------------------------------------------------------------------------------------------------------------------|");
-        System.out.println();
+        Program.terminal.println("|--------------------------------------------------------------------------------------------------------------------|");
+        Program.terminal.println();
     }
 
     public static void potionAsk(){

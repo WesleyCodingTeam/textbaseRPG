@@ -1,5 +1,7 @@
 package WesleyCodingTeam;
 
+
+
 import java.util.HashMap;
 
 public class Guild {
@@ -97,25 +99,25 @@ public class Guild {
                 Program.systemDialogue("ID: " + key);
                 switch (temp.qType) {
                     case 1:
-                        System.out.println("************************************** QUEST BOARD **************************************");
-                        System.out.println();
-                        System.out.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ").");
-                        System.out.println();
-                        System.out.println("                                                            Reward: " + temp.rewardM + " coins");
-                        System.out.println();
-                        System.out.println("*****************************************************************************************");
-                        System.out.println();
+                        Program.terminal.println("************************************** QUEST BOARD **************************************");
+                        Program.terminal.println();
+                        Program.terminal.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ").");
+                        Program.terminal.println();
+                        Program.terminal.println("                                                            Reward: " + temp.rewardM + " coins");
+                        Program.terminal.println();
+                        Program.terminal.println("*****************************************************************************************");
+                        Program.terminal.println();
                         break;
-                
+
                     case 2:
-                        System.out.println("************************************** QUEST BOARD **************************************");
-                        System.out.println();
-                        System.out.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ") and " + temp.questDetail2 + " (" + temp.currentNumDetail2 + "/" + temp.numDetail2 + ").");
-                        System.out.println();
-                        System.out.println("                                                            Reward: " + temp.rewardM + " coins");
-                        System.out.println();
-                        System.out.println("*****************************************************************************************");
-                        System.out.println();
+                        Program.terminal.println("************************************** QUEST BOARD **************************************");
+                        Program.terminal.println();
+                        Program.terminal.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ") and " + temp.questDetail2 + " (" + temp.currentNumDetail2 + "/" + temp.numDetail2 + ").");
+                        Program.terminal.println();
+                        Program.terminal.println("                                                            Reward: " + temp.rewardM + " coins");
+                        Program.terminal.println();
+                        Program.terminal.println("*****************************************************************************************");
+                        Program.terminal.println();
                         break;
                     default:
                         break;
@@ -128,7 +130,7 @@ public class Guild {
         else{
             questAskPage();
         }
-        
+
     }
     //ask for what quest to accept
     public static void questAskPage(){

@@ -1,30 +1,33 @@
 package WesleyCodingTeam;
 
+
+
 public class Battle {
     static int turn;
     private static Monster currentMonster;
+
     public static void battleNow(int monsterIDs) {
         turn = 1;
         MainCharacter.currentState = "Fighting";
         currentMonster = Data.monsterList.get(monsterIDs).clone();
-        System.out.println("");
+        Program.terminal.println("");
         Program.narrationDialogue("You encountered with " + currentMonster.name+"!");
         battleStatus();
 
     }
     //prints out current status of battle
     public static void battleStatus(){
-        System.out.println("________________TURN "+ turn +"________________");
-        System.out.println("");
-        System.out.println("                +-------------------- ");
-        System.out.println("                |Name:"+ currentMonster.name);
-        System.out.println("                |HP:  " + currentMonster.currentHp+"/"+currentMonster.hp);
-        System.out.println("                |" + barGauge(1));
-        System.out.println("                +-------------------- ");
-        System.out.println("");
-        System.out.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
-        System.out.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
-        System.out.println("");
+        Program.terminal.println("________________TURN "+ turn +"________________");
+        Program.terminal.println("");
+        Program.terminal.println("                +-------------------- ");
+        Program.terminal.println("                |Name:"+ currentMonster.name);
+        Program.terminal.println("                |HP:  " + currentMonster.currentHp+"/"+currentMonster.hp);
+        Program.terminal.println("                |" + barGauge(1));
+        Program.terminal.println("                +-------------------- ");
+        Program.terminal.println("");
+        Program.terminal.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
+        Program.terminal.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
+        Program.terminal.println("");
         askAction();
     }
     //user action
@@ -89,7 +92,7 @@ public class Battle {
             life_Remaining = MainCharacter.mpNow/divideLife;
         }
         else{
-            System.out.println("Error on bar gauge");
+            Program.terminal.println("Error on bar gauge");
         }
         String lifeBar = "[";
         int i;
@@ -212,18 +215,18 @@ public class Battle {
 
     //display tutorial
     public static void battleStatusTutorial(){
-        System.out.println("");
-        System.out.println("________________TURN "+ turn +"________________");
-        System.out.println("");
-        System.out.println("                +-------------------- ");
-        System.out.println("                |Name:"+ currentMonster.name);
-        System.out.println("                |HP:  " + currentMonster.currentHp+"/"+currentMonster.hp);
-        System.out.println("                |" + barGauge(1));
-        System.out.println("                +-------------------- ");
-        System.out.println("");
-        System.out.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
-        System.out.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
-        System.out.println("");
+        Program.terminal.println("");
+        Program.terminal.println("________________TURN "+ turn +"________________");
+        Program.terminal.println("");
+        Program.terminal.println("                +-------------------- ");
+        Program.terminal.println("                |Name:"+ currentMonster.name);
+        Program.terminal.println("                |HP:  " + currentMonster.currentHp+"/"+currentMonster.hp);
+        Program.terminal.println("                |" + barGauge(1));
+        Program.terminal.println("                +-------------------- ");
+        Program.terminal.println("");
+        Program.terminal.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
+        Program.terminal.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
+        Program.terminal.println("");
     }
     //user action
     public static void askActionTutorial(){

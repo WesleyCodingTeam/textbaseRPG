@@ -26,18 +26,18 @@ public class Monster {
     }
 
     public void printMonster(){
-        System.out.println("");
-        System.out.println("__________Monster info_________");
-        System.out.println("ID:          " + id);
-        System.out.println("Name:        " + name);
-        System.out.println("Type:        " + type);
-        System.out.println("HP:          " + hp);
-        System.out.println("Defense:     " + defense);
-        System.out.println("Damage:      " + damage);
-        System.out.println("Description: " + description);
-        System.out.println("Exp given:   " + expAmount);
-        System.out.println("_______________________________");
-        System.out.println("");
+        Program.terminal.println("");
+        Program.terminal.println("__________Monster info_________");
+        Program.terminal.println("ID:          " + id);
+        Program.terminal.println("Name:        " + name);
+        Program.terminal.println("Type:        " + type);
+        Program.terminal.println("HP:          " + hp);
+        Program.terminal.println("Defense:     " + defense);
+        Program.terminal.println("Damage:      " + damage);
+        Program.terminal.println("Description: " + description);
+        Program.terminal.println("Exp given:   " + expAmount);
+        Program.terminal.println("_______________________________");
+        Program.terminal.println("");
     }
     public Monster clone(){
         return new Monster(this.id,this.name,this.type,this.hp,this.defense,this.damage,this.description,this.expAmount);

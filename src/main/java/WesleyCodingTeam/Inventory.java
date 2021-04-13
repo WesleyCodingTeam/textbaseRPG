@@ -135,18 +135,18 @@ public class Inventory {
     }
     //Current display of inventory
     public static void showInventory(){
-        System.out.println("______________INVENTORY______________");
-        System.out.println("");
-        System.out.println("1. Weapons");
-        System.out.println("");
-        System.out.println("2. Armours");
-        System.out.println("");
-        System.out.println("3. Potions");
-        System.out.println("");
-        System.out.println("4. Other Items");
-        System.out.println("");
-        System.out.println("Type the number of category you want.");
-        System.out.println("_____________________________________");
+        Program.terminal.println("______________INVENTORY______________");
+        Program.terminal.println("");
+        Program.terminal.println("1. Weapons");
+        Program.terminal.println("");
+        Program.terminal.println("2. Armours");
+        Program.terminal.println("");
+        Program.terminal.println("3. Potions");
+        Program.terminal.println("");
+        Program.terminal.println("4. Other Items");
+        Program.terminal.println("");
+        Program.terminal.println("Type the number of category you want.");
+        Program.terminal.println("_____________________________________");
         int ans = Program.askInt();
         //choosing category
         switch (ans) {
@@ -175,9 +175,9 @@ public class Inventory {
         Program.systemDialogue("If no, then list of weapons will be printed");
         char answer = Program.askChar();
         for (int i = 0; i < weapon.size(); i++){
-            System.out.println(i + ". [" + weapon.get(i).name + "]");
+            Program.terminal.println(i + ". [" + weapon.get(i).name + "]");
         }
-        System.out.println("");
+        Program.terminal.println("");
         if (weapon.isEmpty()){
             Program.systemDialogue("You do not have any item in this category.");
         }
@@ -204,9 +204,9 @@ public class Inventory {
         Program.systemDialogue("If no, then list of potion will be printed");
         char answer = Program.askChar();
         for (int i = 0; i < potion.size(); i++){
-            System.out.println(i + ". [" + potion.get(i).name + "] x" + potion.get(i).quantity);
+            Program.terminal.println(i + ". [" + potion.get(i).name + "] x" + potion.get(i).quantity);
         }
-        System.out.println("");
+        Program.terminal.println("");
         if (potion.isEmpty()){
             Program.systemDialogue("You do not have any item in this category.");
             return false;
@@ -226,6 +226,9 @@ public class Inventory {
                         return false;
                     }
                 }
+                else{
+                    return false;
+                }
             }
         }
         return true;
@@ -233,9 +236,9 @@ public class Inventory {
     //displaying items in inventory
     public static void getOtherItem(){
         for (int i = 0; i < otherItem.size(); i++){
-            System.out.println(i + ". [" + otherItem.get(i).name + "] x" + otherItem.get(i).quantity);
+            Program.terminal.println(i + ". [" + otherItem.get(i).name + "] x" + otherItem.get(i).quantity);
         }
-        System.out.println("");
+        Program.terminal.println("");
         if (otherItem.isEmpty()){
             Program.systemDialogue("You do not have any item in this category.");
         }

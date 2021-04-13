@@ -7,9 +7,9 @@ public class Part1 {
         MainCharacter.currentPart = 1;
         MainCharacter.currentState = "Idle";
         MainCharacter.currentLocation = "Town Square";
-        System.out.println("Part 1: Coward's Alteration");
-        System.out.println("-----------------------------------------------------------");
-        System.out.println();
+        Program.terminal.println("Part 1: Coward's Alteration");
+        Program.terminal.println("-----------------------------------------------------------");
+        Program.terminal.println();
         Program.waitingTime(2000);
         Program.narrationDialogue("You wonder how to get to the guild.");
         Program.npcDialogue("Try type map to move around!");
@@ -18,14 +18,14 @@ public class Part1 {
 
     //method for gathering action
     public static void gatheringAction(){
-        System.out.println();
-        System.out.print("| Gathering ");
+        Program.terminal.println();
+        Program.terminal.print("| Gathering ");
         for (int i = 0; i <5; i++){
-            System.out.print(".");
+            Program.terminal.print(".");
             Program.waitingTime(300);
         }
-        System.out.println();
-        System.out.println();
+        Program.terminal.println();
+        Program.terminal.println();
         //probablity of gathering wood and stone
         boolean wood = Program.percentProb(65);
         boolean stone = Program.percentProb(40);
@@ -44,7 +44,7 @@ public class Part1 {
             int i = Program.randomNum(3, 6);
             int j = Program.randomNum(3, 6);
             Inventory.setInventoryItem(4002, i);
-            Inventory.setInventoryItem(4001, j); 
+            Inventory.setInventoryItem(4001, j);
         }
         //not getting anything
         else{
@@ -56,7 +56,7 @@ public class Part1 {
             found = true;
         }
     }
-    
+
     //dialogue when he is about to die and god comes
     public static void gettingPower(){
         Program.narrationDialogue("===Swish, Swish=== You hear the bushes around you shake.");

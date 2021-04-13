@@ -2,9 +2,14 @@ package WesleyCodingTeam;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
+import org.beryx.textio.TextTerminal;
+
 public class Program {
     private static int dialogueSpeed;
+    public static TextIO textIO = TextIoFactory.getTextIO();
+    public static TextTerminal terminal = textIO.getTextTerminal();
     //initialization. Things that needs to be ran in the beginning
     public static void thingsToRunInBeginning(){
         Data.initialization();
@@ -15,27 +20,28 @@ public class Program {
     }
     //dialogue style
     public static void dialogue(String dialogue){
+
         for(int i = 0; i < dialogue.length(); i++){
-            System.out.print(dialogue.substring(i, i+1));
+            Program.terminal.print(dialogue.substring(i, i+1));
             waitingTime(dialogueSpeed);
         }
-        System.out.println("");
-        System.out.println("");
+        Program.terminal.println("");
+        Program.terminal.println("");
         waitingTime(400);
     }
     //NPC dialogue
     public static void npcDialogue(String dialogues) {
-        System.out.print("- ");
+        Program.terminal.print("- ");
         dialogue(dialogues);
     }
     //system dialogue
     public static void systemDialogue(String dialogues) {
-        System.out.print("| ");
+        Program.terminal.print("| ");
         dialogue(dialogues);
     }
     //narration dialogue
     public static void narrationDialogue(String dialogues) {
-        System.out.print("-- ");
+        Program.terminal.print("-- ");
         dialogue(dialogues);
     }
     //set dialogue speed
@@ -62,8 +68,7 @@ public class Program {
     //returns number greater than equal to a and less than equal to b
     public static int randomNum(int a, int b){
         Random rand = new Random();
-        int out = rand.nextInt((b - a) + 1) + a;
-        return out;
+        return rand.nextInt((b - a) + 1) + a;
     }
 
     //input a% and results in true or false based on the probablity
@@ -72,99 +77,17 @@ public class Program {
         Random rand = new Random();
         int result = rand.nextInt(100) + 1;
         if (a > 100){
-            System.out.println("Error. Probablity can't be greater than 100%");
+            Program.terminal.println("Error. Probablity can't be greater than 100%");
         }
         else if (a < 0){
-            System.out.println("Error. Probablity can't be less than 0%");
+            Program.terminal.println("Error. Probablity can't be less than 0%");
         }
-        else if (result <= a ){
-            i = true;
-        }
-        else if (!(result <= a)){
-            i = false;
-        }
+        else i = result <= a;
         return i;
-    }
-
-    static Scanner sc = new Scanner(System.in);
-    //scanning a MainCharacter
-    public static char scanChar() {
-        char next = '\0';
-        boolean state = false;
-        while (!state){
-            try {
-                next = sc.next().charAt(0);
-                sc.nextLine();
-                state = true;
-            } catch (Exception e) {
-                System.out.println("Wrong input type. Try again.");
-                sc.nextLine();
-                state = false;
-                System.out.print("> ");
-            }
-        }
-        return next;
-    }
-    //scanning a string
-    public static String scanString() {
-        String word = sc.nextLine();
-        word = word.toLowerCase();
-        return word;
-    }
-    //scanning an integer
-    public static int scanInt() {
-        int num = 0;
-        boolean state = false;
-        while (!state){
-            try {
-                num = sc.nextInt();
-                sc.nextLine();
-                state = true;
-
-            } catch (Exception e) {
-                System.out.println("Wrong input type. Try again.");
-                sc.nextLine();
-                state = false;
-                System.out.print("> ");
-            }
-        }
-        return num;
-    }
-    //just Program needed for scanner. NOT ACTUALLY USED
-    public static void stop(){
-        sc.close();
-    }
-    //asking for return of String (scanning)
-    public static String askString(){
-        System.out.print("> ");
-        String ans = Program.scanString();
-        ans = ans.toLowerCase();
-        System.out.println();
-        return ans;
-    }
-    //asking for return of char (scanning)
-    public static char askChar(){
-        System.out.print("> ");
-        char ans = Program.scanChar();
-        ans = Character.toLowerCase(ans);
-        System.out.println();
-        return ans;
-    }
-    //asking for return of char (scanning)
-    public static int askInt(){
-        System.out.print("> ");
-        int ans = Program.scanInt();
-        System.out.println();
-        return ans;
     }
     //deep copy of arraylist
     public static ArrayList<String> deepCopy(ArrayList<String> list){
-        ArrayList<String> returnList = new ArrayList<String>();
-        for(int i = 0; i< list.size();i++){
-            String temp = list.get(i);
-            returnList.add(temp);
-        }
-        return returnList;
+        return new ArrayList<>(list);
     }
 
     //adding consitent space
@@ -175,6 +98,15 @@ public class Program {
             result += " ";
         }
         return result;
+    }
+    public static char askChar(){
+        return Character.toLowerCase(Program.textIO.newCharInputReader().read("> "));
+    }
+    public static int askInt(){
+        return Program.textIO.newIntInputReader().read("> ");
+    }
+    public static String askString(){
+        return Program.textIO.newStringInputReader().read("> ").toLowerCase();
     }
 
 }

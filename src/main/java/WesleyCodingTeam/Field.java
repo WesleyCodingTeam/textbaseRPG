@@ -1,10 +1,13 @@
 package WesleyCodingTeam;
 
+
+
 public class Field {
     Tile[][] tiles;
     int width;
     int height;
     boolean monsterField;
+
 
     public Field(int height, int width, boolean monsterField) {
         tiles = new Tile[height][width];
@@ -28,30 +31,30 @@ public class Field {
         int leftToRight = right - left+1;
         int blankSpace = 20;
         for(int k = 0; k < blankSpace; k++){
-            System.out.println();
+            Program.terminal.println();
         }
         for(int i = 0; i < leftToRight*2+2; i++){
-            System.out.print("_");
+            Program.terminal.print("_");
         }
-        System.out.println();
+        Program.terminal.println();
         for (int i = top; i <= bottom; i++) {
-            System.out.print("|");
+            Program.terminal.print("|");
             for (int j = left; j <= right; j++) {
                 if(i == currentYCoordinate && j == currentXCoordinate){
-                    System.out.print('O' + " ");
+                    Program.terminal.print('O' + " ");
                 }
                 else {
                     Tile temp = tiles[i][j];
-                    System.out.print(temp.tileShape + " ");
+                    Program.terminal.print(temp.tileShape + " ");
                 }
             }
-            System.out.print("|");
-            System.out.println();
+            Program.terminal.print("|");
+            Program.terminal.println();
         }
         for(int i = 0; i < leftToRight*2+2; i++){
-            System.out.print("_");
+            Program.terminal.print("_");
         }
-        System.out.println();
+        Program.terminal.println();
     }
 
     public void addWallTile(int xCoordinate, int yCoordinate){
@@ -133,7 +136,7 @@ public class Field {
 
         @Override
         public void action() {
-            while (Program.scanChar() == 'y') {
+            while (Program.askChar() == 'y') {
                 displayItem();
                 askForSelection();
                 putInInventory();

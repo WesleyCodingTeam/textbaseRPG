@@ -1,6 +1,8 @@
 package WesleyCodingTeam;
 
 
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -10,6 +12,7 @@ public class Data {
     public static HashMap<Integer, Monster> monsterList = new HashMap<>();
     public static HashMap<Integer, Item> itemList = new HashMap<>();
     public static Field field;
+
     public static void initialization(){
         generateField();
         generateItem();
@@ -77,7 +80,7 @@ public class Data {
                     }
                         break;
                     default:
-                        System.out.println("Error while generating item");
+                        Program.terminal.println("Error while generating item");
                         break;
                 }
             }
@@ -110,7 +113,7 @@ public class Data {
                         MainCharacter.changeCoordinate(x,y);
                         break;
                     default:
-                        System.out.println("Error while generating map");
+                        Program.terminal.println("Error while generating map");
                         break;
                 }
             }

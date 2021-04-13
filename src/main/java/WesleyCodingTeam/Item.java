@@ -17,13 +17,13 @@ class Item {
         this.quantity = quantity;
     }
     public void printInfo(){
-        System.out.println("___________Item info___________");
-        System.out.println("ID:          " + id);
-        System.out.println("Name:        " + name);
-        System.out.println("Type:        " + type);
-        System.out.println("Description: " + description);
-        System.out.println("_______________________________");
-        System.out.println("");
+        Program.terminal.println("___________Item info___________");
+        Program.terminal.println("ID:          " + id);
+        Program.terminal.println("Name:        " + name);
+        Program.terminal.println("Type:        " + type);
+        Program.terminal.println("Description: " + description);
+        Program.terminal.println("_______________________________");
+        Program.terminal.println("");
     }
     public Item clone(){
         return new Item(itemType,id,price,name,type,description,quantity);
@@ -47,18 +47,18 @@ class Weapon extends Item{
     }
     @Override
     public void printInfo() {
-        System.out.println("___________Item info___________");
-        System.out.println("ID:          " + id);
-        System.out.println("Name:        " + name);
-        System.out.println("Type:        " + type);
-        System.out.println("Damage:      " + damage);
+        Program.terminal.println("___________Item info___________");
+        Program.terminal.println("ID:          " + id);
+        Program.terminal.println("Name:        " + name);
+        Program.terminal.println("Type:        " + type);
+        Program.terminal.println("Damage:      " + damage);
         if(hasSpecial){
-            System.out.println("Special:     " + specialType +" +"+ specialStat);
+            Program.terminal.println("Special:     " + specialType +" +"+ specialStat);
         }
-        System.out.println("Description: " + description);
-        System.out.println("Equipped:    " + equipped);
-        System.out.println("_______________________________");
-        System.out.println("");
+        Program.terminal.println("Description: " + description);
+        Program.terminal.println("Equipped:    " + equipped);
+        Program.terminal.println("_______________________________");
+        Program.terminal.println("");
     }
     @Override
     public Item clone() {
@@ -83,19 +83,19 @@ class Potion extends Item{
     }
     @Override
     public void printInfo() {
-        System.out.println("___________Item info___________");
-        System.out.println("ID:          " + id);
-        System.out.println("Name:        " + name);
-        System.out.println("Type:        " + type);
-        System.out.println("+ HP:        " + hp);
-        System.out.println("+ MP:        " + mp);
+        Program.terminal.println("___________Item info___________");
+        Program.terminal.println("ID:          " + id);
+        Program.terminal.println("Name:        " + name);
+        Program.terminal.println("Type:        " + type);
+        Program.terminal.println("+ HP:        " + hp);
+        Program.terminal.println("+ MP:        " + mp);
         if(hasSpecial){
-            System.out.println("Special:     " + specialType+ " +" + specialStat);
+            Program.terminal.println("Special:     " + specialType+ " +" + specialStat);
         }
-        System.out.println("Description: " + description);
-        System.out.println("Quantity:    " + quantity);
-        System.out.println("_______________________________");
-        System.out.println("");
+        Program.terminal.println("Description: " + description);
+        Program.terminal.println("Quantity:    " + quantity);
+        Program.terminal.println("_______________________________");
+        Program.terminal.println("");
     }
     @Override
     public Item clone() {
@@ -111,14 +111,14 @@ class OtherItem extends Item {
 
     @Override
     public void printInfo() {
-        System.out.println("___________Item info___________");
-        System.out.println("ID:          " + id);
-        System.out.println("Name:        " + name);
-        System.out.println("Type:        " + type);
-        System.out.println("Description: " + description);
-        System.out.println("Can be sold: " + sellable);
-        System.out.println("Quantity:    " + quantity);
-        System.out.println("_______________________________");
+        Program.terminal.println("___________Item info___________");
+        Program.terminal.println("ID:          " + id);
+        Program.terminal.println("Name:        " + name);
+        Program.terminal.println("Type:        " + type);
+        Program.terminal.println("Description: " + description);
+        Program.terminal.println("Can be sold: " + sellable);
+        Program.terminal.println("Quantity:    " + quantity);
+        Program.terminal.println("_______________________________");
     }
 
     @Override
