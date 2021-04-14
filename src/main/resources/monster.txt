@@ -1,0 +1,3 @@
+101,Test Mob 1,Normal,1000,3,40,This is the testing mob.,0
+102,Dire wolf,Rare,200,20,30,Horrible mob. Run if you meet one.,0
+103,Slime King,Unique,50,5,10,It is jelly.,10
