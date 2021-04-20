@@ -167,9 +167,12 @@ public class Field {
             int received = Program.askInt();
             if (Program.askInt() != -1 && received<itemList.length){
                 if(itemList[received][1] !=0) {
-
+                    Inventory.setInventoryItem(itemList[received][0],1);
+                    itemList[received][0]--;
                 }
             }
+            Program.systemDialogue("Do you want to pick other item? (y/n)");
+            action();
         }
     }
 
