@@ -1,4 +1,10 @@
 101,Test Mob 1,Normal,1000,3,40,This is the testing mob.,0
-102,Dire wolf,Rare,200,20,30, A majestic being, the final form of all wolf kind.,0
-103,Slime King,Unique,50,5,10,The mightiest slime!.,10
-104,Balon Rat,Normal,
+102,Dire wolf,Rare,200,20,30,A majestic being, Ascended among the wolves.,400
+103,Slime King,Unique,50,5,10,The mightiest slime!,185
+104,Ballon Rat,Normal,10,0,5,A Ball shaped rat.,15
+105,Horned Cottontail,Normal,10,5,7,A fluffy and ferocious goat.,25
+106,Ent,Rare,20,10,9,An angered tree spirit.,40
+107,Valvrn,Rare,20,5,10,A gigantic demonic raven.,30
+108,Gloomy Wolf,10,5,5,A wolf seperated from it's pack.,30
+109,Giant Micropede,15,0,5,A giant snake-like bug.,25
+110,
