@@ -1,11 +1,15 @@
 101,Test Mob 1,Normal,1000,3,40,This is the testing mob.,0
 102,Dire wolf,Rare,200,20,30,A majestic being that ascended among the wolves.,400
-103,Slime King,Unique,50,5,10,The mightiest slime!,185
-104,Ballon Rat,Normal,10,0,5,A Ball shaped rat.,15
-105,Horned Cottontail,Normal,10,5,7,A fluffy and ferocious goat.,25
-106,Ent,Rare,20,10,9,An angered tree spirit.,40
-107,Valvrn,Rare,20,5,10,A gigantic demonic raven.,30
-108,Gloomy Wolf,Normal,10,5,5,A wolf seperated from it's pack.,30
-109,Giant Micropede,Normal,15,0,5,A giant snake-like bug.,25
-110,MolBear,Rare,20,5,5,A Bear blessed by Terra.,50
+103,Slime,Normal,5,0,2,A jelly-like organism.,5
+104,Ballon Rat,Normal,10,0,5,A Ball shaped rat.,5
+105,Horned Cottontail,Normal,10,5,7,A fluffy and ferocious goat.,10
+106,Ent,Rare,20,10,9,An angered tree spirit.,20
+107,Valvrn,Rare,20,5,10,A gigantic demonic raven.,15
+108,Gloomy Wolf,Normal,10,5,5,A wolf seperated from it's pack.,15
+109,Giant Micropede,Normal,15,0,5,A giant snake-like bug.,15
+110,MolBear,Rare,20,5,5,A Bear blessed by Terra.,25
 111,Dignified Deer,Rare,15,7,6,A deer with armor-like fur and sword-like antlers.,50
+112,Slime King,Unique,50,20,15,The King of All slimes!,400
+113,Dryiad,Unique,40,15,20,Lady of the Forest.,400
+114,Dreadful Wolf,Unique,20,20,20,A lonesome terrifying wolf.,400
+115,Herald of the Elks,Unique,30,10,30,A proud leader of the Elks.,400

@@ -113,7 +113,7 @@ public class Field {
 
         public void action() {
             int percentage = 10;
-            int value = (int) Math.random() * percentage + 1;
+            int value = (int) (Math.random() * percentage) + 1;
             int monster = Program.randomNum(104, 111);
             if (1 == value){
                 Battle.battleNow(monster);
