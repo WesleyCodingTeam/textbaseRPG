@@ -5,6 +5,7 @@
 105,Horned Cottontail,Normal,10,5,7,A fluffy and ferocious goat.,25
 106,Ent,Rare,20,10,9,An angered tree spirit.,40
 107,Valvrn,Rare,20,5,10,A gigantic demonic raven.,30
-108,Gloomy Wolf,10,5,5,A wolf seperated from it's pack.,30
-109,Giant Micropede,15,0,5,A giant snake-like bug.,25
-110,
+108,Gloomy Wolf,Normal,10,5,5,A wolf seperated from it's pack.,30
+109,Giant Micropede,Normal,15,0,5,A giant snake-like bug.,25
+110,MolBear,Rare,20,5,5,A Bear blessed by Terra.,50
+111,Dignified Deer,Rare,15,7,6,A deer with armor-like fur and sword-like antlers.,50
