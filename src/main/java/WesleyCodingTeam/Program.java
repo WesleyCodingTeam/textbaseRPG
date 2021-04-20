@@ -50,7 +50,7 @@ public class Program {
     }
     //make arbitrary character for testing
     public static void testCharacterGeneration(){
-        MainCharacter.makeStats("Jaeyoung", "None", 1, 13, 50, 11, 11, 100, 100, 100, 100, 10000);
+        MainCharacter.makeStats("Jaeyoung", "None", 1, 13, 10, 11, 11, 100, 100, 100, 100, 10000);
         MainCharacter.currentLocation = "Your House";
         MainCharacter.currentPart = 1;
         MainCharacter.currentState = "Idle";

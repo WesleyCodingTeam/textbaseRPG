@@ -16,6 +16,9 @@ public class Inventory {
         }
         return false;
     }
+    public static Item getItem(int itemID){
+        return Data.itemList.get(itemID);
+    }
     public static int itemLocation(int itemID){
         if(haveItem(itemID)){
             for(int x = 0;x<otherItem.size();x++){

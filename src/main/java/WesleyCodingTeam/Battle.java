@@ -73,9 +73,9 @@ public class Battle {
     }
     //hp display gauge
     public static String barGauge(int type){
-        int divideLife = 0;
-        int life_Remaining = 0;
-        int numOfHashtag = 0;
+        double divideLife = 0;
+        double life_Remaining = 0;
+        double numOfHashtag = 0;
         if(type == 1){
             numOfHashtag = 20;
             divideLife = currentMonster.hp/numOfHashtag;
