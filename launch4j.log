@@ -1,0 +1,28 @@
+
+
+Version:	3.13
+CmdLine:	C:\Users\jaeyo\Desktop\all stuff\Coding\Java\RPG\textbaseRPG\RPG.exe --l4j-debug
+WOW64:		yes
+Java min ver:	1.008.000
+Java max ver:	
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files (x86)\Java\jre1.8.0_281\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_281
+Check launcher:	C:\Program Files (x86)\Java\jre1.8.0_281\bin\javaw.exe (OK)
+Match:		1.008.000_281
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+32-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+32-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Check:		SOFTWARE\JavaSoft\JDK\15.0.1
+Check launcher:	C:\Program Files\Java\jdk-15.0.1\bin\javaw.exe (OK)
+Match:		1.015.000_001
+Runtime used:	1.015.000_001 (64-bit)
+Launcher:	C:\Program Files\Java\jdk-15.0.1\bin\javaw.exe
+Launcher args:	-jar "C:\Users\jaeyo\Desktop\all stuff\Coding\Java\RPG\textbaseRPG\RPG.exe"
+Args length:	75/32768 chars
+Exit code:	0
