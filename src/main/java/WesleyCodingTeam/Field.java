@@ -132,11 +132,12 @@ public class Field {
         public ChestTile(int xCoordinate, int yCoordinate, int[][] itemList) {
             super(xCoordinate, yCoordinate);
             this.itemList = itemList;
+            super.tileShape = 'C';
         }
 
         @Override
         public void message() {
-            Program.systemDialogue("");
+            Program.systemDialogue("You found a chest! Do you want to open it? (y/n)");
         }
 
         @Override
@@ -150,15 +151,25 @@ public class Field {
         }
 
         public void displayItem() {
-
+            Program.terminal.println("___________________");
+            Program.terminal.println("       Items       ");
+            for(int i =0;i<itemList.length;i++){
+                Program.terminal.println("| No." + i + " " + Inventory.getItem(itemList[i][0]).name + " x" + itemList[i][1]);
+            }
+            Program.terminal.println("___________________");
         }
 
         public void askForSelection() {
-
+            Program.systemDialogue("Which item do you want to take? Choose only 1. Type -1 to quit");
         }
 
         public void putInInventory() {
+            int received = Program.askInt();
+            if (Program.askInt() != -1 && received<itemList.length){
+                if(itemList[received][1] !=0) {
 
+                }
+            }
         }
     }
 
