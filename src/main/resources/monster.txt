@@ -1,3 +1,9 @@
-101,Test Mob 1,Normal,1000,3,40,This is the testing mob.,0
-102,Dire wolf,Rare,200,20,30,Horrible mob. Run if you meet one.,0
-103,Slime King,Unique,50,5,10,It is jelly.,10
+W,1001,350,Basic Sword,Normal,Can't even touch a goblin with this!,10,true,Strength,1,false,0
+W,1002,350,Basic Wand,Normal,Abra Kadabra! Wait... Nothing happened?,10,true,Wisdom,1,false,0
+W,1003,350,Basic Knife,Normal,Good for tickling monsters... Not really.,10,true,Agility,1,false,0
+P,3001,50,Cookie,Normal,Nice chocolate cookie. Increases your hp and mp by 10.,10,10,false,0
+P,3002,100,Red Potion,Normal,You know what this does,50,0,false,0
+P,3003,100,Blue Potion,Normal,You know what this does,0,50,false,0
+Q,4001,2,Stone,Quest,Idk why you are gathering this,true,0
+Q,4002,1,Wood,Quest,Can maybe earn you some money,true,0
+Q,4003,30,Wolf fur,Monster Loot,this is used to make handbags for girls,true,0
