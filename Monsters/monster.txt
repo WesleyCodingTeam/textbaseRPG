@@ -1,5 +1,5 @@
 101,Test Mob 1,Normal,1000,3,40,This is the testing mob.,0
-102,Dire wolf,Rare,200,20,30,A majestic being, Ascended among the wolves.,400
+102,Dire wolf,Rare,200,20,30,A majestic being that ascended among the wolves.,400
 103,Slime King,Unique,50,5,10,The mightiest slime!,185
 104,Ballon Rat,Normal,10,0,5,A Ball shaped rat.,15
 105,Horned Cottontail,Normal,10,5,7,A fluffy and ferocious goat.,25
