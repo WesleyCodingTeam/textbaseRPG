@@ -63,6 +63,10 @@ public class Field {
     public void addMonsterTile(int xCoordinate, int yCoordinate,int monsterId){
         tiles[yCoordinate][xCoordinate] = new MonsterTile(xCoordinate, yCoordinate,monsterId);
     }
+    public void addChestTile(int xCoordinate, int yCoordinate){
+        int[][] items = {{1001,1},{1002,3}};
+        tiles[yCoordinate][xCoordinate] = new ChestTile(xCoordinate, yCoordinate,items);
+    }
     public void deleteTile(int x,int y){
         tiles[y][x] = new Tile(x,y);
     }
@@ -132,7 +136,7 @@ public class Field {
         public ChestTile(int xCoordinate, int yCoordinate, int[][] itemList) {
             super(xCoordinate, yCoordinate);
             this.itemList = itemList;
-            super.tileShape = 'C';
+            super.tileShape = 'I';
         }
 
         @Override
@@ -142,7 +146,7 @@ public class Field {
 
         @Override
         public void action() {
-            while (Program.askChar() == 'y') {
+            if (Program.askChar() == 'y') {
                 displayItem();
                 askForSelection();
                 putInInventory();
@@ -154,7 +158,7 @@ public class Field {
             Program.terminal.println("___________________");
             Program.terminal.println("       Items       ");
             for(int i =0;i<itemList.length;i++){
-                Program.terminal.println("| No." + i + " " + Inventory.getItem(itemList[i][0]).name + " x" + itemList[i][1]);
+                Program.terminal.println("| No." + i + " " + Data.itemList.get(itemList[i][0]).name + " x" + itemList[i][1]);
             }
             Program.terminal.println("___________________");
         }
@@ -165,10 +169,10 @@ public class Field {
 
         public void putInInventory() {
             int received = Program.askInt();
-            if (Program.askInt() != -1 && received<itemList.length){
+            if (received != -1 && received<itemList.length){
                 if(itemList[received][1] !=0) {
                     Inventory.setInventoryItem(itemList[received][0],1);
-                    itemList[received][0]--;
+                    itemList[received][1]--;
                 }
             }
             Program.systemDialogue("Do you want to pick other item? (y/n)");

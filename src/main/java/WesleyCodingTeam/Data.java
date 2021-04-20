@@ -120,6 +120,9 @@ public class Data {
                 case "C":
                     MainCharacter.changeCoordinate(x,y);
                     break;
+                case "I":
+                    field.addChestTile(x,y);
+                    break;
                 default:
                     Program.terminal.println("Error while generating map");
                     break;
