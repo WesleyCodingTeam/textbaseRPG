@@ -18,9 +18,15 @@ public class MainCharacter {
         static int extraStat = 0;
         static int currentPart = 0; //current part in the story
         static String occupation = "villager";
-        static String currentState = "Idle"; //tells what the charcter is doing idle, fighting, shoping etc.
+        static String currentState = "Idle"; //tells what the character is doing idle, fighting, shopping etc.
         static double normalDamageMultiplier = 1.0;
         static String currentLocation = "Your House";
+        static String currentField = "Town";
+        static int xCoordinate;
+        static int yCoordinate;
+        static int maxViewDistance = 5;
+        static int killCount = 0;
+        static int deathNum = 0;
     //declaring field
     public static void makeStats(String nameChoice, String classTypeChoice, int lvChoice, int ageChoice, int strChoice, int wisChoice, int agiChoice, int hpMaxChoice, int hpNowChoice, int mpMaxChoice, int mpNowChoice, int coinChoice){
         name = nameChoice;
@@ -36,25 +42,25 @@ public class MainCharacter {
         mpNow = mpNowChoice;
         coin = coinChoice;
         }
-    
+
     //printing out stat
     public static void statPage(){
-        System.out.println();
-        System.out.println("             STATS");
-        System.out.println("________________________________");
-        System.out.println("Name:           " + name);
-        System.out.println("Age:            " + age);
-        System.out.println("Job:            " + occupation);
-        System.out.println("Class:          " + classType);
-        System.out.println("Lv:             " + lv + " ("+currentExp+"/"+expRequired+")");
-        System.out.println("HP:             " + hpNow + "/" + hpMax);
-        System.out.println("MP:             " + mpNow + "/" + mpMax);
-        System.out.println("Strength:       " + str);
-        System.out.println("Wisdom:         " + wis);
-        System.out.println("Agility:        " + agi);
-        System.out.println("Coin:           " + coin + " coins");
-        System.out.println("________________________________");
-        System.out.println();
+        Program.terminal.println();
+        Program.terminal.println("             STATS");
+        Program.terminal.println("________________________________");
+        Program.terminal.println("Name:           " + name);
+        Program.terminal.println("Age:            " + age);
+        Program.terminal.println("Job:            " + occupation);
+        Program.terminal.println("Class:          " + classType);
+        Program.terminal.println("Lv:             " + lv + " ("+currentExp+"/"+expRequired+")");
+        Program.terminal.println("HP:             " + hpNow + "/" + hpMax);
+        Program.terminal.println("MP:             " + mpNow + "/" + mpMax);
+        Program.terminal.println("Strength:       " + str);
+        Program.terminal.println("Wisdom:         " + wis);
+        Program.terminal.println("Agility:        " + agi);
+        Program.terminal.println("Coin:           " + coin + " coins");
+        Program.terminal.println("________________________________");
+        Program.terminal.println();
         if(extraStat > 0){
             statChangeAsk();
         }
@@ -123,8 +129,7 @@ public class MainCharacter {
     //damage counter
     public static int normalAttackDamageCounter(){
         int damage = 0;
-        Inventory.updateEquiped();
-        damage = (int) (str * normalDamageMultiplier + Inventory.getWeaponDamage(Inventory.currentEquipedWeapon));
+        damage = (int) (str * normalDamageMultiplier + (Inventory.currentEquipped!=null?Inventory.currentEquipped.damage:0));
         return damage;
     }
     public static void checkLevelUp() {
@@ -155,35 +160,39 @@ public class MainCharacter {
             temp = Guild.questList.get(key);
             //if it is not completed and in the same part, then it will be available
             if(temp.qAccepted == true && temp.questCompletion == false){
-                System.out.println("__________________________________ QUESTS________________________________________");
+                Program.terminal.println("__________________________________ QUESTS________________________________________");
                 switch (temp.qType){
                     case 1:
-                        System.out.println();
-                        System.out.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ").");
-                        System.out.println();
-                        System.out.println("                                                            Reward: " + temp.rewardM + " coins");
-                        System.out.println();
-                        System.out.println("_________________________________________________________________________________");
-                        System.out.println();
+                        Program.terminal.println();
+                        Program.terminal.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ").");
+                        Program.terminal.println();
+                        Program.terminal.println("                                                            Reward: " + temp.rewardM + " coins");
+                        Program.terminal.println();
+                        Program.terminal.println("_________________________________________________________________________________");
+                        Program.terminal.println();
                         break;
-                
+
                     case 2:
-                        System.out.println();
-                        System.out.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ") and " + temp.questDetail2 + " (" + temp.currentNumDetail2 + "/" + temp.numDetail2 + ").");
-                        System.out.println();
-                        System.out.println("                                                            Reward: " + temp.rewardM + " coins");
-                        System.out.println();
-                        System.out.println("_________________________________________________________________________________");
-                        System.out.println();
+                        Program.terminal.println();
+                        Program.terminal.println(" Quest(Rank " + temp.qRank + ") : " + temp.questDetail1 + " (" + temp.currentNumDetail1 + "/" + temp.numDetail1 + ") and " + temp.questDetail2 + " (" + temp.currentNumDetail2 + "/" + temp.numDetail2 + ").");
+                        Program.terminal.println();
+                        Program.terminal.println("                                                            Reward: " + temp.rewardM + " coins");
+                        Program.terminal.println();
+                        Program.terminal.println("_________________________________________________________________________________");
+                        Program.terminal.println();
                         break;
                     default:
                         break;
                 }
             }
         }
-    }    
+    }
     //gold minus
     public static void minusGold(int coins){
         coin -= coins;
+    }
+    public static void changeCoordinate(int x,int y){
+        xCoordinate = x;
+        yCoordinate = y;
     }
 }

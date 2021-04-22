@@ -28,3 +28,5 @@ buildNumber.properties
 .vscode/
 textbaseRPG.jar
 exefileconfig.xml
+out/*
+configlaunch4j.xml

@@ -1,10 +1,13 @@
 package WesleyCodingTeam;
 
+
+
 public class Class{
         static int veryhigh = 15;
         static int high = 9;
         static int avg = 6;
         static int low = 3;
+
 
 
     public static void knight(){
@@ -39,45 +42,45 @@ public class Class{
 
     //list of class stuff
     public static void classPage(){
-        System.out.println();
-        System.out.println("                CLASS TYPES");
-        System.out.println("_____________________________________________");
-        System.out.println("|Class      |Strength  |Wisdom     |Agility  |");
-        System.out.println("|--------------------------------------------|");
-        System.out.println("|Knight     |High      |Average    |Low      |");
-        System.out.println("|Wizard     |Low       |Very High  |Low      |");
-        System.out.println("|Rogue      |Average   |Low        |High     |");
-        System.out.println("|Swordsman  |Average   |Average    |Average  |");
-        System.out.println("|--------------------------------------------|");
-        System.out.println();
+        Program.terminal.println();
+        Program.terminal.println("                CLASS TYPES");
+        Program.terminal.println("_____________________________________________");
+        Program.terminal.println("|Class      |Strength  |Wisdom     |Agility  |");
+        Program.terminal.println("|--------------------------------------------|");
+        Program.terminal.println("|Knight     |High      |Average    |Low      |");
+        Program.terminal.println("|Wizard     |Low       |Very High  |Low      |");
+        Program.terminal.println("|Rogue      |Average   |Low        |High     |");
+        Program.terminal.println("|Swordsman  |Average   |Average    |Average  |");
+        Program.terminal.println("|--------------------------------------------|");
+        Program.terminal.println();
 
     }
 
 
 // this should theoretically work... right?? or does the ifandelse() not work since im using it before it is made?
     public static void selection(){
-        System.out.println("You can now choose which class to master!");
+        Program.terminal.println("You can now choose which class to master!");
         classPage();
-        System.out.println("Type \"k\" for Knight, \"w\" for Wizard, \"r\" for Rogue, and \"s\" for Swordsman!");
+        Program.terminal.println("Type \"k\" for Knight, \"w\" for Wizard, \"r\" for Rogue, and \"s\" for Swordsman!");
         ifandelse();
     }
     public static void ifandelse(){
-        char type = Program.scanChar();
-        System.out.print("> ");
+        char type = Program.askChar();
+        Program.terminal.print("> ");
         if (type == 'k') {
             knight();
-            System.out.println("You are now a Knight!");
+            Program.terminal.println("You are now a Knight!");
         } else if (type == 'w') {
             wizard();
-            System.out.println("You are now a Wizard!");
+            Program.terminal.println("You are now a Wizard!");
         } else if (type == 'r') {
             rogue();
-            System.out.println("You are now a Rogue!");
+            Program.terminal.println("You are now a Rogue!");
         } else if (type == 's') {
             swordsman();
-            System.out.println("You are now a Swordsman!");
+            Program.terminal.println("You are now a Swordsman!");
         } else {
-            System.out.println("That's not a valid class! Try again!");
+            Program.terminal.println("That's not a valid class! Try again!");
             selection();
         }
     }

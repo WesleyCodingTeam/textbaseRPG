@@ -1,43 +1,33 @@
 package WesleyCodingTeam;
 
-import java.util.ArrayList;
+
 
 public class Battle {
-    static int monsterID;
     static int turn;
-    static final int MONSTERID = 0;
-    static final int MONSTERNAME = 1;
-    static final int MONSTERTYPE = 2;
-    static final int MONSTERHP = 3;
-    static final int MONSTERCURRENTHP = 4;
-    static final int MONSTERDEFENSE = 5;
-    static final int MONSTERDAMAGE = 6;
-    static final int MONSTERDESCRIPTION = 7;
-    private static ArrayList<String> currentMonster;
+    private static Monster currentMonster;
+
     public static void battleNow(int monsterIDs) {
-        monsterID = monsterIDs;
         turn = 1;
         MainCharacter.currentState = "Fighting";
-        currentMonster = Program.deepCopy(Monster.monsterList.get(monsterID));
-        String name = getFightingMonsterName();
-        System.out.println("");
-        Program.narrationDialogue("You encounterned with " + name+"!");
+        currentMonster = Data.monsterList.get(monsterIDs).clone();
+        Program.terminal.println("");
+        Program.narrationDialogue("You encountered with " + currentMonster.name+"!");
         battleStatus();
-        
+
     }
     //prints out current status of battle
     public static void battleStatus(){
-        System.out.println("________________TURN "+ turn +"________________");
-        System.out.println("");
-        System.out.println("                +-------------------- ");
-        System.out.println("                |Name:"+ getFightingMonsterName());
-        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
-        System.out.println("                |" + barGauge(1));
-        System.out.println("                +-------------------- ");
-        System.out.println("");
-        System.out.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
-        System.out.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
-        System.out.println("");
+        Program.terminal.println("________________TURN "+ turn +"________________");
+        Program.terminal.println("");
+        Program.terminal.println("                +-------------------- ");
+        Program.terminal.println("                |Name:"+ currentMonster.name);
+        Program.terminal.println("                |HP:  " + currentMonster.currentHp+"/"+currentMonster.hp);
+        Program.terminal.println("                |" + barGauge(1));
+        Program.terminal.println("                +-------------------- ");
+        Program.terminal.println("");
+        Program.terminal.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
+        Program.terminal.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
+        Program.terminal.println("");
         askAction();
     }
     //user action
@@ -47,19 +37,32 @@ public class Battle {
         int answ = Program.askInt();
         switch (answ) {
             case 1:
-                dealDamage();
-                receiveDamage();
+                boolean killed = dealDamage();
+                if(killed){
+                    MainCharacter.killCount ++;
+                    break;
+                }
+                boolean died = receiveDamage();
                 turn++;
+                if(died){
+                    MainCharacter.deathNum++;
+                    break;
+                }
                 battleStatus();
                 break;
             case 2:
-                Inventory.usePotion();
-                receiveDamage();
-                turn++;
+                if(Inventory.getPotions()){
+                    boolean die = receiveDamage();
+                    if(die){
+                        MainCharacter.deathNum++;
+                        break;
+                    }
+                    turn++;
+                }
                 battleStatus();
                 break;
             case 3:
-                
+
             break;
             default:
                 Program.systemDialogue("Wrong command try again!");
@@ -70,13 +73,13 @@ public class Battle {
     }
     //hp display gauge
     public static String barGauge(int type){
-        int divideLife=0;
-        int life_Remaining=0;
-        int numOfHashtag=0;
+        double divideLife = 0;
+        double life_Remaining = 0;
+        double numOfHashtag = 0;
         if(type == 1){
             numOfHashtag = 20;
-            divideLife = getFightingMonsterHP()/numOfHashtag;
-            life_Remaining = getFightingMonsterCurrentHP()/divideLife;
+            divideLife = currentMonster.hp/numOfHashtag;
+            life_Remaining = currentMonster.currentHp/divideLife;
         }
         else if (type == 2){
             numOfHashtag = 10;
@@ -89,7 +92,7 @@ public class Battle {
             life_Remaining = MainCharacter.mpNow/divideLife;
         }
         else{
-            System.out.println("Error on bar gauge");
+            Program.terminal.println("Error on bar gauge");
         }
         String lifeBar = "[";
         int i;
@@ -104,29 +107,33 @@ public class Battle {
 
     }
     //deal damage
-    public static void dealDamage(){
-        int damageDealt = MainCharacter.normalAttackDamageCounter() - getFightingMonsterDefense();
+    public static boolean dealDamage(){
+        boolean killed = false;
+        int damageDealt = MainCharacter.normalAttackDamageCounter() - currentMonster.defense;
         if (damageDealt < 0) {
             damageDealt = 0;
         }
-        setFightingMonsterCurrentHP(getFightingMonsterCurrentHP() - damageDealt);
+        currentMonster.currentHp = (currentMonster.currentHp - damageDealt);
         Program.systemDialogue("You dealt " + damageDealt + " damage to the monster!");
         if (monsterDeathCheck()){
             MainCharacter.currentState = "Idle";
-            Program.systemDialogue("You slain "+ getFightingMonsterName() + "!");
-            //some code to proceed to next
-        }        
+            Program.systemDialogue("You slain "+ currentMonster.name + "!");
+            killed = true;
+        }
+        return killed;
     }
     //receive damage
-    private static void receiveDamage() {
-        int damageReceived = getFightingMMonsterDamage();
+    private static boolean receiveDamage() {
+        boolean died = false;
+        int damageReceived = currentMonster.damage;
         Program.systemDialogue("You received " + damageReceived + " damage from the monster!");
         MainCharacter.hpNow -= damageReceived;
         if (characterDeathCheck()){
             MainCharacter.currentState = "Idle";
             Program.systemDialogue("You died......");
-            //some code to go back home
+            died = true;
         }
+        return died;
     }
     //check if character is dead or not
     public static boolean characterDeathCheck(){
@@ -137,69 +144,25 @@ public class Battle {
     }
     //check if monster is dead or not
     public static boolean monsterDeathCheck(){
-        if (getFightingMonsterCurrentHP() <= 0){
+        if (currentMonster.currentHp <= 0){
             return true;
         }
             return false;
     }
-    //gets fighting monster name
-    public static String getFightingMonsterName(){
-        String i = currentMonster.get(MONSTERNAME);
-        return i;
-    }
-    //gets fighting monster HP
-    public static int getFightingMonsterHP(){
-        String i = currentMonster.get(MONSTERHP);
-        int j = Integer.parseInt(i);  
-        return j;
-    }
-    //gets fighting monster current HP
-    public static int getFightingMonsterCurrentHP(){
-        String i = currentMonster.get(MONSTERCURRENTHP);
-        int j = Integer.parseInt(i);  
-        return j;
-    }
-    //sets fighting monster current HP
-    public static void setFightingMonsterCurrentHP(int changedHP){
-        String i = Integer.toString(changedHP); 
-        currentMonster.set(MONSTERCURRENTHP, i);
-    }
-    
-    //gets fighting monster defense
-    public static int getFightingMonsterDefense(){
-        String i = currentMonster.get(MONSTERDEFENSE);
-        int j = Integer.parseInt(i);  
-        return j;
-    }
-    //sets fighting monster Defense
-    public static void setFightingWeaponDefense(int changedDefense){
-        String i = Integer.toString(changedDefense); 
-        currentMonster.set(MONSTERDEFENSE, i);
-    }
-    //gets fighting monster damage
-    public static int getFightingMMonsterDamage(){
-        String i = currentMonster.get(MONSTERDAMAGE);
-        int j = Integer.parseInt(i);  
-        return j;
-    }
-    //sets fighting monster damage
-    public static void setFightingMonsterDamage(int changedDamage){
-        String i = Integer.toString(changedDamage); 
-        currentMonster.set(MONSTERDAMAGE, i);
+    public static void getReward(){
+
     }
 
     public static void battleNowTutorial(int monsterIDs) {
-        monsterID = monsterIDs;
         turn = 1;
         MainCharacter.currentState = "Fighting";
-        currentMonster = Monster.monsterList.get(monsterID);
-        String name = getFightingMonsterName();
-        Program.systemDialogue("Fighting with " + name+"!!!");
+        currentMonster = Data.monsterList.get(monsterIDs).clone();
+        Program.systemDialogue("Fighting with " + currentMonster.name+"!!!");
         battleStatusTutorial();
         boolean pass = false;
         while (!pass) {
             Program.systemDialogue("What are you going to do?");
-            
+
             Program.dialogue("1.Run");
             int answ = Program.askInt();
             if (answ == 1){
@@ -234,7 +197,7 @@ public class Battle {
                     Program.dialogue("!$%$^%@!&##!(#(!#&*#!(!*^#&!#");
                     Program.narrationDialogue("You feel your body lose all its weight");
                     Program.systemDialogue("You dealt 99999 damage to the monster!");
-                    Program.systemDialogue("You slain "+ getFightingMonsterName() + "!");
+                    Program.systemDialogue("You slain "+ currentMonster.name + "!");
                     break;
                 case 2:
                     Program.dialogue("There is no way. It is either me or the wolf that will die.");
@@ -243,7 +206,7 @@ public class Battle {
                     Program.systemDialogue("Wrong command try again!");
                     break;
             }
-        } 
+        }
         MainCharacter.lv = 1;
         Program.narrationDialogue("You faint from the exhaustion");
         MainCharacter.currentState = "Idle";
@@ -252,18 +215,18 @@ public class Battle {
 
     //display tutorial
     public static void battleStatusTutorial(){
-        System.out.println("");
-        System.out.println("________________TURN "+ turn +"________________");
-        System.out.println("");
-        System.out.println("                +-------------------- ");
-        System.out.println("                |Name:"+ getFightingMonsterName());
-        System.out.println("                |HP:  " + getFightingMonsterCurrentHP()+"/"+getFightingMonsterHP());
-        System.out.println("                |" + barGauge(1));
-        System.out.println("                +-------------------- ");
-        System.out.println("");
-        System.out.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
-        System.out.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
-        System.out.println("");
+        Program.terminal.println("");
+        Program.terminal.println("________________TURN "+ turn +"________________");
+        Program.terminal.println("");
+        Program.terminal.println("                +-------------------- ");
+        Program.terminal.println("                |Name:"+ currentMonster.name);
+        Program.terminal.println("                |HP:  " + currentMonster.currentHp+"/"+currentMonster.hp);
+        Program.terminal.println("                |" + barGauge(1));
+        Program.terminal.println("                +-------------------- ");
+        Program.terminal.println("");
+        Program.terminal.println("My HP:" + MainCharacter.hpNow +"/"+ MainCharacter.hpMax + " " + barGauge(2));
+        Program.terminal.println("My MP:" + MainCharacter.mpNow +"/"+ MainCharacter.mpMax + " " + barGauge(3));
+        Program.terminal.println("");
     }
     //user action
     public static void askActionTutorial(){

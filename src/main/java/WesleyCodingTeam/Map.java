@@ -36,10 +36,10 @@ public class Map {
                 }
                 break;
             default:
-                System.out.println("Error on updateMap. You are in some strange place.");
+                Program.terminal.println("Error on updateMap. You are in some strange place.");
                 break;
         }
-        
+
     }
     //use this to make user change location
     public static void moveUI(){
@@ -48,24 +48,23 @@ public class Map {
         actionAtLocation();
     }
     public static void printMap(){
-        System.out.println("      MAP");
-        System.out.println("________________");
+        Program.terminal.println("      MAP");
+        Program.terminal.println("________________");
         updateMap();
         Location temp;
         for (int i = 0; i < list_of_location.size(); i++) {
             temp = list_of_location.get(i);
             if(temp.getEnabled() == 1){
-                System.out.print("- ");
-                System.out.println(temp.getName());
+                Program.terminal.print("- ");
+                Program.terminal.println(temp.getName());
             }
         }
-        System.out.println("");
+        Program.terminal.println("");
     }
     public static void askChangeForLocation(){
-        System.out.println("");
-        System.out.println("Where do you want to go?");
-        System.out.print("> ");
-        String place = Program.scanString();
+        Program.terminal.println("");
+        Program.terminal.println("Where do you want to go?");
+        String place = Program.askString();
         boolean placeExists = false;
         Location temp;
         for (int i = 0; i < list_of_location.size(); i++) {
@@ -77,7 +76,7 @@ public class Map {
             }
         }
         if(placeExists == false){
-            System.out.println("No such place exists or it is inaccesible currently.");
+            Program.terminal.println("No such place exists or it is inaccesible currently.");
             askChangeForLocation();
         }
     }
@@ -91,12 +90,12 @@ public class Map {
             case "Shop":
                 MainCharacter.currentState = "Busy";
                 Shop.shopAsk();
-                MainCharacter.currentState = "Idle"; 
+                MainCharacter.currentState = "Idle";
                 break;
             case "Guild":
                 MainCharacter.currentState = "Busy";
                 Guild.guildPage();
-                MainCharacter.currentState = "Idle"; 
+                MainCharacter.currentState = "Idle";
                 break;
             case "Your House":
                 // maybe healing for free by sleeping
@@ -105,19 +104,19 @@ public class Map {
                     Story.conflictAtHome();
                 }
                 break;
-                
-                
+
+
             case "Forest":
 
                 break;
-            
-            
+
+
             case "Sample3":
 
                 break;
-                
+
             default:
-                System.out.println("Error. Can't perform any actions. Let's reposition you!");
+                Program.terminal.println("Error. Can't perform any actions. Let's reposition you!");
                 moveUI();
                 break;
         }
@@ -141,8 +140,16 @@ public class Map {
             }
         }
         if(found == false){
-            System.out.println("Error. Mismatching Location name.");    
+            Program.terminal.println("Error. Mismatching Location name.");
         }
-        
+
     }
+
 }
+
+
+
+
+
+
+
